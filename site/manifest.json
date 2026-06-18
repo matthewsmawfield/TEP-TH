@@ -1,0 +1,112 @@
+{
+  "title": "Temporal Equivalence Principle: Temporal Horizon Cosmology and the Absence of a Physical Big Bang Singularity",
+  "author": "Matthew Lukin Smawfield",
+  "version": "v0.1 (Thika)",
+  "date": "18 June 2026",
+  "first_published": "18 June 2026",
+  "doi": "10.5281/zenodo.20723059",
+  "sections": [
+    {
+      "id": "section-abstract",
+      "title": "Abstract",
+      "file": "0_abstract.html",
+      "order": 1
+    },
+    {
+      "id": "section-intro",
+      "title": "Introduction: From Big Bang Singularity to Temporal Horizon",
+      "file": "1_introduction.html",
+      "order": 2
+    },
+    {
+      "id": "section-temporal-horizon-mapping",
+      "title": "Temporal-Horizon Mapping",
+      "file": "2_temporal_horizon_mapping.html",
+      "order": 3
+    },
+    {
+      "id": "section-matter-frame-curvature",
+      "title": "Matter-Frame Geometry and Curvature Regularity",
+      "file": "3_matter_frame_curvature.html",
+      "order": 4
+    },
+    {
+      "id": "section-geodesic-completeness",
+      "title": "Geodesic Completeness",
+      "file": "4_geodesic_completeness.html",
+      "order": 5
+    },
+    {
+      "id": "section-stress-energy",
+      "title": "Effective Stress-Energy and Singularity-Theorem Evasion",
+      "file": "5_stress_energy.html",
+      "order": 6
+    },
+    {
+      "id": "section-bbn",
+      "title": "BBN Abundance Validation",
+      "file": "6_bbn_abundances.html",
+      "order": 7
+    },
+    {
+      "id": "section-recombination",
+      "title": "Recombination and Visibility Function",
+      "file": "7_recombination_visibility.html",
+      "order": 8
+    },
+    {
+      "id": "section-blackbody",
+      "title": "CMB Blackbody Origin and Spectral Distortion",
+      "file": "8_blackbody_origin.html",
+      "order": 9
+    },
+    {
+      "id": "section-entropy",
+      "title": "Entropy and Arrow of Time",
+      "file": "9_entropy_arrow.html",
+      "order": 10
+    },
+    {
+      "id": "section-perturbations",
+      "title": "Primordial Perturbation Origin",
+      "file": "10_perturbation_boundary.html",
+      "order": 11
+    },
+    {
+      "id": "section-pipeline-summary",
+      "title": "Pipeline Summary and Internal Consistency",
+      "file": "12_pipeline_summary.html",
+      "order": 12
+    },
+    {
+      "id": "section-cmb-lss",
+      "title": "CMB Anisotropy and Large-Scale Structure Consistency",
+      "file": "11_cmb_lss_class.html",
+      "order": 13
+    },
+    {
+      "id": "section-conclusion",
+      "title": "Conclusion",
+      "file": "13_conclusion.html",
+      "order": 14
+    },
+    {
+      "id": "section-references",
+      "title": "References",
+      "file": "14_references.html",
+      "order": 15
+    },
+    {
+      "id": "section-acknowledgements",
+      "title": "Acknowledgements",
+      "file": "16_acknowledgements.html",
+      "order": 15.5
+    },
+    {
+      "id": "section-reproducibility",
+      "title": "Data Availability and Reproducibility",
+      "file": "15_reproducibility.html",
+      "order": 16
+    }
+  ]
+}
