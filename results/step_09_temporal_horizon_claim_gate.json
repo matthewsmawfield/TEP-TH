@@ -3,7 +3,6 @@
     "level_1": {
       "claim": "The Big Bang singularity is a temporal-horizon limit in the distance/acoustic sector.",
       "criteria": {
-        "acoustic_preserved": true,
         "established_claim": "The Big Bang singularity is a temporal-horizon limit in the distance/acoustic sector.",
         "mapping_valid": true,
         "passes": true,
@@ -49,7 +48,7 @@
   },
   "pipeline_status": {
     "all_steps_completed": true,
-    "steps_completed": 10,
+    "steps_completed": 9,
     "total_steps": 10
   },
   "singularity_theorem_analysis": {
@@ -109,5 +108,6 @@
       "description": "SEC violation evades Hawking-Penrose singularity theorems",
       "status": true
     }
-  }
+  },
+  "timestamp": 1786109868
 }

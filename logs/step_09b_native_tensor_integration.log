@@ -1,0 +1,10 @@
+[14:37:48] [INFO] 
+[14:37:48] [INFO] ================================================================================
+[14:37:48] [INFO]    Starting step_09b_native_tensor_integration
+[14:37:48] [INFO] ================================================================================
+[14:37:48] [INFO] 
+[14:37:58] [SUCCESS] Step step_09b_native_tensor_integration completed
+[14:37:58] [INFO] r_max = 0.00062566
+[14:37:58] [INFO] r_at_pivot = 8.7e-06
+[14:37:58] [INFO] r_analytic = 0.00446742
+[14:37:58] [INFO] Below BK bound: True

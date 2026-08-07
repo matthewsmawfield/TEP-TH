@@ -1,6 +1,10 @@
-v0.2 (Thika) — Manuscript polish and terminology alignment - 5 July 2026
+v0.3 (Thika) — 2026-08-07 — No physical Big Bang singularity: temporal-horizon cosmology and eternal-universe closure
 
-- TEP terminology aligned across corpus: matter-frame, temporal horizon, Temporal Shear
-- Bold mid-sentence formatting cleaned up (clock map, dynamical response)
-- Standard cosmology and TEP reinterpretation clearly distinguished
-- Dates and version metadata updated across all publication files
+- Big Bang singularity shown to be a reconstruction artifact of imposing isochronous expanding-frame description on conformal temporal geometry
+- Temporal Horizon Cosmology framework: a_eff→0 is a temporal horizon, not a curvature singularity
+- Proposition 1: curvature regularity at conformal boundary (all polynomial invariants vanish, timelike proper time diverges)
+- Hot Big Bang framework replaced with Native Local Thermodynamic Evolution in an eternal universe
+- Nucleosynthesis and recombination derived from proper-time reaction flow, not FLRW geometry
+- Scalar perturbations from clock-field fluctuations; tensor-to-scalar ratio r ≈ 9×10⁻⁶ (native wave equation)
+- Strong Energy Condition violation explicitly demonstrated (prerequisite of Hawking-Penrose theorems)
+- Cross-paper consistency: aligned with TEP-BBN (Paper 29), TEP-HC (Paper 18), TEP-C0 (Paper 26), TEP (Paper 0) v0.10

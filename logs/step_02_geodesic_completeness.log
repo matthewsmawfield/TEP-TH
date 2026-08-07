@@ -1,0 +1,7 @@
+[14:37:47] [INFO] 
+[14:37:47] [INFO] ================================================================================
+[14:37:47] [INFO]    Starting step_02_geodesic_completeness
+[14:37:47] [INFO] ================================================================================
+[14:37:47] [INFO] 
+[14:37:48] [SUCCESS] Step step_02_geodesic_completeness completed successfully
+[14:37:48] [INFO] Geodesic completeness: True

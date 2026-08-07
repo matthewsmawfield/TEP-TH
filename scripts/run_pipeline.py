@@ -23,14 +23,14 @@ PIPELINE_STEPS = [
     ("step_01_matter_frame_curvature", "Matter-frame curvature", []),
     ("step_02_geodesic_completeness", "Geodesic completeness", []),
     ("step_03_effective_stress_energy", "Effective stress-energy", []),
-    ("step_04_full_bbn_abundances", "BBN abundance validation", []),
-    ("step_05_recombination_visibility", "Recombination visibility", []),
-    ("step_06_cmb_blackbody_origin", "CMB blackbody origin", []),
+    
+    
+    
     ("step_07_entropy_arrow", "Entropy and arrow of time", []),
     ("step_08_primordial_perturbation_boundary", "Primordial perturbation boundary", []),
     ("step_09_temporal_horizon_claim_gate", "Temporal-horizon claim gate", []),
     ("step_09b_native_tensor_integration", "Native tensor-mode integration", []),
-    ("step_10_cmb_lss_class", "CMB and LSS consistency", []),
+    
 ]
 
 

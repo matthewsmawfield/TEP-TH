@@ -1,9 +1,9 @@
 {
   "title": "Temporal Equivalence Principle: Temporal Horizon Cosmology and the Absence of a Physical Big Bang Singularity",
   "author": "Matthew Lukin Smawfield",
-  "version": "v0.2 (Thika)",
+  "version": "v0.3 (Thika)",
   "codename": "Thika",
-  "date": "5 July 2026",
+  "date": "7 August 2026",
   "first_published": "18 June 2026",
   "doi": "10.5281/zenodo.20723059",
   "sections": [
@@ -50,19 +50,19 @@
       "order": 6
     },
     {
-      "id": "section-bbn",
-      "title": "BBN Abundance Validation",
+      "id": "section-bbn-abundances",
+      "title": "Temporal-Horizon Chemical Equilibrium and Elemental Abundances",
       "file": "6_bbn_abundances.html",
       "order": 7
     },
     {
-      "id": "section-recombination",
+      "id": "section-recombination-visibility",
       "title": "Recombination and Visibility Function",
       "file": "7_recombination_visibility.html",
       "order": 8
     },
     {
-      "id": "section-blackbody",
+      "id": "section-blackbody-origin",
       "title": "CMB Blackbody Origin and Spectral Distortion",
       "file": "8_blackbody_origin.html",
       "order": 9
@@ -84,12 +84,6 @@
       "title": "Pipeline Summary and Internal Consistency",
       "file": "12_pipeline_summary.html",
       "order": 12
-    },
-    {
-      "id": "section-cmb-lss",
-      "title": "CMB Anisotropy and Large-Scale Structure Consistency",
-      "file": "11_cmb_lss_class.html",
-      "order": 13
     },
     {
       "id": "section-falsifiable-predictions",
