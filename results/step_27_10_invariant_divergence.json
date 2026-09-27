@@ -1,0 +1,48 @@
+{
+  "step": "step_27_10_invariant_divergence",
+  "formula": "R~ = A^{-2} R - 6 A^{-3} Box A; horizon branch R=0",
+  "profile": "A=(1+(eta/eta0)^n)^{-p/n}",
+  "branch": [
+    {
+      "p": 0.05,
+      "Rtilde_eta0sq_max": 0.2999991000014772,
+      "Rtilde_eta0sq_at_outer_edge": 1.254037587239877e-12,
+      "asymptotic_log_slope": -1.8999999967844838,
+      "expected_slope_2p_minus_2": -1.9,
+      "finite_on_profile": true,
+      "decays_at_boundary": true,
+      "frozen_R_over_regular_at_outer_edge": 3174603174612.547
+    },
+    {
+      "p": 0.1,
+      "Rtilde_eta0sq_max": 0.5999982000029072,
+      "Rtilde_eta0sq_at_outer_edge": 1.0460295070213969e-11,
+      "asymptotic_log_slope": -1.799999996887839,
+      "expected_slope_2p_minus_2": -1.8,
+      "finite_on_profile": true,
+      "decays_at_boundary": true,
+      "frozen_R_over_regular_at_outer_edge": 1515151515155.9226
+    },
+    {
+      "p": 0.25,
+      "Rtilde_eta0sq_max": 1.4999955000068907,
+      "Rtilde_eta0sq_at_outer_edge": 1.8749999999952183e-09,
+      "asymptotic_log_slope": -1.4999999971748834,
+      "expected_slope_2p_minus_2": -1.5,
+      "finite_on_profile": true,
+      "decays_at_boundary": true,
+      "frozen_R_over_regular_at_outer_edge": 533333333334.82666
+    },
+    {
+      "p": 0.5,
+      "Rtilde_eta0sq_max": 2.9999910000123755,
+      "Rtilde_eta0sq_at_outer_edge": 4.499999999990251e-06,
+      "asymptotic_log_slope": -0.9999999975995739,
+      "expected_slope_2p_minus_2": -1.0,
+      "finite_on_profile": true,
+      "decays_at_boundary": true,
+      "frozen_R_over_regular_at_outer_edge": 222222222222.8148
+    }
+  ],
+  "statement": "On the Minkowski-approaching horizon branch the matter-frame Ricci scalar is finite for every 0<p<=1/2 and decays at the boundary. A frozen nonzero gravitational-frame R diverges as A^{-2} and is not this solution."
+}

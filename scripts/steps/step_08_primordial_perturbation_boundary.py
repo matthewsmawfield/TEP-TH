@@ -10,19 +10,22 @@ from __future__ import annotations
 
 from pathlib import Path
 import numpy as np
+from scipy.integrate import quad
+
 from th_common import (
     TEPLogger, ensure_dirs, print_status, rounded, set_step_logger,
     step_json_path, step_csv_path, write_json, write_csv,
-    conformal_factor_A, DEFAULT_EPSILON_T, DEFAULT_Z_T, DEFAULT_N_T
+    conformal_factor_A, DEFAULT_EPSILON_T, DEFAULT_Z_T, DEFAULT_N_T,
+    H0_KM_S_MPC, C_KM_S, e_z
 )
 
 STEP_ID = "step_08_primordial_perturbation_boundary"
 
 
-# Standard ΛCDM primordial parameters (Planck 2018)
+# Standard ΛCDM primordial parameters (Planck 2018 TT,TE,EE+lowE+lensing)
 LCDM_PRIMORDIAL = {
     'A_s': 2.10e-9,
-    'n_s': 0.965,
+    'n_s': 0.9649,
     'k_pivot': 0.05,  # Mpc^-1
     'r': 0.0  # Tensor-to-scalar ratio
 }
@@ -169,7 +172,60 @@ def tep_generation_approach(k_range: tuple = (1e-4, 1.0),
         'fractional_difference_rms': rounded(np.sqrt(np.mean(frac_diff**2)), 6),
         'consistent_with_observation': np.max(np.abs(frac_diff)) < 0.1,
         'valid': True,
-        'interpretation': 'TEP quantum fluctuations predict n_s = 1 - 2*epsilon_field; observed n_s constrains epsilon_field = 0.0175'
+        'interpretation': 'TEP quantum fluctuations predict n_s = 1 - 2*epsilon_field; observed n_s constrains epsilon_field = 0.01755'
+    }
+
+
+def causal_contact_budget(z_rec: float = 1089.8) -> dict:
+    """Horizon-problem bookkeeping: conformal causal budget vs observed scales.
+
+    In flat LCDM the conformal time elapsed from the Big Bang to
+    recombination is finite, so the particle horizon at decoupling subtends
+    a small comoving radius and the CMB sky consists of many causally
+    disconnected patches (the standard horizon problem). In TEP-TH the
+    matter metric is ds~^2 = A_clock^2(eta)[-deta^2 + dx^2], so null rays
+    obey dx/deta = +/-1 and the temporal-horizon boundary lies at the
+    asymptotic limit eta -> infinity (null-affine complete, step_02). The
+    conformal range into the past is therefore unbounded: for any comoving
+    separation Delta chi, the two past light cones intersect at conformal
+    depth Delta chi/2, a finite requirement against an unbounded budget.
+    Causal contact is thus guaranteed for every observed scale; the
+    super-horizon correlations can be generated within the causal domain by
+    the clock-field dynamics rather than postulated as acausal initial
+    conditions.
+    """
+    h_inv = lambda z: 1.0 / (H0_KM_S_MPC * e_z(z))
+
+    # LCDM: conformal causal horizon at recombination (particle horizon at
+    # decoupling) and comoving distance to last scattering.
+    eta_rec_lcdm = C_KM_S * quad(h_inv, z_rec, np.inf, limit=200)[0]
+    chi_rec_lcdm = C_KM_S * quad(h_inv, 0.0, z_rec, limit=200)[0]
+    theta_horizon_rad = eta_rec_lcdm / chi_rec_lcdm
+    n_patches = 4.0 * np.pi / theta_horizon_rad**2
+
+    # TEP-TH: past cones of two patches separated by comoving Delta_chi
+    # intersect at conformal depth Delta_chi/2. For antipodal CMB points the
+    # required depth is chi_rec itself -- finite, so always available in the
+    # unbounded past conformal range of the temporal-horizon branch.
+    delta_chi_antipodal = 2.0 * chi_rec_lcdm
+    eta_depth_required = delta_chi_antipodal / 2.0
+
+    return {
+        'z_rec': z_rec,
+        'lcdm_eta_rec_mpc': rounded(eta_rec_lcdm, 1),
+        'lcdm_chi_rec_mpc': rounded(chi_rec_lcdm, 1),
+        'lcdm_horizon_angle_deg': rounded(np.degrees(theta_horizon_rad), 3),
+        'lcdm_disconnected_patches': rounded(n_patches, 0),
+        'tep_past_conformal_range': 'unbounded (eta -> infinity at temporal horizon)',
+        'tep_depth_for_antipodal_contact_mpc': rounded(eta_depth_required, 1),
+        'tep_causal_obstruction': False,
+        'interpretation': (
+            'LCDM supplies ~{:.0f} disconnected patches (horizon ~{:.2f} deg); '
+            'in TEP-TH the unbounded past conformal range of the affine-complete '
+            'temporal-horizon branch permits causal contact across any observed '
+            'separation, so super-horizon correlations are generatable within the '
+            'causal domain rather than postulated as initial conditions'
+        ).format(n_patches, np.degrees(theta_horizon_rad))
     }
 
 
@@ -215,6 +271,10 @@ def test_primordial_perturbation_boundary(approach: str = 'hybrid',
     else:
         raise ValueError(f"Unknown approach: {approach}")
     
+    # Causal-contact bookkeeping: does the geometry permit generation of the
+    # super-horizon correlations, or must they be postulated?
+    causal = causal_contact_budget()
+
     results = {
         'step': STEP_ID,
         'description': 'Primordial perturbation boundary condition for temporal-horizon cosmology',
@@ -226,6 +286,7 @@ def test_primordial_perturbation_boundary(approach: str = 'hybrid',
             'k_range': k_range
         },
         'horizon_boundary_condition': horizon_bc,
+        'causal_contact': causal,
         'perturbation_approach': approach_result,
         'boundary_well_defined': horizon_bc['perturbations_frozen'] and approach_result['valid'],
         'interpretation': f'Primordial perturbations have well-defined {approach} boundary condition at temporal horizon' if

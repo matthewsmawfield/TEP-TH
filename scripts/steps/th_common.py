@@ -34,9 +34,11 @@ OMEGA_L = 0.7
 OMEGA_K = 0.0
 
 # Temporal horizon parameters
-DEFAULT_EPSILON_T = 0.1  # Temporal shear amplitude (increased for visible effect)
-DEFAULT_Z_T = 100.0      # Transition redshift (moved to higher z)
+DEFAULT_EPSILON_T = 0.0055  # Paper 18 fitted value (5-chain active posterior)
+DEFAULT_Z_T = 100  # kept; form must satisfy δ bounds (§7.2). Transition redshift (moved to higher z)
 DEFAULT_N_T = 1.0        # Transition steepness
+DEFAULT_T_LOCK = 0.03    # eV — epoch-screening lock temperature (archived-steps convention)
+DEFAULT_N_EPOCH = 2.0    # Epoch-screening steepness
 
 def ensure_dirs() -> None:
     for d in [RAW_DIR, RESULTS_DIR, FIGURES_DIR, PROCESSED_DIR]:
@@ -59,23 +61,51 @@ def temporal_shear_factor(z: np.ndarray | float, epsilon_t: float = DEFAULT_EPSI
 
 
 
-def conformal_factor_A(z: np.ndarray | float, epsilon_t: float = DEFAULT_EPSILON_T,
-                      z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T) -> np.ndarray | float:
-    """Compute conformal clock-rate factor A(z) = (1+z/z_t)^(-epsilon_t).
-    
-    For temporal horizon: A(z) → 0 as z → ∞, A(z) → 1 as z → 0.
+def epoch_screening(z: np.ndarray | float, T_lock: float = DEFAULT_T_LOCK,
+                    n_epoch: float = DEFAULT_N_EPOCH) -> np.ndarray | float:
+    """Compute early-epoch screening function S_epoch(T).
+
+    Suppresses temporal shear during early universe (BBN, recombination)
+    and activates during late times.
+
+    S_epoch = 1 / (1 + (T/T_lock)^n_epoch)
+
+    where T = T_CMB * (1+z) is the CMB temperature.
     """
     z = np.asarray(z)
-    return (1 + z / z_t) ** (-epsilon_t)
+    T_CMB = 2.725
+    T_z = T_CMB * (1 + z)
+    T_eV = T_z * 8.617e-05
+    return 1.0 / (1.0 + (T_eV / T_lock) ** n_epoch)
+
+
+def conformal_factor_A(z: np.ndarray | float, epsilon_t: float = DEFAULT_EPSILON_T,
+                      z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T,
+                      T_lock: float = DEFAULT_T_LOCK, n_epoch: float = DEFAULT_N_EPOCH,
+                      use_screening: bool = False) -> np.ndarray | float:
+    """Compute conformal clock-rate factor A(z) = (1+z/z_t)^(-epsilon_t).
+
+    For temporal horizon: A(z) → 0 as z → ∞, A(z) → 1 as z → 0.
+
+    With screening: epsilon_eff = epsilon_t * S_epoch(T).
+    """
+    z = np.asarray(z)
+    if use_screening:
+        epsilon_eff = epsilon_t * epoch_screening(z, T_lock, n_epoch)
+    else:
+        epsilon_eff = epsilon_t
+    return (1 + z / z_t) ** (-epsilon_eff)
 
 def effective_scale_factor(z: np.ndarray | float, epsilon_t: float = DEFAULT_EPSILON_T,
-                           z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T) -> np.ndarray | float:
+                           z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T,
+                           T_lock: float = DEFAULT_T_LOCK, n_epoch: float = DEFAULT_N_EPOCH,
+                           use_screening: bool = False) -> np.ndarray | float:
     """Compute effective scale factor a_eff(z) = A(z).
-    
+
     In TEP the effective scale factor IS the conformal clock-rate factor.
     a_eff → 0 as z → ∞ corresponds to A → 0 at the temporal horizon.
     """
-    return conformal_factor_A(z, epsilon_t, z_t, n_t)
+    return conformal_factor_A(z, epsilon_t, z_t, n_t, T_lock, n_epoch, use_screening)
 
 def temporal_horizon_limit(z: np.ndarray | float, epsilon_t: float = DEFAULT_EPSILON_T,
                           z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T) -> np.ndarray | float:

@@ -1,7 +1,11 @@
 # Temporal Equivalence Principle: Temporal Horizon Cosmology and the Absence of a Physical Big Bang Singularity
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20723059.svg)](https://doi.org/10.5281/zenodo.20723059)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
+**Version:** v0.4 (Thika)  
+**First published:** 18 June 2026 · **Last updated:** 13 September 2026
 
 ## Abstract
 
@@ -11,7 +15,7 @@ The Temporal Horizon Cosmology framework is developed here, proving, within the 
 
 The effective stress-energy tensor of the temporal field violates the Strong Energy Condition, an explicit prerequisite of the Hawking-Penrose singularity theorems. Rather than assuming the early universe was a globally hot expanding plasma, TEP replaces the hot Big Bang framework with Native Local Thermodynamic Evolution in an eternal universe. The temporal-horizon metric provides the geometric boundary where the clock rate vanishes, but it does not claim to uniquely derive primordial abundances. Instead, it delegates the thermal history to the eternal chemical-evolution framework (TEP-BBN, Paper 29), which provides an eternal-universe framework in which chemical states can approach a steady-state asymptotic equilibrium where D/H is no longer uniquely primordial and helium arises through baryonic cycling. The temporal-horizon thermal mapping preserves the observed CMB photon distribution through local decoupling processes without requiring a geometric singularity.
 
-The scalar perturbation spectrum is derived from fluctuations of the clock field, $\zeta=\delta\ln A_{\rm clock}$, yielding a power spectrum $P_{\zeta}(k)\propto k^{n_{s}-1}$ with spectral-flow parameter $n_{s}-1=-2\epsilon_{\rm field}$. The observed Planck value $n_{s}=0.965$ constrains $\epsilon_{\rm field}=0.0175$. Tensor modes are derived directly from the temporal-conformal metric: for $A_{\rm clock}(\eta)\sim\eta^{-p}$ the tensor source term $A_{\rm clock}''/A_{\rm clock}=p(p+1)/\eta^{2}\to 0$ at the horizon, so the tensor equation approaches the Minkowski vacuum. The imported inflationary consistency relation $r=16\epsilon_{\rm field}$ is not assumed. Numerical integration of the native tensor equation across the finite transition profile (Step 09b) yields $r(k_{\rm pivot})=9\times 10^{-6}$ and $r_{\rm max}=6.26\times 10^{-4}$, both well below the BICEP/Keck 2021 bound $r\lt0.036$; tensor power is controlled only by the finite transition region. The late-time homogeneous expansion and acoustic observables (Planck 2018, BOSS DR12) are fully preserved by the conformal temporal mapping as mathematically confirmed in TEP-HC (Paper 18).
+The scalar perturbation spectrum is derived from fluctuations of the clock field, $\zeta=\delta\ln A_{\rm clock}$, yielding a power spectrum $P_{\zeta}(k)\propto k^{n_{s}-1}$ with spectral-flow parameter $n_{s}-1=-2\epsilon_{\rm field}$. The observed Planck value $n_{s}=0.965$ constrains $\epsilon_{\rm field}=0.01755. Tensor modes are derived directly from the temporal-conformal metric: for $A_{\rm clock}(\eta)\sim\eta^{-p}$ the tensor source term $A_{\rm clock}''/A_{\rm clock}=p(p+1)/\eta^{2}\to 0$ at the horizon, so the tensor equation approaches the Minkowski vacuum. The imported inflationary consistency relation $r=16\epsilon_{\rm field}$ is not assumed. Numerical integration of the native tensor equation across the finite transition profile (Step 09b) yields $r(k_{\rm pivot})=9\times 10^{-6}$ and $r_{\rm max}=6.26\times 10^{-4}$, both well below the BICEP/Keck 2021 bound $r\lt0.036$; tensor power is controlled only by the finite transition region. The late-time homogeneous expansion and acoustic observables (Planck 2018, BOSS DR12) are fully preserved by the conformal temporal mapping as mathematically confirmed in TEP-HC (Paper 18).
 
 The causal matter-frame universe is curvature-regular at the temporal conformal boundary. The apparent Big Bang is a temporal horizon, not a physical curvature singularity. The temporal-horizon geometry supplies a nonsingular framework in which the standard background and acoustic observables are reconstructed by the conformal mapping, while TEP-BBN provides the native chemical-evolution mechanism and a proof of concept for local CMB thermalization; the scalar perturbation shape is reproduced, and the tensor-to-scalar ratio is computed from the native temporal-conformal wave equation, yielding values well below observational bounds.
 
@@ -32,7 +36,7 @@ TEP-HC (Paper 18) implemented the native TEP interpretation directly in the `hi_
 #### Parameter-Scale and Amplitude Convention
 
 **Turnover scales.**
-**Amplitudes.** $\epsilon_{\rm field}=0.0175$ denotes the primordial spectral-flow parameter constrained by $n_s$. $\epsilon_{\rm dyn}$ denotes the dynamical temporal-horizon response. $\epsilon_T^{\rm los}$ denotes the late-time line-of-sight transport amplitude fitted in TEP-C0. $\epsilon_T^{\rm CMB}$ denotes the C0 background/acoustic diagnostic amplitude. $\epsilon_T^{\rm HC}=0.00602\pm0.00493$ denotes the native `hi_class` homogeneous conformal amplitude reported in TEP-HC. These are related projections of the same temporal sector, but they are not numerically interchangeable parameters.
+**Amplitudes.** $\epsilon_{\rm field}=0.01755 denotes the primordial spectral-flow parameter constrained by $n_s$. $\epsilon_{\rm dyn}$ denotes the dynamical temporal-horizon response. $\epsilon_T^{\rm los}$ denotes the late-time line-of-sight transport amplitude fitted in TEP-C0. $\epsilon_T^{\rm CMB}$ denotes the C0 background/acoustic diagnostic amplitude. $\epsilon_T^{\rm HC}=0.00547\\pm0.00429$ denotes the native `hi_class` homogeneous conformal amplitude reported in TEP-HC. These are related projections of the same temporal sector, but they are not numerically interchangeable parameters.
 
 In standard cosmology, epochs are conventionally defined by the chronological time elapsed since the physical singularity (e.g., "three minutes after the Big Bang" for nucleosynthesis). Because the temporal horizon in the TEP framework is an asymptotic boundary rather than a zero-volume origin, a global linear time coordinate $t$ cannot be extrapolated to a finite $t=0$. Consequently, the sequence of early-universe events is strictly mapped not by chronological time, but by the thermodynamic cooling of the plasma ($T$) and the evolution of the conformal clock-rate field. The history of the universe is preserved, but the chronological stopwatch is replaced by thermodynamic state variables.
 
@@ -107,7 +111,7 @@ TEP-TH (Paper 27, Thika) delivers the full temporal-horizon closure of the Tempo
 - **Penrose diagram** (Figure 1) placing $\mathscr{T}^{-}$ on the same rigorous footing as $\mathscr{I}^{+}$
 - **BBN and recombination** delegated to TEP-BBN (Paper 29) eternal-universe architecture
 - **Temporal-horizon thermal mapping** preserving FIRAS-compatible blackbody
-- **Scalar perturbations** derived from clock-field fluctuations with spectral-flow parameter $\epsilon_{\rm field}=0.0175$
+- **Scalar perturbations** derived from clock-field fluctuations with spectral-flow parameter $\epsilon_{\rm field}=0.01755
 - **Tensor perturbations** computed from native temporal-conformal wave equation yielding $r(k_{\rm pivot})=9\times 10^{-6}$
 - **CMB anisotropy** (TT, TE, EE) and **LSS observables** validated via conformal acoustic equivalence (TEP-HC, Paper 18)
 
@@ -270,7 +274,7 @@ For the temporal-horizon profile $A_{\rm clock}(\eta)=C\eta^{-p}$ with $0<p\le\t
 ### Perturbations
 
 - **Scalar**: Derived from clock-field fluctuations $\zeta=\delta\ln A_{\rm clock}$
-- **Spectral flow**: $n_s-1=-2\epsilon_{\rm field}$ with $\epsilon_{\rm field}=0.0175$
+- **Spectral flow**: $n_s-1=-2\epsilon_{\rm field}$ with $\epsilon_{\rm field}=0.01755
 - **Tensor**: Native temporal-conformal wave equation, source term $\to 0$ at horizon
 - **Results**: $r(k_{\rm pivot})=9\times 10^{-6}$, $r_{\rm max}=6.26\times 10^{-4}$
 
@@ -284,7 +288,7 @@ If using this work, please cite:
   title        = {Temporal Equivalence Principle: Temporal Horizon Cosmology and the Absence of a Physical Big Bang Singularity},
   year         = 2026,
   publisher    = {Zenodo},
-  version      = {v0.3 (Thika)},
+  version      = {v0.4 (Thika)},
   doi          = {10.5281/zenodo.20723059},
   url = {https://mlsmawfield.com/tep/th}
 }
@@ -292,7 +296,7 @@ If using this work, please cite:
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file.
+CC-BY-4.0 - see [LICENSE](LICENSE) file.
 
 ## Status
 

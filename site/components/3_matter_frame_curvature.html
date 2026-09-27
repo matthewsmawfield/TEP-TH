@@ -97,7 +97,11 @@
 </p>
 
 <p>
-    This establishes the temporal boundary as a regular conformal endpoint, adopting the mathematical architecture of Penrose's conformal compactification and null infinity ($\mathscr{I}^{+}$) (Penrose 2006; Tod 2003, 2015), here applied to the asymptotic past. The boundary is not a curvature singularity; it is a conformal-temporal boundary where the Lorentzian metric becomes degenerate in the observational clock frame.
+    <em>Scope of the $R=0$ hypothesis.</em> The proposition's background-flatness assumption is quantitative, not merely qualitative. Writing a residual background scalar as $R(\eta)=R_0\,\eta^{-s}$, the transformed term $A_{\rm clock}^{-2}R\sim R_0\,\eta^{2p-s}$ is bounded if and only if $s\ge2p$ and vanishes toward the boundary for $s>2p$: background curvature must decay toward the temporal horizon faster than $\eta^{-2p}$. Two sources organise the answer. A fixed curvature offset ($s=0$) — e.g., a cosmological-constant-like floor in the background — is excluded for every $p>0$; such a floor would convert the vanishing invariants into divergent ones. Curvature sourced by the clock field itself decays as $R_{\rm kin}\sim\varphi'^2\sim\eta^{-2}$ (since $A_{\rm clock}=e^{\beta_A\varphi/M_{\rm Pl}}=\eta^{-p}$ gives $\varphi\propto\ln\eta$), so $s=2$ satisfies the vanishing condition for every $p<1$; it falls in step with the $\eta^{2p-2}$ gradient terms whenever $p<1$. The proposition therefore stands precisely for backgrounds whose residual curvature decays at least as fast as the clock field's own kinetic trace, and fails only for a non-decaying background floor — a scope statement verified numerically across the $(p,s)$ plane by the bounded sensitivity calculation of the pipeline's curvature-sensitivity step.
+</p>
+
+<p>
+    This establishes the temporal boundary as a regular conformal endpoint, adopting the mathematical architecture of Penrose's conformal compactification and null infinity ($\mathscr{I}^{+}$) (Penrose 2006; Tod 2003, 2015), here applied to the asymptotic past. The boundary is not a curvature singularity; it is a conformal-temporal boundary where the Lorentzian metric becomes degenerate in the observational clock frame. The vanishing of curvature invariants is necessary but not sufficient for regularity: a degenerate metric admits no inverse, so the geodesic equation becomes singular at the boundary. Geodesic completeness is established not by the curvature invariants alone but by the affine-parameter analysis of Section 4: timelike proper time diverges for $0 < p \le 1$ and null affine parameter diverges for $0 < p \le \tfrac{1}{2}$, so no causal curve reaches the boundary in finite parameter. The boundary is therefore a regular asymptotic endpoint of the conformal compactification, not an interior point of the manifold; the metric degeneracy is a feature of the conformal frame, not a pathology of the physical geometry.
 </p>
 <p>
     It is vital to distinguish the TEP temporal horizon ($\mathscr{T}^{-}$) from Penrose's Conformal Cyclic Cosmology (CCC). Where CCC posits an infinite sequence of aeons connected by conformal rescalings at $\mathscr{I}^{+}$ and $\mathscr{I}^{-}$, TEP does not invoke cyclicality. $\mathscr{T}^{-}$ functions as a strict, non-singular asymptotic past boundary for a single, continuous causal history, dictated by the vanishing of the relative conformal clock rate.
@@ -105,4 +109,42 @@
 
 <p>
     The physical interpretation is that the limit $A_{\rm clock}\to0$ is a <em>temporal horizon</em>: curvature invariants do not merely remain bounded—they vanish—so the boundary is asymptotically curvature-empty. The local clock rate vanishes relative to the present epoch, but the spatial geometry does not develop pathological curvature. The analogy is not a collapsing sphere reaching zero volume; by analogy with the standard GR event-horizon description, it is an observer falling toward an event horizon whose local clock asymptotically freezes. The causal structure remains intact. Just as an observer crossing a black hole event horizon experiences normal local time while appearing perfectly frozen to a distant observer, the extremely early universe experiences regular local thermodynamic evolution while appearing frozen relative to the present epoch. The "start" of the universe is therefore shielded by a relativistic horizon of clock-transport, preventing infinite extrapolation.
+</p>
+
+<h2>3.2 Disformal Compensation Analysis</h2>
+
+<p>
+    A natural question is whether the disformal sector of the TEP matter metric, $\tilde{g}_{\mu\nu}=A^{2}g_{\mu\nu}+B(\phi)\nabla_{\mu}\phi\nabla_{\nu}\phi$, can prevent the metric degeneracy at the temporal horizon. The determinant of the full disformal metric is
+</p>
+
+<div class="equation">
+    \begin{equation} \label{eq:disformal_det}
+        \det(\tilde{g}_{\mu\nu}) = A^{8}\,\det(g_{\mu\nu})\left(1 + \frac{B\,(\nabla\phi)^{2}}{A^{2}}\right) \, ,
+    \end{equation}
+</div>
+
+<p>
+    where the contraction is signed. On the homogeneous background the gradient is timelike, $(\nabla\phi)^{2}=-(\phi')^{2}\lt0$, so the correction factor is $1-B(\phi')^{2}/A^{2}$: the disformal term corrects the temporal eigenvalue downward for $B\gt0$ and upward for $B\lt0$. The sign of $B$ therefore selects between two qualitatively different regimes, both examined below. Writing the growing-compensation ansatz as $|B(\phi')^{2}|=C\,A^{-2n}$, the magnitude of the determinant scales as $|\det(\tilde{g})|\sim A^{8-2n}|\det(g)|$ wherever the correction factor is nonzero. Three regimes arise for the magnitude:
+</p>
+
+<ul>
+    <li>$n < 4$: $|\det(\tilde{g})|\to0$ — the metric remains degenerate.</li>
+    <li>$n = 4$: $|\det(\tilde{g})|\to|\det(g)|$ — the metric is non-degenerate and finite in magnitude.</li>
+    <li>$n > 4$: $|\det(\tilde{g})|\to\infty$ — the determinant diverges.</li>
+</ul>
+
+<p>
+    The critical power $n=4$ (i.e. $|B(\nabla\phi)^{2}|\sim A^{-8}$) is the unique scaling that keeps the metric non-degenerate in magnitude. This is confirmed by the pipeline (Step 01, disformal compensation test), which evaluates the determinant and curvature invariants for $n\in\{2,3,4,5,6,10\}$ across the observational clock profile $A_{\rm clock}(z)=(1+z)^{-1}$.
+</p>
+
+<p>
+    The two signs of $B$ must then be treated separately, and neither produces a regularized horizon. For $B\lt0$ the correction adds to the temporal eigenvalue: the effective lapse $\tilde N=\sqrt{A^{2}+|B|(\phi')^{2}}\sim A^{-n}$ diverges as $A\to0$ for any $n\gt0$. The matter-frame Hubble parameter $\tilde{H}=H_{\rm geom}/\tilde N$ is then driven to zero by the diverging lapse, and the curvature invariants vanish—not because the geometry is regular, but because the infinitely stiff lapse freezes all dynamical evolution. The curvature vanishing is therefore a coordinate artifact of the diverging lapse, not a physical regularity result. For $B\gt0$ the correction subtracts from the temporal eigenvalue: the lapse $\tilde N^{2}=A^{2}-B(\phi')^{2}=A^{2}-C\,A^{-2n}$ decreases and vanishes at the surface $A_{\times}=C^{1/(2n+2)}$, where $\tilde g_{00}$ changes sign. The metric crosses a signature-change surface at finite $A$ — inside the domain whenever $C\lesssim1$ — rather than approaching a regularized horizon: the would-be timelike direction becomes spacelike, and the manifold ceases to carry a physical time foliation before the conformal boundary is reached. The pipeline records the crossing surface $A_{\times}$ across the $(n,C)$ grid (Step 01, signature analysis). The growing-compensation branch thus never produces a smooth non-degenerate horizon: it terminates either in a signature flip ($B\gt0$) or in a frozen-lapse artifact ($B\lt0$).
+</p>
+
+<p>
+    On the homogeneous cosmological background the scalar field depends only on conformal time, $\phi=\phi(\eta)$, so $\nabla_{\mu}\phi=\delta_{\mu}^{0}\phi'$ is purely temporal. The disformal term rescales only $g_{00}$, which a time reparameterisation absorbs (Section 2.1) wherever the lapse remains positive. The disformal sector therefore does not generate independent spatial curvature on the homogeneous background; attempts to use it for metric non-degeneracy introduce either a signature-change surface ($B\gt0$) or an unphysical diverging lapse ($B\lt0$), without changing the spatial geometry. The pure conformal treatment, in which the boundary is a Penrose-style conformal endpoint rather than an interior point of the manifold, is the physically correct approach.
+</p>
+
+<p>
+    The pipeline confirms this analysis. In pure conformal closure ($B=0$), Proposition 1 is verified: $|\tilde{R}|$ and $|\tilde{K}|$ vanish to below $10^{-18}$ and $10^{-36}$ respectively at $z=10^{6}$ for $p=0.4$, and the $p$-sensitivity test confirms vanishing for all $0<p\le\tfrac12$. The disformal compensation test shows that while $n=4$ yields a finite determinant, the curvature vanishing is driven by the diverging lapse rather than by geometric regularity. The metric degeneracy in pure conformal closure is therefore not a pathology to be cured by the disformal sector; it is the defining feature of the conformal boundary, exactly as in Penrose's conformal compactification of null infinity.
 </p>

@@ -1,7 +1,7 @@
-[14:37:46] [INFO] 
-[14:37:46] [INFO] ================================================================================
-[14:37:46] [INFO]    Starting step_00_temporal_horizon_mapping
-[14:37:46] [INFO] ================================================================================
-[14:37:46] [INFO] 
-[14:37:46] [SUCCESS] Step step_00_temporal_horizon_mapping completed successfully
-[14:37:46] [INFO] Temporal horizon mapping: a_eff → 0 ↔ A → 0 at z ≈ 1000.0
+[16:22:19] [INFO] 
+[16:22:19] [INFO] ================================================================================
+[16:22:19] [INFO]    Starting step_00_temporal_horizon_mapping
+[16:22:19] [INFO] ================================================================================
+[16:22:19] [INFO] 
+[16:22:19] [SUCCESS] Step step_00_temporal_horizon_mapping completed successfully
+[16:22:19] [INFO] Temporal horizon mapping: a_eff → 0 ↔ A → 0 at z ≈ 1000.0

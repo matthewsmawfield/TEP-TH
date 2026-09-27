@@ -1,9 +1,9 @@
 {
   "title": "Temporal Equivalence Principle: Temporal Horizon Cosmology and the Absence of a Physical Big Bang Singularity",
   "author": "Matthew Lukin Smawfield",
-  "version": "v0.3 (Thika)",
+  "version": "v0.4 (Thika)",
   "codename": "Thika",
-  "date": "7 August 2026",
+  "date": "13 September 2026",
   "first_published": "18 June 2026",
   "doi": "10.5281/zenodo.20723059",
   "sections": [
@@ -115,5 +115,21 @@
       "file": "15_reproducibility.html",
       "order": 16
     }
-  ]
+  ],
+  "icons": [
+    {
+      "src": "public/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "public/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#220126"
 }

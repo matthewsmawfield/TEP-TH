@@ -17,7 +17,7 @@ class StructureFormation:
         Omega_b: float = 0.045,
         Omega_cdm: float = None,
         sigma_8: float = 0.81,
-        n_s: float = 0.965,
+        n_s: float = 0.9649,
         Sigma_0: float = 0.0,
         Om0: float = None,  # Alias for Omega_m (backward compatibility)
     ):
@@ -130,7 +130,7 @@ class TEPStructureFormation(StructureFormation):
         Omega_b: float = 0.045,
         Omega_cdm: float = None,
         sigma_8: float = 0.81,
-        n_s: float = 0.965,
+        n_s: float = 0.9649,
         Sigma_0: float = 0.0,
         epsilon_T: float = 0.0,
         z_T: float = 5.0,

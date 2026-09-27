@@ -25,7 +25,7 @@ STEP_ID = "step_09b_native_tensor_integration"
 P = 0.1              # temporal-horizon power-law index (0 < p <= 1/2)
 ETA_0_MPC = 6000.0   # present-epoch conformal time in Mpc (physical)
 N_PROFILE = 2.0      # transition steepness
-EPSILON_FIELD = 0.0175  # Planck-constrained spectral-flow parameter
+EPSILON_FIELD = 0.01755  # Planck 2018 n_s = 0.9649 → ε_field = (1 - n_s)/2
 R_BK_MAX = 0.036     # BICEP/Keck 2021 95% CL upper bound
 
 # We work in dimensionless units: eta_tilde = eta / eta_0, k_tilde = k * eta_0
@@ -82,6 +82,10 @@ def bogoliubov_integral(k_tilde, p=P, n=N_PROFILE):
         beta_k = -(i / 2 k_tilde) integral_0^infty V_tilde(eta_tilde) e^{-2 i k_tilde eta_tilde} d eta_tilde
 
     where V_tilde = eta_0^2 * V = p * [(p+1) x^n - 1] / (1+x^n)^2.
+
+    The integrand oscillates ~k_tilde/pi times across the transition;
+    at CMB scales k_tilde ~ 10^2-10^4 a fixed-subdivision quadrature is
+    noise-dominated, so a weighted oscillatory (Filon) rule is used.
     """
     from scipy.integrate import quad
 
@@ -89,18 +93,37 @@ def bogoliubov_integral(k_tilde, p=P, n=N_PROFILE):
         xn = x**n
         return p * ((p + 1.0) * xn - 1.0) / (1.0 + xn)**2
 
-    def integrand_re(x):
-        return V_tilde(x) * np.cos(2.0 * k_tilde * x)
-
-    def integrand_im(x):
-        return -V_tilde(x) * np.sin(2.0 * k_tilde * x)
-
-    # Split integration to handle oscillatory convergence better
-    re_val, re_err = quad(integrand_re, 0.0, 100.0, limit=500)
-    im_val, im_err = quad(integrand_im, 0.0, 100.0, limit=500)
-
-    beta = -(1j / (2.0 * k_tilde)) * complex(re_val, im_val)
+    re_val, re_err = quad(V_tilde, 0.0, np.inf, weight='cos',
+                          wvar=2.0 * k_tilde, limlst=400)
+    im_val, im_err = quad(V_tilde, 0.0, np.inf, weight='sin',
+                          wvar=2.0 * k_tilde, limlst=400)
+    # e^{-2ikx} = cos - i sin: imag part of the integral is -int(V sin)
+    beta = -(1j / (2.0 * k_tilde)) * complex(re_val, -im_val)
     return beta, re_err + im_err
+
+
+def bogoliubov_integral_split(k_tilde, p=P, n=N_PROFILE):
+    """Independent cross-check: integrate on half-period cells of the
+    e^{-2 i k_tilde x} oscillation and sum. Slower but immune to the
+    unresolved-oscillation failure mode of fixed-subdivision quad."""
+    from scipy.integrate import quad
+
+    def V_tilde(x):
+        xn = x**n
+        return p * ((p + 1.0) * xn - 1.0) / (1.0 + xn)**2
+
+    half = np.pi / (2.0 * k_tilde)
+    edges = np.arange(0.0, 100.0, half)
+    edges = np.append(edges, 100.0)
+    re_val = im_val = 0.0
+    for a, b in zip(edges[:-1], edges[1:]):
+        r1, _ = quad(lambda x: V_tilde(x) * np.cos(2.0 * k_tilde * x),
+                     a, b, epsabs=1e-15)
+        r2, _ = quad(lambda x: -V_tilde(x) * np.sin(2.0 * k_tilde * x),
+                     a, b, epsabs=1e-15)
+        re_val += r1
+        im_val += r2
+    return -(1j / (2.0 * k_tilde)) * complex(re_val, im_val)
 
 
 def compute_r_k(k_tilde_values, p=P, eta_0_mpc=ETA_0_MPC, n=N_PROFILE):
@@ -110,7 +133,7 @@ def compute_r_k(k_tilde_values, p=P, eta_0_mpc=ETA_0_MPC, n=N_PROFILE):
     r(k)   = P_T(k) / P_zeta(k)
     """
     A_s = 2.10e-9
-    n_s = 0.965
+    n_s = 0.9649  # Planck 2018 TT,TE,EE+lowE+lensing
     k_pivot_mpc = 0.05
     k_tilde_pivot = k_pivot_mpc * eta_0_mpc
 
@@ -128,10 +151,10 @@ def compute_r_k(k_tilde_values, p=P, eta_0_mpc=ETA_0_MPC, n=N_PROFILE):
             results.append({
                 'k_Mpc': rounded(k_mpc, 8),
                 'k_tilde': rounded(kt, 4),
-                'beta_sq': rounded(np.abs(beta)**2, 15),
-                'P_T': rounded(P_T, 15),
-                'P_zeta': rounded(P_zeta, 15),
-                'r_k': rounded(r_k, 8),
+                'beta_sq': float(np.abs(beta)**2),
+                'P_T': float(P_T),
+                'P_zeta': float(P_zeta),
+                'r_k': float(r_k),
             })
         except Exception as e:
             results.append({'k_Mpc': rounded(kt / eta_0_mpc, 8), 'error': str(e)})
@@ -145,10 +168,15 @@ def run():
     ensure_dirs()
 
     # k_tilde = k * eta_0; for k in [1e-4, 1] Mpc^-1 and eta_0 ~ 6000 Mpc:
-    # k_tilde in [0.6, 6000]
+    # k_tilde in [0.6, 6000]. The spectrum peaks at the transition scale
+    # k_tilde ~ 1 (k ~ 2e-4 Mpc^-1); the grid is densest there.
     k_tilde_min = 1e-4 * ETA_0_MPC
     k_tilde_max = 1.0 * ETA_0_MPC
-    k_tilde_values = np.logspace(np.log10(k_tilde_min), np.log10(k_tilde_max), 50)
+    k_tilde_values = np.unique(np.concatenate([
+        np.logspace(np.log10(k_tilde_min), np.log10(10.0), 120),
+        np.logspace(np.log10(10.0), np.log10(k_tilde_max), 60),
+        [0.05 * ETA_0_MPC],   # exact pivot k = 0.05 Mpc^-1
+    ]))
 
     results = compute_r_k(k_tilde_values)
     valid = [r for r in results if 'error' not in r]
@@ -156,7 +184,42 @@ def run():
     r_vals = [r['r_k'] for r in valid]
     r_max = max(r_vals) if r_vals else None
     r_min = min(r_vals) if r_vals else None
-    r_pivot = next((r['r_k'] for r in valid if abs(r['k_Mpc'] - 0.05) < 0.003), None)
+    k_at_max = next((r['k_Mpc'] for r in valid if r['r_k'] == r_max), None)
+    r_pivot = next((r['r_k'] for r in valid if abs(r['k_Mpc'] - 0.05) < 1e-6), None)
+
+    # Quadrature self-check: weighted (Filon) rule vs explicit half-period
+    # cell integration at several k_tilde, including the deep-oscillation
+    # regime where fixed-subdivision quad is noise-dominated.
+    quad_check = []
+    for kt_check in (1.2, 300.0, 2400.0, 5000.0):
+        b_w, _ = bogoliubov_integral(kt_check)
+        b_s = bogoliubov_integral_split(kt_check)
+        denom = max(abs(b_s) ** 2, 1e-30)
+        quad_check.append({
+            'k_tilde': kt_check,
+            'beta_sq_filon': float(abs(b_w) ** 2),
+            'beta_sq_split': float(abs(b_s) ** 2),
+            'rel_diff': float(abs(abs(b_w) ** 2 - abs(b_s) ** 2) / denom),
+        })
+    quad_consistent = all(q['rel_diff'] < 0.05 for q in quad_check)
+
+    # Falsification surface: r_max(p) over the profile index. The regular
+    # branch is 0 < p <= 1/2; the scan extends to p = 1 to cover the
+    # curvature-excluded boundary branch as well.
+    falsification_surface = []
+    for p_scan in (0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.75, 1.0):
+        res_p = compute_r_k(k_tilde_values, p=p_scan)
+        valid_p = [r for r in res_p if 'error' not in r]
+        r_max_p = max(r['r_k'] for r in valid_p) if valid_p else None
+        falsification_surface.append({
+            'p': p_scan,
+            'r_max': rounded(r_max_p, 9) if r_max_p else None,
+        })
+    r_max_regular = max((e['r_max'] for e in falsification_surface
+                         if e['p'] <= 0.5 and e['r_max'] is not None),
+                        default=None)
+    r_max_all = max((e['r_max'] for e in falsification_surface
+                     if e['r_max'] is not None), default=None)
 
     # Analytic estimate: suppression factor from rapid oscillations
     # For large k_tilde, |beta|^2 ~ P^2 / (4 k_tilde^4) for a smooth transition
@@ -179,13 +242,27 @@ def run():
             'r_BK_max': R_BK_MAX,
         },
         'results': {
-            'r_max': rounded(r_max, 6) if r_max else None,
-            'r_min': rounded(r_min, 6) if r_min else None,
-            'r_at_pivot': rounded(r_pivot, 6) if r_pivot else None,
+            'r_max': float(r_max) if r_max is not None else None,
+            'r_min': float(r_min) if r_min is not None else None,
+            'r_at_pivot': float(r_pivot) if r_pivot is not None else None,
+            'k_at_r_max_Mpc': rounded(k_at_max, 8) if k_at_max is not None else None,
             'r_analytic_estimate': rounded(r_analytic, 8),
             'below_BK_bound': r_max < R_BK_MAX if r_max is not None else None,
             'k_tilde_range': (rounded(k_tilde_min, 2), rounded(k_tilde_max, 2)),
             'num_k': len(k_tilde_values),
+        },
+        'quadrature_verification': {
+            'method': 'weighted Filon rule vs explicit half-period cell integration',
+            'checks': quad_check,
+            'consistent': quad_consistent,
+        },
+        'falsification_surface': {
+            'r_max_vs_p': falsification_surface,
+            'r_max_regular_branch_p_le_0.5': r_max_regular,
+            'r_max_all_tested_p_le_1.0': r_max_all,
+            'note': ('r_max peaks at the transition scale k_tilde ~ 1 '
+                     '(k ~ 2e-4 Mpc^-1); the spectrum falls as k_tilde^-4 '
+                     'at CMB scales'),
         },
         'interpretation': (
             f"Native TEP tensor integration gives r_max = {rounded(r_max, 8) if r_max else 'N/A'} "

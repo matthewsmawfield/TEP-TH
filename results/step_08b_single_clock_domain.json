@@ -1,0 +1,155 @@
+{
+  "analysis": {
+    "field_map": {
+      "ambient_limit": "Z(chi=0) = Z_* finite at the present epoch (phi = 0 ambient)",
+      "beta_A": -1.0,
+      "canonical_limit": "Z = 1 (constant kinetic function)",
+      "canonical_scalar_map": "chi = beta_A * phi / M_Pl",
+      "chi_definition": "chi = ln A_clock",
+      "completion_generator": "Within the master action the only single-scalar sector capable of generating a field-dependent homogeneous kinetic normalization is the disformal channel B(phi) nabla phi nabla phi on the time-dependent background; the conformal sector is already absorbed into chi and the potential enters U separately.",
+      "phi_of_chi": "phi = -M_Pl * chi = M_Pl * ln(1+z)"
+    },
+    "min_controlled_window": 11663.87,
+    "min_controlled_window_decades": 4.067,
+    "per_mode": [
+      {
+        "P_dchi_at_freeze": 5.2914e-09,
+        "controlled_window_eta_sc_over_eta_k": 11663.87,
+        "eta_freeze_Mpc": 14328.1471,
+        "eta_strong_coupling_Mpc": 167121607.6,
+        "k_Mpc": 0.0001,
+        "z_A_at_freeze": 0.2188
+      },
+      {
+        "P_dchi_at_freeze": 5.1507e-09,
+        "controlled_window_eta_sc_over_eta_k": 11819.3,
+        "eta_freeze_Mpc": 6650.5368,
+        "eta_strong_coupling_Mpc": 78604674.6,
+        "k_Mpc": 0.000215,
+        "z_A_at_freeze": 0.4778
+      },
+      {
+        "P_dchi_at_freeze": 5.0138e-09,
+        "controlled_window_eta_sc_over_eta_k": 11976.8,
+        "eta_freeze_Mpc": 3086.9057,
+        "eta_strong_coupling_Mpc": 36971250.8,
+        "k_Mpc": 0.000464,
+        "z_A_at_freeze": 1.0433
+      },
+      {
+        "P_dchi_at_freeze": 4.8805e-09,
+        "controlled_window_eta_sc_over_eta_k": 12136.4,
+        "eta_freeze_Mpc": 1432.8147,
+        "eta_strong_coupling_Mpc": 17389212.5,
+        "k_Mpc": 0.001,
+        "z_A_at_freeze": 2.2782
+      },
+      {
+        "P_dchi_at_freeze": 4.7508e-09,
+        "controlled_window_eta_sc_over_eta_k": 12298.13,
+        "eta_freeze_Mpc": 665.0537,
+        "eta_strong_coupling_Mpc": 8178914.8,
+        "k_Mpc": 0.002154,
+        "z_A_at_freeze": 4.9747
+      },
+      {
+        "P_dchi_at_freeze": 4.6245e-09,
+        "controlled_window_eta_sc_over_eta_k": 12462.01,
+        "eta_freeze_Mpc": 308.6906,
+        "eta_strong_coupling_Mpc": 3846904.9,
+        "k_Mpc": 0.004642,
+        "z_A_at_freeze": 10.8631
+      },
+      {
+        "P_dchi_at_freeze": 4.5016e-09,
+        "controlled_window_eta_sc_over_eta_k": 12628.08,
+        "eta_freeze_Mpc": 143.2815,
+        "eta_strong_coupling_Mpc": 1809369.3,
+        "k_Mpc": 0.01,
+        "z_A_at_freeze": 23.7212
+      },
+      {
+        "P_dchi_at_freeze": 4.382e-09,
+        "controlled_window_eta_sc_over_eta_k": 12796.36,
+        "eta_freeze_Mpc": 66.5054,
+        "eta_strong_coupling_Mpc": 851026.3,
+        "k_Mpc": 0.021544,
+        "z_A_at_freeze": 51.7987
+      },
+      {
+        "P_dchi_at_freeze": 4.2655e-09,
+        "controlled_window_eta_sc_over_eta_k": 12966.88,
+        "eta_freeze_Mpc": 30.8691,
+        "eta_strong_coupling_Mpc": 400275.3,
+        "k_Mpc": 0.046416,
+        "z_A_at_freeze": 113.1104
+      },
+      {
+        "P_dchi_at_freeze": 4.1521e-09,
+        "controlled_window_eta_sc_over_eta_k": 13139.67,
+        "eta_freeze_Mpc": 14.3281,
+        "eta_strong_coupling_Mpc": 188267.1,
+        "k_Mpc": 0.1,
+        "z_A_at_freeze": 246.9937
+      },
+      {
+        "P_dchi_at_freeze": 4.0417e-09,
+        "controlled_window_eta_sc_over_eta_k": 13314.77,
+        "eta_freeze_Mpc": 6.6505,
+        "eta_strong_coupling_Mpc": 88550.4,
+        "k_Mpc": 0.215443,
+        "z_A_at_freeze": 539.3481
+      },
+      {
+        "P_dchi_at_freeze": 3.9343e-09,
+        "controlled_window_eta_sc_over_eta_k": 13492.2,
+        "eta_freeze_Mpc": 3.0869,
+        "eta_strong_coupling_Mpc": 41649.1,
+        "k_Mpc": 0.464159,
+        "z_A_at_freeze": 1177.7482
+      },
+      {
+        "P_dchi_at_freeze": 3.8297e-09,
+        "controlled_window_eta_sc_over_eta_k": 13671.99,
+        "eta_freeze_Mpc": 1.4328,
+        "eta_strong_coupling_Mpc": 19589.4,
+        "k_Mpc": 1.0,
+        "z_A_at_freeze": 2571.7917
+      }
+    ],
+    "pivot_mode": {
+      "P_dchi_at_freeze": 4.2655e-09,
+      "controlled_window_decades": 4.113,
+      "delta_chi_rms_at_freeze": 6.5311e-05,
+      "eta_freeze_Mpc": 30.8691,
+      "eta_strong_coupling_Mpc": 400275.3,
+      "k_Mpc": 0.05,
+      "z_A_at_freeze": 113.1104
+    },
+    "pump_field": {
+      "epsilon_field": 0.01755,
+      "form": "z_A(eta) = z_* (eta/eta_*)^{-(1+epsilon_field)}",
+      "frontier": "z_A -> 0 only as eta -> infinity (A_clock -> 0, temporal horizon)",
+      "nu_A": 1.51755,
+      "z_star": 0.5305
+    },
+    "variance_growth": {
+      "exponent": 2.0351,
+      "law": "P_dchi(k,eta) ~ A_s(k) (eta/eta_k)^{2+2 epsilon_field}",
+      "regime": "oscillatory (k eta >> 1), WKB branch |v_k| ~ (2k)^{-1/2}"
+    }
+  },
+  "description": "Domain of perturbative control for the reconstructed single-clock sector",
+  "freeze_out_controlled": true,
+  "frontier_asymptotic": true,
+  "interpretation": "Freeze-out occurs ~4.1 decades inside the strong-coupling surface for all CMB modes; P_dchi at freeze-out is of order A_s (~1e-9). The pump-field zero at eta -> infinity bounds the effective description at the temporal horizon rather than invalidating the freeze-out computation.",
+  "parameters": {
+    "A_s": 2.1e-09,
+    "beta_A": -1.0,
+    "eta_star_Mpc": 6000.0,
+    "k_pivot": 0.05,
+    "n_s": 0.9649,
+    "p": 0.1
+  },
+  "step": "step_08b_single_clock_domain"
+}

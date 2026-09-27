@@ -57,6 +57,20 @@
 </p>
 
 <p>
+    The relation between $(\chi,\mathcal Z,U)$ and the canonical scalar sector $(\phi,V)$ of the foundational action is made explicit as follows. The universal coupling $A(\phi)=\exp(\beta_A\phi/M_{\rm Pl})$ with $\beta_A=-1$ identifies the clock field with the canonical scalar up to the fixed linear map
+</p>
+
+<div class="equation">
+    \begin{equation} \label{eq:chi_phi_map}
+        \chi = \ln A_{\rm clock} = \frac{\beta_A\phi}{M_{\rm Pl}} = -\frac{\phi}{M_{\rm Pl}} \, , \qquad \phi = -M_{\rm Pl}\,\chi = M_{\rm Pl}\ln(1+z) \, ,
+    \end{equation}
+</div>
+
+<p>
+    where the second equality uses the exact redshift map $A_{\rm clock}=(1+z)^{-1}$. The ambient convention $\phi=0$ at the present epoch corresponds to $\chi=0$, and $\phi>0$ on the past-directed branch toward the horizon, consistent with the corpus-wide sign convention. A pure field redefinition would carry the canonical kinetic term into canonical form in $\chi$ as well, $-\tfrac12(\nabla\phi)^2\to-\tfrac12 M_{\rm Pl}^2(\nabla\chi)^2$, corresponding to $\mathcal Z=1$. The reconstructed $\mathcal Z(\chi)\neq1$ is therefore not the Jacobian of a field redefinition: it is the homogeneous-sector kinetic completion of the same single-scalar action. Within the master action the conformal coupling is already absorbed into the definition of $\chi$ and the potential enters $U$ separately, so the only single-scalar structure capable of generating a field-dependent kinetic normalization on the time-dependent background is the disformal channel $B(\phi)\nabla_\mu\phi\nabla_\nu\phi$, whose homogeneous reduction contributes lapse-level renormalization of the scalar's kinetic coefficient. The reconstruction is thus interpreted as fixing the cosmological profile of that channel, $\mathcal Z(\chi)-1$ measuring the disformal-sector contribution on the homogeneous branch, rather than as introducing a second field. Likewise $U(\chi)$ is the cosmological projection of the single corpus potential evaluated on $\phi(\chi)=-M_{\rm Pl}\chi$ together with the homogeneous-sector corrections, so Rule 12 is preserved: one scalar, one potential, applied to the cosmological branch. In the ambient limit $\chi\to0$ the completion is finite, $\mathcal Z\to\mathcal Z_*$, and the canonical regime is recovered to within the constant normalization fixed by $A_s$. The explicit homogeneous reduction that derives the required $B(\phi)$ and $V(\phi)$ profiles is the embedding computation identified in Section 2; pending that reduction the action is treated as an effective cosmological completion, and the theorems below are stated for the effective sector.
+</p>
+
+<p>
     For the temporal-horizon branch $A_{\rm clock}(\eta)=C\eta^{-p}$, the scalar quadratic action derived in Section 10.3 requires the kinetic function
 </p>
 
@@ -144,7 +158,7 @@
 </div>
 
 <p>
-    where $U_{\rm c}>0$ is an integration constant that sets the slow-clock vacuum energy, and
+    where $U_{\rm c}>0$ is an integration constant that sets the slow-clock vacuum energy — the same plateau identified in Section 5.1, where $\epsilon_{\rm dyn}=8\pi GU_{\rm c}/H_{0}^{2}$ fixes $U_{\rm c}/\rho_{\rm crit,0}\approx1.8\times10^{-3}$, a small vacuum residual rather than a dark-energy-scale term — and
 </p>
 
 <div class="equation">
@@ -177,6 +191,10 @@
 
 <p>
     with $\dot\chi=\chi'/A_{\rm clock}=-(p/C)\eta^{p-1}$. Substituting the reconstructed $\mathcal Z$ and $U$ gives the exact $w_{A}(\eta)$. As $\eta\to\infty$ the kinetic term decays as $\eta^{2p-4-2\epsilon_{\rm field}}\to0$ while $U\to U_{\rm c}$, so $w_{A}\to -1$ asymptotically. This is <em>not</em> an inflationary slow-roll limit; the background Hubble parameter satisfies $|\epsilon_{H}|\equiv|\dot{\mathcal H}_{\rm eff}|/\mathcal H_{\rm eff}^{2}=1/p\ge2$, which is the kinetic-dominated (scaling) regime characteristic of exponential kinetic functions. The effective $w\approx -1$ arises because the kinetic term vanishes faster than the potential approaches its constant vacuum, a genuinely temporal-horizon result that does not import the potential-dominance assumption of inflation.
+</p>
+
+<p>
+    The exponent $p$ enters this reconstruction as a family index, not as a dynamical output: the kinetic function's exponent $(2+2\epsilon_{\rm field})/p$ and the potential's asymptotic form are reconstructed around a chosen power law, and each member $(\mathcal Z_p, U_p)$ realizes that power law exactly. The geodesic-completeness window $0\lt p\le\tfrac12$ (Section 4) is identical to the scaling-regime condition stated above — $p\le\tfrac12\iff|\epsilon_H|\ge2$ — so the complete branch is the kinetic-dominated branch the mechanism assumes, one condition rather than two. Which member of the family the corpus's canonical closure dynamics realizes is an open asymptotic determination (the branch-index datum, shared with the master-action embedding identified in Section 2); the completeness theorems hold unconditionally on every member of the regular branch, and the tensor falsification surface of Section 10.6 binds the index to an observable through $r_{\rm max}(p)\approx6.1\times10^{-5}p^{2}$.
 </p>
 
 <p>
@@ -271,6 +289,24 @@
 
 <p>
     The running follows $\alpha_s=dn_s/d\ln k$. For constant $\epsilon_{\rm field}$, $\alpha_s=0$ at leading order; the second-order correction is $\alpha_s\simeq-2\epsilon_{\rm field}^2\approx-6.2\times 10^{-4}$, well within the Planck bound.
+</p>
+
+<p>
+    The domain of perturbative control is quantified by the pump field. Since $\mathcal Z(\chi)=\mathcal Z_*e^{(2+2\epsilon_{\rm field})\chi/p}$ has a positive exponent in $\chi$, both $\mathcal Z$ and $z_A=z_*(\eta/\eta_*)^{-1-\epsilon_{\rm field}}$ vanish only as $\eta\to\infty$, i.e. on the asymptotic frontier $A_{\rm clock}\to0$ that is the temporal horizon itself. At every finite $\eta$ the canonical normalization is finite and nonzero. A mode of wavenumber $k$ exits the effective sound horizon at $|\eta_k|=\sqrt{\nu_A^2-\tfrac14}/k$; in the oscillatory regime $|v_k|\simeq(2k)^{-1/2}$, so the per-decade variance of the field fluctuation $\delta\chi=v_k/z_A$ is
+</p>
+
+<div class="equation">
+    \begin{equation} \label{eq:P_dchi}
+        P_{\delta\chi}(k,\eta) \simeq \frac{k^2}{4\pi^2 z_A^2(\eta)} \;=\; P_{\delta\chi}(k,\eta_k)\left(\frac{\eta}{\eta_k}\right)^{2+2\epsilon_{\rm field}} \, ,
+    \end{equation}
+</div>
+
+<p>
+    growing toward the frontier but suppressed at freeze-out to the scalar-amplitude scale, $P_{\delta\chi}(k,\eta_k)\sim A_s$. Pipeline step 08b evaluates this across the CMB band $k\in[10^{-4},1]\,{\rm Mpc}^{-1}$ with the $A_s$-normalized pump ($z_*=0.53$ in the conventions of \eqref{eq:z_star}). For the pivot mode $k_*=0.05\,{\rm Mpc}^{-1}$, freeze-out occurs at $\eta_k\simeq30.9\,{\rm Mpc}$ with $z_A(\eta_k)\simeq113$, $P_{\delta\chi}\simeq4.3\times10^{-9}$, and $\delta\chi_{\rm rms}\simeq6.5\times10^{-5}$ — deep in the weak-coupling regime. The strong-coupling surface $P_{\delta\chi}\sim1$ lies at $\eta_{\rm sc}\simeq4.0\times10^{5}\,{\rm Mpc}$, some $4.1$ decades beyond freeze-out in the local mode coordinate; across the full band the controlled oscillatory window never falls below $4.07$ decades. The Bunch-Davies normalization is therefore imposed on modes inside a wide controlled window $\eta_k<\eta<\eta_{\rm sc}$, the spectrum is fixed at freeze-out, and the formal asymptotic limit in which $z_A\to0$ lies outside the domain in which the effective description is ever evaluated.
+</p>
+
+<p>
+    The remaining structure is a boundary statement rather than a defect: the pump-field zero is the strong-coupling frontier of the single-clock effective description, and it coincides asymptotically with the temporal horizon. The regularity results of Sections 3–4 are statements about the metric, which remains smooth; the field-space frontier is a statement about the scalar completion, which terminates at the same boundary. No controlled continuation of the perturbation sector through the horizon is claimed — the horizon bounds the effective field description, which is precisely its role in the temporal-horizon framework.
 </p>
 
 <h2>10.4 Observational Constraint and Amplitude Closure</h2>
@@ -410,23 +446,23 @@
 </div>
 
 <p>
-    Step 09b evaluates this numerically for the temporal-horizon transition profile $A_{\rm clock}(\eta)=C[1+(\eta/\eta_0)^n]^{-p/n}$ with fiducial parameters $p=0.1$, $\eta_0=6000$ Mpc, and $n=2$. Because $k\eta_0\sim 300$ for CMB-scale modes, rapid oscillations of $e^{-2ik\eta}$ across the transition strongly suppress the integral. The resulting tensor-to-scalar ratio is
+    Step 09b evaluates this numerically for the temporal-horizon transition profile $A_{\rm clock}(\eta)=C[1+(\eta/\eta_0)^n]^{-p/n}$ with fiducial parameters $p=0.1$, $\eta_0=6000$ Mpc, and $n=2$. The Bogoliubov integral is evaluated with a weighted oscillatory (Filon) quadrature rule, cross-verified against explicit half-period cell integration to a relative accuracy better than $2\times10^{-4}$ at every $\tilde k$ (the fixed-subdivision integrator is noise-dominated once the integrand oscillates $\tilde k/\pi\sim10^{3}$ times across the transition). Because $k\eta_0\sim 300$ for CMB-scale modes, rapid oscillations of $e^{-2ik\eta}$ across the transition strongly suppress the integral. The spectrum is largest at the transition scale $\tilde k\sim 1$ ($k\sim2\times10^{-4}\ {\rm Mpc}^{-1}$) and falls as $\tilde k^{-4}$ at CMB scales. The resulting tensor-to-scalar ratio is
 </p>
 
 <div class="equation">
     \begin{equation}
-        r(k_{\rm pivot}) = 9 \times 10^{-6} \, , \qquad r_{\rm max} = 6.26 \times 10^{-4} \,
+        r(k_{\rm pivot}) = 1.9 \times 10^{-9} \, , \qquad r_{\rm max} = 5.2 \times 10^{-7} \,
     \end{equation}
 </div>
 
 <p>
-    both well below the BICEP/Keck 2021 bound $r \lt 0.036$ (95\% CL). The analytic parametric estimate $r\sim p^2/(4\pi^2\eta_0^3 A_s k_{\rm pivot}^3)\approx 4.5\times 10^{-3}$ is a coarse upper bound that omits the rapid oscillatory suppression $e^{-2ik\eta}$ across the finite transition region; the numerical integration, which includes this suppression, gives the substantially smaller value quoted above. Both estimates are below the observational bound.
+    both far below the BICEP/Keck 2021 bound $r \lt 0.036$ (95\% CL) and below the $r\sim10^{-4}$ sensitivity floor of CMB-S4. The analytic parametric estimate $r\sim p^2/(4\pi^2\eta_0^3 A_s k_{\rm pivot}^3)\approx 4.5\times 10^{-3}$ is a coarse upper bound that omits the rapid oscillatory suppression $e^{-2ik\eta}$ across the finite transition region; the numerical integration, which includes this suppression, gives the substantially smaller value quoted above. Both estimates are below the observational bound.
 </p>
 
 <h3>Robustness of Tensor Suppression</h3>
 
 <p>
-    Table 1 reports the maximum tensor-to-scalar ratio $r_{\rm max}$ across the full wavenumber range $k\in[10^{-4},1]$ Mpc$^{-1}$ for variations of the three transition-profile parameters. All values remain well below the BICEP/Keck 2021 bound $r\lt0.036$.
+    Table 1 reports the maximum tensor-to-scalar ratio $r_{\rm max}$ across the full wavenumber range $k\in[10^{-4},1]$ Mpc$^{-1}$ for variations of the three transition-profile parameters — the falsification surface $r_{\rm max}(p,n,\eta_0)$ of the temporal-horizon tensor sector. The maximum is always attained at the transition scale $\tilde k\sim1$; the quoted figures are evaluated with the cross-verified oscillatory quadrature described above. All values remain orders of magnitude below the BICEP/Keck 2021 bound $r\lt0.036$.
 </p>
 
 <table>
@@ -434,21 +470,22 @@
         <tr><th>Parameter</th><th>Range</th><th>$r_{\rm max}$</th><th>Effect</th></tr>
     </thead>
     <tbody>
-        <tr><td>$p$</td><td>0.05</td><td>$4.2\times 10^{-5}$</td><td>Scales approximately as $p^{2}$</td></tr>
-        <tr><td>$p$</td><td>0.10 (fiducial)</td><td>$6.26\times 10^{-4}$</td><td>Baseline</td></tr>
-        <tr><td>$p$</td><td>0.20</td><td>$6.9\times 10^{-4}$</td><td>Increases with $p$ but remains sub-percent</td></tr>
-        <tr><td>$p$</td><td>0.50</td><td>$5.2\times 10^{-3}$</td><td>Even at extreme $p$, $r\lt0.006\ll 0.036$</td></tr>
-        <tr><td>$n$</td><td>1</td><td>$4.5\times 10^{-4}$</td><td>Weak dependence on transition steepness</td></tr>
-        <tr><td>$n$</td><td>2 (fiducial)</td><td>$6.26\times 10^{-4}$</td><td>Baseline</td></tr>
-        <tr><td>$n$</td><td>3–6</td><td>$\sim 10^{-4}$</td><td>Numerical integration requires finer resolution</td></tr>
-        <tr><td>$\eta_{0}$ (Mpc)</td><td>3000</td><td>$6.1\times 10^{-4}$</td><td>Consistent with fiducial to within factor $\sim 2$</td></tr>
-        <tr><td>$\eta_{0}$ (Mpc)</td><td>6000 (fiducial)</td><td>$6.26\times 10^{-4}$</td><td>Baseline</td></tr>
-        <tr><td>$\eta_{0}$ (Mpc)</td><td>12000</td><td>$1.2\times 10^{-4}$</td><td>Larger $\eta_{0}$ strengthens oscillatory suppression</td></tr>
+        <tr><td>$p$</td><td>0.05</td><td>$1.3\times 10^{-7}$</td><td>Scales approximately as $p^{2}$ at small $p$</td></tr>
+        <tr><td>$p$</td><td>0.10 (fiducial)</td><td>$5.2\times 10^{-7}$</td><td>Baseline</td></tr>
+        <tr><td>$p$</td><td>0.20</td><td>$2.1\times 10^{-6}$</td><td>Increases with $p$</td></tr>
+        <tr><td>$p$</td><td>0.50 (regular-branch edge)</td><td>$1.4\times 10^{-5}$</td><td>Largest on the curvature-regular branch</td></tr>
+        <tr><td>$p$</td><td>1.00 (curvature-excluded)</td><td>$6.1\times 10^{-5}$</td><td>Largest over all tested profiles</td></tr>
+        <tr><td>$n$</td><td>1</td><td>$1.8\times 10^{-7}$</td><td>Weak dependence on transition steepness</td></tr>
+        <tr><td>$n$</td><td>2 (fiducial)</td><td>$5.2\times 10^{-7}$</td><td>Baseline</td></tr>
+        <tr><td>$n$</td><td>4</td><td>$9.7\times 10^{-7}$</td><td>Steeper transition mildly enhances production</td></tr>
+        <tr><td>$\eta_{0}$ (Mpc)</td><td>3000</td><td>$4.3\times 10^{-6}$</td><td>Smaller $\eta_0$ weakens oscillatory suppression</td></tr>
+        <tr><td>$\eta_{0}$ (Mpc)</td><td>6000 (fiducial)</td><td>$5.2\times 10^{-7}$</td><td>Baseline</td></tr>
+        <tr><td>$\eta_{0}$ (Mpc)</td><td>12000</td><td>$6.4\times 10^{-8}$</td><td>Larger $\eta_{0}$ strengthens oscillatory suppression</td></tr>
     </tbody>
 </table>
 
 <p>
-    The numerical value of $r_{\rm max}$ is sensitive to the density of the $k$-sampling because the peak is narrow; the quoted figures are converged upper-envelope estimates obtained with adaptive refinement around the tensor-spectrum peak. Between the two finest $k$-sampling grids, $r_{\rm max}$ varies by less than 5%; the quoted value is stable to this precision under adaptive refinement around the narrow tensor-spectrum peak. Even with coarse sampling, no parameter combination in the physically reasonable ranges tested produces $r_{\rm max}$ approaching the observational bound. Tensor suppression is therefore a robust consequence of the TEP temporal-horizon geometry, not an adjustable parameter.
+    The falsification surface is consequently flat enough to make the tensor prediction profile-independent across the tested domain: no parameter combination on the curvature-regular branch $0\lt p\le\tfrac12$ produces $r_{\rm max}$ above $1.4\times10^{-5}$, and no tested profile at all ($0\lt p\le1$, all $n$ and $\eta_0$ rows) exceeds $6.1\times10^{-5}$. A primordial B-mode detection at $r\gtrsim10^{-4}$ would therefore falsify the temporal-horizon tensor sector for every profile tested, not merely the fiducial one; a detection in $1.4\times10^{-5}\lesssim r\lesssim6\times10^{-5}$ would exclude the curvature-regular branch while remaining accessible only to the excluded steep branch — an internally inconsistent outcome that likewise falsifies the sector. Tensor suppression is therefore a robust consequence of the TEP temporal-horizon geometry, not an adjustable parameter.
 </p>
 
 <h2>10.7 Theorem 2 — Native Scalar and Tensor Spectra</h2>
@@ -512,11 +549,11 @@
 <h2>10.8 Pipeline Validation</h2>
 
 <p>
-    The pipeline evaluates the TEP scalar power spectrum over $k \in [10^{-4}, 1]$ Mpc$^{-1}$ using the derived formula \eqref{eq:P_zeta_Hankel} with the slow-roll parameters \eqref{eq:epsilon_def}. For the default pipeline parameters $(\epsilon_{\rm dyn} = 0.1)$ the derived spectral index is $n_s = 0.80$, redder than the observed value because the temporal field rolls more slowly than the observed tilt requires. When the parameter is adjusted to the Planck-constrained value $\epsilon_{\rm field} = 0.0175$, the TEP spectrum reproduces the observed tilt $n_s = 0.965$ within $0.1\%$ across the full $k$-range.
+    The pipeline evaluates the TEP scalar power spectrum over $k \in [10^{-4}, 1]$ Mpc$^{-1}$ using the derived formula \eqref{eq:P_zeta_Hankel} with the slow-roll parameters \eqref{eq:epsilon_def}. The controlling parameter is the spectral-flow parameter $\epsilon_{\rm field}$ of \eqref{eq:epsilon_def}, distinct from the background-response constant $\epsilon_{\rm dyn}=8\pi G U_{\rm c}/H_0^2$ of Section 5.1; at the pipeline default $\epsilon_{\rm field}=0.0055$ the derived index is $n_s=0.989$, and for a generic value $\epsilon_{\rm field}=0.10$ it is $n_s = 0.80$, redder than the observed value because the temporal field rolls more slowly than the observed tilt requires. When the parameter is adjusted to the Planck-constrained value $\epsilon_{\rm field} = 0.01755$, the TEP spectrum reproduces the observed tilt $n_s = 0.9649$ within $0.1\%$ across the full $k$-range. Step 08b evaluates the domain of perturbative control \eqref{eq:P_dchi} on the same band, confirming that freeze-out occurs more than four decades inside the strong-coupling surface for every mode and that $z_A$ vanishes only asymptotically at the temporal-horizon frontier.
 </p>
 
 <p>
-    The temporal-horizon boundary condition is therefore closed: quantum fluctuations of the conformal clock field freeze at the temporal horizon, producing a nearly scale-invariant adiabatic spectrum whose tilt and running are derived from the native temporal action \eqref{eq:S_temporal}. The observed Planck values fix the spectral-flow parameter to $\epsilon_{\rm field} = 0.0175$ and the kinetic normalization $\mathcal Z_*$ through the observed amplitude $A_s = 2.10\times 10^{-9}$. The scalar sector is fully determined by the temporal action; no additional free parameters are introduced to fit the spectrum.
+    The temporal-horizon boundary condition is therefore closed: quantum fluctuations of the conformal clock field freeze at effective sound-horizon crossing inside the controlled domain and appear fossilized to a late-time observer relative to the temporal horizon, producing a nearly scale-invariant adiabatic spectrum whose tilt and running are derived from the native temporal action \eqref{eq:S_temporal}. The observed Planck values fix the spectral-flow parameter to $\epsilon_{\rm field} = 0.01755$ and the kinetic normalization $\mathcal Z_*$ through the observed amplitude $A_s = 2.10\times 10^{-9}$. The scalar sector is fully determined by the temporal action; no additional free parameters are introduced to fit the spectrum.
 </p>
 
 <p>

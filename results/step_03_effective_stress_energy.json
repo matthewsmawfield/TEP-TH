@@ -5,9 +5,9 @@
     "NEC": true,
     "SEC": false,
     "WEC": true,
-    "rho_min": 34.4745686342,
-    "rho_plus_3p_min": -571652575.4009356,
-    "rho_plus_p_min": 0.1148041404
+    "rho_min": 26.9524255,
+    "rho_plus_3p_min": -21085831500.74402,
+    "rho_plus_p_min": 2.69524255
   },
   "epsilon_sensitivity": [
     {
@@ -28,11 +28,11 @@
   ],
   "interpretation": "Temporal field violates SEC, evading standard singularity theorems",
   "parameters": {
-    "epsilon_t": 0.1,
+    "epsilon_t": 0.0055,
     "n_points": 1000,
     "n_t": 1.0,
     "z_max": 1000.0,
-    "z_t": 100.0
+    "z_t": 100
   },
   "singularity_theorem_analysis": {
     "NEC_satisfied": true,
@@ -42,12 +42,15 @@
   },
   "step": "step_03_effective_stress_energy",
   "stress_energy_components": {
+    "U_c_over_rho_crit0": 0.00183333,
+    "note": "rho_phi = epsilon_dyn H^2 (8piG=1). Fraction of the instantaneous critical density: rho_phi/rho_crit = epsilon_dyn/3 at all z; at z=0 this is the vacuum plateau U_c/rho_c,0 ~ 1.8e-3 \u2014 small, not the Omega_Lambda budget slot (which is filled kinematically by the effective shear contribution Omega_phi of TEP-HC).",
     "p_bounded_near_horizon": true,
     "p_finite": true,
-    "p_max": -34.359764,
+    "p_max": -24.257183,
     "rho_bounded_near_horizon": true,
     "rho_finite": true,
-    "rho_max": 285979338.260786,
+    "rho_max": 10544495844.654427,
+    "rho_phi_at_z0_H0sq_units": 0.00550049,
     "w_at_z0": -0.9,
     "w_at_zmax": -0.9999,
     "w_finite": true

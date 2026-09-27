@@ -23,22 +23,23 @@ STEP_ID = "step_03_effective_stress_energy"
 def temporal_field_energy_density(z: np.ndarray, epsilon_t: float = DEFAULT_EPSILON_T,
                                    z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T) -> np.ndarray:
     """Compute effective energy density ρ_φ of temporal field.
-    
-    For conformal coupling, the effective energy density from temporal shear:
-    ρ_φ ≈ (ε_t / 8πG) * H² * (d ln A/d ln a)²
+
+    Manuscript Eq. (5.x): ρ_φ ≈ (ε_dyn / 8πG) * H² * (d ln a_eff/d ln A_clock)².
+
+    In the static matter-frame representation a_eff = A_clock, so the
+    dimensionless coupling ratio is exactly unity. Units: 8πG = 1,
+    H in km/s/Mpc. At the present epoch ρ_φ(0) = ε_dyn H_0², i.e.
+    ρ_φ(0)/ρ_c,0 = ε_dyn/3 ≈ 1.8e-3 — the action-level vacuum plateau
+    U_c is ~0.2% of the critical density, not the Ω_Λ budget.
     """
     from th_common import e_z
     H = H0_KM_S_MPC * e_z(z)
-    A = conformal_factor_A(z, epsilon_t, z_t, n_t)
-    
-    # Derivative of ln A with respect to ln a
-    # d ln A / d ln a = (dA/dz * dz/da) * (a/A)
-    # Simplified: ~ ε_t * S(z) * (1 - n_t * (z/z_t)^n_t * ln(1+z))
-    S = np.exp(-(z / z_t) ** n_t)
-    dlnA_dlna = epsilon_t * S * (1 - n_t * (z / z_t)**n_t * np.log(1 + z))
-    
+
+    # d ln a_eff / d ln A_clock = 1 in the static matter frame
+    dln_aeff_dln_Aclock = 1.0
+
     # Energy density (in units where 8πG = 1 for simplicity)
-    rho_phi = H**2 * dlnA_dlna**2
+    rho_phi = epsilon_t * H**2 * dln_aeff_dln_Aclock**2
     return rho_phi
 
 
@@ -148,7 +149,16 @@ def test_stress_energy_regularity(z_max: float = 1000.0, n_points: int = 1000,
             'rho_max': rounded(np.max(rho_phi), 6) if rho_finite else None,
             'p_max': rounded(np.max(p_phi), 6) if p_finite else None,
             'w_at_z0': rounded(w_phi[0], 6) if w_finite else None,
-            'w_at_zmax': rounded(w_phi[-1], 6) if w_finite else None
+            'w_at_zmax': rounded(w_phi[-1], 6) if w_finite else None,
+            'rho_phi_at_z0_H0sq_units': rounded(float(rho_phi[0]) / H0_KM_S_MPC**2, 8),
+            'U_c_over_rho_crit0': rounded(epsilon_t / 3.0, 8),
+            'note': ('rho_phi = epsilon_dyn H^2 (8piG=1). Fraction of the '
+                     'instantaneous critical density: rho_phi/rho_crit = '
+                     'epsilon_dyn/3 at all z; at z=0 this is the vacuum '
+                     'plateau U_c/rho_c,0 ~ 1.8e-3 — small, not the '
+                     'Omega_Lambda budget slot (which is filled '
+                     'kinematically by the effective shear contribution '
+                     'Omega_phi of TEP-HC).')
         },
         'energy_conditions': ec_results,
         'singularity_theorem_analysis': {

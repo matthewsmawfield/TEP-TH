@@ -40,12 +40,12 @@
 
 <div class="equation">
     \begin{equation} \label{eq:rho_phi}
-        \rho_{\phi} \approx \frac{\epsilon_{\rm dyn}}{8\pi G}\,H^{2}\left(\frac{d\ln A_{\rm clock}}{d\ln a}\right)^{2}
+        \rho_{\phi} \approx \frac{\epsilon_{\rm dyn}}{8\pi G}\,H^{2}\left(\frac{d\ln a_{\rm eff}}{d\ln A_{\rm clock}}\right)^{2}
     \end{equation}
 </div>
 
 <p>
-    where the dimensionless factor $(d\ln A_{\rm clock}/d\ln a)^{2}$ encodes the coupling between the temporal field and the background expansion. In the static matter frame $a_{\rm m}=1$, so $d\ln A_{\rm clock}/d\ln a=1$ and the action-level energy density \eqref{eq:rho_p_phi} evaluated at the present epoch gives
+    where the dimensionless factor $(d\ln a_{\rm eff}/d\ln A_{\rm clock})^{2}$ encodes the coupling between the temporal field and the effective scale factor. With $a_{\rm eff}=A_{\rm clock}\,a_{\rm m}$ and $a_{\rm m}=1$ in the static matter frame, $d\ln a_{\rm eff}/d\ln A_{\rm clock}=1$, and the action-level energy density \eqref{eq:rho_p_phi} evaluated at the present epoch gives
 </p>
 
 <div class="equation">
@@ -59,13 +59,24 @@
 </p>
 
 <div class="equation">
-    \begin{equation}
+    \begin{equation} \label{eq:epsilon_dyn}
         \epsilon_{\rm dyn} = \frac{8\pi G\,U_{\rm c}}{H_{0}^{2}} \, .
     \end{equation}
 </div>
 
 <p>
-    The SEC test evaluated by the pipeline is therefore the action's own SEC: the effective-fluid density \eqref{eq:rho_phi} is the present-epoch limit of the action-level density \eqref{eq:rho_p_phi}, and $\epsilon_{\rm dyn}$ is not a free normalization but the vacuum potential energy expressed in units of the Hubble energy. With $w_{\phi}\approx -1$, the SEC is violated since $\rho + 3p = \rho(1 + 3w) \lt 0$ for $w \lt -1/3$.
+    The SEC test evaluated by the pipeline is therefore the action's own SEC: the effective-fluid density \eqref{eq:rho_phi} is the present-epoch limit of the action-level density \eqref{eq:rho_p_phi}, and $\epsilon_{\rm dyn}$ is not a free normalization but the vacuum potential energy expressed in units of the Hubble energy. With $w_{A}\approx -1$, the SEC is violated since $\rho + 3p = \rho(1 + 3w) \lt 0$ for $w \lt -1/3$.
+</p>
+<p>
+    The identification \eqref{eq:epsilon_dyn} carries quantitative content that bears on the corpus's "no-$\Lambda$" position. With the fitted drift amplitude $\epsilon_{\rm dyn}=5.5\times10^{-3}$ (the TEP-HC homogeneous conformal posterior $\epsilon_T^{\rm HC}=0.00547\pm0.00429$), the vacuum plateau evaluates to
+</p>
+<div class="equation">
+    \begin{equation} \label{eq:Uc_value}
+        \frac{U_{\rm c}}{\rho_{\rm crit,0}} = \frac{\epsilon_{\rm dyn}}{3} \approx 1.8\times10^{-3} \, ,
+    \end{equation}
+</div>
+<p>
+    recorded in the pipeline output (Step 03). The action-level vacuum energy is therefore a small residual — three orders of magnitude below the conventional dark-energy density — and it is essential to distinguish it from the effective background-budget parameter $\Omega_\phi$ of TEP-HC (Paper 18), which is defined operationally as the homogeneous conformal-sector contribution occupying the $\Omega_\Lambda$ slot of the FLRW bookkeeping. The latter is a kinematic accounting of the clock-drift mapping, not a literal energy density; the former is the genuine vacuum energy of the temporal field, and it is small. The corpus position is thereby sharper than "a dynamical vacuum energy replaces a bare constant": there is no bare geometric constant ($\Lambda_{\rm bare}\equiv0$), and there is no large vacuum energy anywhere in the theory — the roughly seventy-percent dark-energy budget of the distance-redshift bookkeeping is produced kinematically by temporal shear and line-of-sight transport (TEP-C0, Paper 26), while the action's own vacuum plateau sits at $\sim0.2\%$ of critical. The "no-$\Lambda$" designation across the corpus thus denotes both the absence of a bare geometric constant and the absence of a dark-energy-scale vacuum term; neither reading is semantic relabeling of a $\sim70\%$ vacuum component.
 </p>
 <p>
     The pipeline evaluates the NEC, WEC, DEC, and SEC for the temporal field across redshift. The SEC is systematically violated, while the NEC and WEC are satisfied. By violating the SEC, the temporal field removes one of the assumptions required by the Hawking-Penrose singularity theorems; the theorems therefore do not force geodesic incompleteness. Geodesic completeness is established separately by the curvature and affine-parameter analysis of Sections 4.2–4.4.
@@ -74,25 +85,35 @@
 <h2>5.2 Past-Completeness and the BGV Theorem</h2>
 
 <p>
-    The Borde-Guth-Vilenkin theorem states that any spacetime satisfying the null energy condition and containing a congruence with averaged Hubble parameter $H_{\rm av}>0$ along a past-directed geodesic is past-incomplete in finite proper time. It is the standard obstruction to past-eternal nonsingular cosmologies. In the TEP static matter frame, however, the physical congruence is nonexpanding.
+    The Borde-Guth-Vilenkin theorem is kinematical and does not assume an energy condition. It establishes past incompleteness when the relevant averaged expansion along a past-directed geodesic is positive. TEP does not rely on an energy-condition loophole. Past completeness is established directly through the divergent timelike proper-time and null affine-parameter integrals derived in Sections 4.2–4.4.
 </p>
 
 <p>
-    The matter-frame coordinate scale factor is $a_{\rm m}=1$ everywhere, so the comoving congruence has vanishing expansion
+    The theorem applies to the timelike geodesic congruence of the spacetime whose completeness is in question. In the two-metric setting that spacetime is the matter metric $\tilde{g}_{\mu\nu}=A_{\rm clock}^2\,g_{\mu\nu}$ — the geometry on which particles and clocks propagate — so the operative evaluation is on the matter-frame congruence, not the coordinate congruence of $g_{\mu\nu}$ (for completeness it may be noted that the static coordinate metric also has vanishing expansion, $\theta_g = 3\dot a_{\rm m}/a_{\rm m} = 0$ with $a_{\rm m}=1$, but the coordinate congruence is not the congruence to which the physical completeness question attaches).
+</p>
+
+<p>
+    Evaluated directly on the physical matter-metric congruence, the Hubble expansion parameter along a timelike congruence parameterized by proper time $\tilde{\tau}$ is $\tilde{H} = d\ln A_{\rm clock}/d\tilde{\tau}$. The BGV past-averaged expansion rate over a proper-time interval $\Delta\tilde{\tau} = \tilde{\tau}_0 - \tilde{\tau}_i$ is defined by
 </p>
 
 <div class="equation">
     \begin{equation}
-        \theta = 3\,\frac{\dot a_{\rm m}}{a_{\rm m}} = 0 \, .
+        H_{\rm av} = \frac{1}{\Delta\tilde{\tau}} \int_{\tilde{\tau}_i}^{\tilde{\tau}_0} \tilde{H}(\tilde{\tau}')\,d\tilde{\tau}' = \frac{\Delta\ln A_{\rm clock}}{\Delta\tilde{\tau}} \, .
     \end{equation}
 </div>
 
 <p>
-    The apparent redshift-scale expansion is carried entirely by the clock-rescaling field $A_{\rm clock}$, not by kinematic expansion of the congruence. Consequently $H_{\rm av}=0$ along the matter-frame geodesics and the BGV hypothesis $H_{\rm av}>0$ fails by construction. This is not a loophole in the theorem's assumptions; it is a structural feature of the TEP framework. BGV is a theorem about congruence kinematics, and TEP relocates the cosmological "expansion" from congruence kinematics to clock transport. The infinite proper time established in Section 4.3 is therefore consistent with $\theta=0$, exactly as a nonexpanding congruence should give.
+    As established in Section 4.3, for the regular branch $0 \lt p \le 1$, the past proper-time integral diverges toward the temporal horizon: $\Delta\tilde{\tau} \to \infty$ as $\eta \to \infty$. Meanwhile, the accumulated logarithmic clock shift $\Delta\ln A_{\rm clock} = -p\ln(\eta/\eta_0)$ grows only logarithmically, far slower than proper time ($\Delta\tilde{\tau} \sim \eta^{1-p}$ for $p \lt 1$). Consequently, the asymptotic past-averaged expansion rate along the physical matter congruence vanishes identically:
 </p>
 
+<div class="equation">
+    \begin{equation}
+        H_{\rm av} = \lim_{\Delta\tilde{\tau} \to \infty} \frac{-p\ln(\eta/\eta_0)}{\Delta\tilde{\tau}} = 0 \, .
+    \end{equation}
+</div>
+
 <p>
-    By contrast, inflationary cosmology does satisfy $H_{\rm av}>0$ because the scale factor grows kinematically; BGV therefore applies to it and forces a past boundary. In TEP the boundary is not a singularity produced by the theorem but a temporal horizon produced by the clock map, and the geodesic analysis of Section 4 shows that causal curves approach it only asymptotically in infinite affine parameter. The BGV theorem is respected but inapplicable.
+    The essential BGV hypothesis $H_{\rm av} > 0$ therefore fails by construction in the matter frame, just as $\theta_g = 0$ in the coordinate frame. This is not an evasion based on frame choice; it is a structural consequence of clock transport. The cosmological redshift is generated by clock-rate evolution rather than kinematic divergence of geodesics, so causal curves accumulate infinite proper time while the averaged expansion rate tends to zero. The BGV conclusion of past geodesic incompleteness is therefore avoided in both metric representations.
 </p>
 
 <p>

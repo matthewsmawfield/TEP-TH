@@ -1,6 +1,6 @@
 {
   "TEP_abundances": {
-    "A_at_BBN": 0.999999999962415,
+    "A_at_BBN": 0.999999999998392,
     "D_H": 2.514e-05,
     "He3_H": 1.041e-05,
     "Li7_H": 5.238e-10,
@@ -69,23 +69,23 @@
   "interpretation": "BBN abundances preserved under temporal-horizon cosmology",
   "no_screening_baseline": {
     "TEP_abundances": {
-      "A_at_BBN": 0.125892541166827,
-      "D_H": 0.003428,
-      "He3_H": 4.651e-05,
-      "Li7_H": 1.606e-08,
+      "A_at_BBN": 0.915166258777934,
+      "D_H": 2.93e-05,
+      "He3_H": 1.097e-05,
+      "Li7_H": 4.66e-10,
       "N_eff": 3.046,
-      "Y_p": 0.5637,
-      "expansion_factor_at_BBN": 7.943282
+      "Y_p": 0.2618,
+      "expansion_factor_at_BBN": 1.092698
     },
     "abundance_comparison": {
       "D_H": {
         "LCDM": 2.514e-05,
         "LCDM_consistent": true,
         "LCDM_sigma_diff": -0.43,
-        "TEP": 0.003428,
+        "TEP": 2.93e-05,
         "TEP_better": false,
         "TEP_consistent": false,
-        "TEP_sigma_diff": 11342.43,
+        "TEP_sigma_diff": 13.43,
         "observed": 2.527e-05,
         "observed_error": 3e-07
       },
@@ -93,10 +93,10 @@
         "LCDM": 1.041e-05,
         "LCDM_consistent": false,
         "LCDM_sigma_diff": -7.74,
-        "TEP": 4.651e-05,
-        "TEP_better": false,
+        "TEP": 1.097e-05,
+        "TEP_better": true,
         "TEP_consistent": false,
-        "TEP_sigma_diff": 37.39,
+        "TEP_sigma_diff": -7.04,
         "observed": 1.66e-05,
         "observed_error": 8e-07
       },
@@ -104,10 +104,10 @@
         "LCDM": 5.238e-10,
         "LCDM_consistent": false,
         "LCDM_sigma_diff": 36.58,
-        "TEP": 1.606e-08,
-        "TEP_better": false,
+        "TEP": 4.66e-10,
+        "TEP_better": true,
         "TEP_consistent": false,
-        "TEP_sigma_diff": 1590.2,
+        "TEP_sigma_diff": 30.8,
         "observed": 1.58e-10,
         "observed_error": 1e-11
       },
@@ -126,10 +126,10 @@
         "LCDM": 0.2471,
         "LCDM_consistent": true,
         "LCDM_sigma_diff": 1.0,
-        "TEP": 0.5637,
+        "TEP": 0.2618,
         "TEP_better": false,
         "TEP_consistent": false,
-        "TEP_sigma_diff": 3167.0,
+        "TEP_sigma_diff": 148.0,
         "observed": 0.247,
         "observed_error": 0.0001
       }
@@ -138,13 +138,13 @@
     "interpretation": "BBN abundances require further analysis or disformal corrections",
     "parameters": {
       "T_lock": 0.03,
-      "epsilon_t": 0.1,
+      "epsilon_t": 0.0055,
       "n_epoch": 2.0,
       "n_t": 1.0,
       "omega_b": 0.022,
       "omega_cdm": 0.12,
       "use_screening": false,
-      "z_t": 100.0
+      "z_t": 100
     },
     "step": "step_04_full_bbn_abundances",
     "summary": {
@@ -172,18 +172,18 @@
   },
   "parameters": {
     "T_lock": 1.0,
-    "epsilon_t": 0.1,
+    "epsilon_t": 0.0055,
     "n_epoch": 2.0,
     "n_t": 1.0,
     "omega_b": 0.022,
     "omega_cdm": 0.12,
     "use_screening": true,
-    "z_t": 100.0
+    "z_t": 100
   },
   "screening_comparison": {
     "no_screening": {
       "TEP_success_rate": 0.2,
-      "expansion_factor": 7.943282
+      "expansion_factor": 1.092698
     },
     "with_screening": {
       "TEP_success_rate": 0.6,

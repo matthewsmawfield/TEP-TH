@@ -1,7 +1,10 @@
-[14:37:46] [INFO] 
-[14:37:46] [INFO] ================================================================================
-[14:37:46] [INFO]    Starting step_01_matter_frame_curvature
-[14:37:46] [INFO] ================================================================================
-[14:37:46] [INFO] 
-[14:37:46] [SUCCESS] Step step_01_matter_frame_curvature completed successfully
-[14:37:46] [INFO] Matter-frame regularity: True
+[16:22:19] [INFO] 
+[16:22:19] [INFO] ================================================================================
+[16:22:19] [INFO]    Starting step_01_matter_frame_curvature
+[16:22:19] [INFO] ================================================================================
+[16:22:19] [INFO] 
+[16:22:19] [INFO] Testing pure conformal curvature regularity (Proposition 1)
+[16:22:19] [INFO] Testing disformal compensation (B|∇φ|² ~ A^{-2n})
+[16:22:19] [SUCCESS] Step step_01_matter_frame_curvature completed successfully
+[16:22:19] [INFO] Proposition 1 verified: True
+[16:22:19] [INFO] Matter-frame regular: True

@@ -1,25 +1,95 @@
 {
   "description": "Native tensor-mode integration: first-order Bogoliubov coefficient with physical eta_0",
-  "interpretation": "Native TEP tensor integration gives r_max = 0.00062566 at k_pivot = 8.7e-06 (analytic est. 0.00446742). For k*eta_0 >> 1, rapid oscillations across the transition suppress tensor production. Result is below BICEP/Keck bound r < 0.036: True.",
+  "falsification_surface": {
+    "note": "r_max peaks at the transition scale k_tilde ~ 1 (k ~ 2e-4 Mpc^-1); the spectrum falls as k_tilde^-4 at CMB scales",
+    "r_max_all_tested_p_le_1.0": 6.1084e-05,
+    "r_max_regular_branch_p_le_0.5": 1.3917e-05,
+    "r_max_vs_p": [
+      {
+        "p": 0.05,
+        "r_max": 1.3e-07
+      },
+      {
+        "p": 0.1,
+        "r_max": 5.24e-07
+      },
+      {
+        "p": 0.2,
+        "r_max": 2.125e-06
+      },
+      {
+        "p": 0.3,
+        "r_max": 4.852e-06
+      },
+      {
+        "p": 0.4,
+        "r_max": 8.761e-06
+      },
+      {
+        "p": 0.5,
+        "r_max": 1.3917e-05
+      },
+      {
+        "p": 0.75,
+        "r_max": 3.2732e-05
+      },
+      {
+        "p": 1.0,
+        "r_max": 6.1084e-05
+      }
+    ]
+  },
+  "interpretation": "Native TEP tensor integration gives r_max = 5.2e-07 at k_pivot = 0.0 (analytic est. 0.00446742). For k*eta_0 >> 1, rapid oscillations across the transition suppress tensor production. Result is below BICEP/Keck bound r < 0.036: True.",
   "parameters": {
-    "epsilon_field": 0.0175,
+    "epsilon_field": 0.01755,
     "eta_0_Mpc": 6000.0,
     "n_profile": 2.0,
     "p": 0.1,
     "r_BK_max": 0.036,
-    "r_inflationary": 0.28
+    "r_inflationary": 0.2808
+  },
+  "quadrature_verification": {
+    "checks": [
+      {
+        "beta_sq_filon": 0.0004118578221904456,
+        "beta_sq_split": 0.0004118229106548708,
+        "k_tilde": 1.2,
+        "rel_diff": 8.477317475928998e-05
+      },
+      {
+        "beta_sq_filon": 7.71631604561036e-14,
+        "beta_sq_split": 7.715825644687705e-14,
+        "k_tilde": 300.0,
+        "rel_diff": 6.355780252670682e-05
+      },
+      {
+        "beta_sq_filon": 1.883799713781573e-17,
+        "beta_sq_split": 1.8835134850257846e-17,
+        "k_tilde": 2400.0,
+        "rel_diff": 0.000151965333969708
+      },
+      {
+        "beta_sq_filon": 1.0000091265557096e-18,
+        "beta_sq_split": 1.000206161483132e-18,
+        "k_tilde": 5000.0,
+        "rel_diff": 0.00019699431478230258
+      }
+    ],
+    "consistent": true,
+    "method": "weighted Filon rule vs explicit half-period cell integration"
   },
   "results": {
     "below_BK_bound": true,
+    "k_at_r_max_Mpc": 0.0001985,
     "k_tilde_range": [
       0.6,
       6000.0
     ],
-    "num_k": 50,
+    "num_k": 180,
     "r_analytic_estimate": 0.00446742,
-    "r_at_pivot": 9e-06,
-    "r_max": 0.000626,
-    "r_min": null
+    "r_at_pivot": 1.8614911311895358e-09,
+    "r_max": 5.238867813628414e-07,
+    "r_min": 1.0339179318419239e-10
   },
   "step": "step_09b_native_tensor_integration"
 }

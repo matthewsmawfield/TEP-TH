@@ -3,7 +3,7 @@
     All data and analysis code required to reproduce the results presented in this work are available in the public repository at <a href="https://github.com/matthewsmawfield/TEP-TH" target="_blank">https://github.com/matthewsmawfield/TEP-TH</a>.
 </p>
 <p>
-    All pipeline outputs, posterior samples, and the exact step configuration files are released in the Zenodo repository (<a href="https://doi.org/10.5281/zenodo.20723059" target="_blank">DOI: 10.5281/zenodo.20723059</a>) under CC-BY 4.0. The step scripts and <code>run_all.py</code> orchestration script are provided in the GitHub repository.
+    All pipeline outputs, posterior samples, and the exact step configuration files are released in the Zenodo repository (<a href="https://doi.org/10.5281/zenodo.20723059" target="_blank">DOI: 10.5281/zenodo.20723059</a>) under CC-BY 4.0. The step scripts and <code>run_pipeline.py</code> orchestration script are provided in the GitHub repository.
 </p>
 <h2>Repository Structure</h2>
 <ul>
@@ -33,6 +33,7 @@ python step_10_cmb_lss_class.py
 </code></pre>
 <h2>Key Pipeline Outputs</h2>
 <ul>
+    <li><strong>step_01_matter_frame_curvature.json / .csv</strong>: Proposition 1 verification (pure conformal curvature vanishing) and disformal compensation analysis (critical power $n=4$, lapse divergence test)</li>
     <li><strong>step_04_full_bbn_abundances.json / .csv</strong>: BBN abundance validation (Y_p, D/H, He3/H, Li7/H, N_eff)</li>
     <li><strong>step_05_recombination_visibility.json / .csv</strong>: Recombination epoch ($z_*$, $r_s$, $\theta_s$), LCDM and TEP comparison</li>
     <li><strong>step_09b_native_tensor_integration.json / .csv</strong>: Native tensor-mode integration (r(k_pivot), r_max, Bogoliubov coefficients)</li>
@@ -46,6 +47,8 @@ python step_10_cmb_lss_class.py
     <li>numpy</li>
     <li>scipy</li>
     <li>matplotlib (for plotting)</li>
+    <li>optional: <code>classy</code> (CLASS Python bindings) for the step_10 CMB/LSS spectra; without it the step degrades gracefully</li>
+    <li>optional: bundled <code>external/alterbbn_wrapper.py</code> + AlterBBN for the step_04 abundance network; without it the step falls back to tabulated ΛCDM references</li>
 </ul>
 <h2>Data Sources</h2>
 <p>
@@ -58,5 +61,5 @@ python step_10_cmb_lss_class.py
 </ul>
 <h2>Version Control</h2>
 <p>
-    This work uses version v0.3 (Thika) of the TEP-TH pipeline, first published 18 June 2026. The repository maintains a complete history of all changes through Git version control.
+    This work uses version v0.4 (Thika) of the TEP-TH pipeline, first published 18 June 2026. The repository maintains a complete history of all changes through Git version control.
 </p>

@@ -236,10 +236,10 @@
   },
   "overall_consistent": true,
   "parameters": {
-    "epsilon_t": 0.1,
+    "epsilon_t": 0.0055,
     "n_t": 1.0,
     "use_screening": true,
-    "z_t": 100.0
+    "z_t": 100
   },
   "step": "step_10_cmb_lss_class"
 }

@@ -1,4 +1,4 @@
-v0.3 (Thika) — 2026-08-07 — No physical Big Bang singularity: temporal-horizon cosmology and eternal-universe closure
+v0.4 (Thika) — 2026-09-13 — No physical Big Bang singularity: temporal-horizon cosmology and eternal-universe closure
 
 - Big Bang singularity shown to be a reconstruction artifact of imposing isochronous expanding-frame description on conformal temporal geometry
 - Temporal Horizon Cosmology framework: a_eff→0 is a temporal horizon, not a curvature singularity

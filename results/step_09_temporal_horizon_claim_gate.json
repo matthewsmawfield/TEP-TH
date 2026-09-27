@@ -77,7 +77,7 @@
       "status": true
     },
     "curvature_boundedness": {
-      "description": "Matter-frame curvature invariants remain bounded near horizon",
+      "description": "Matter-frame curvature invariants vanish at the temporal horizon (Proposition 1)",
       "status": true
     },
     "entropy_regularity": {
@@ -109,5 +109,5 @@
       "status": true
     }
   },
-  "timestamp": 1786109868
+  "timestamp": 1790205949
 }

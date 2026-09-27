@@ -30,14 +30,14 @@
     "integration_success": true,
     "r_final": 0.999999,
     "reaches_horizon": false,
-    "t_final": 1.000000001e-06
+    "t_final": 1e-06
   },
   "parameters": {
-    "epsilon_t": 0.1,
+    "epsilon_t": 0.0055,
     "n_points": 1000,
     "n_t": 1.0,
     "z_max": 1000.0,
-    "z_t": 100.0
+    "z_t": 100
   },
   "step": "step_02_geodesic_completeness",
   "timelike_geodesics": {

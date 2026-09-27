@@ -1,0 +1,562 @@
+{
+  "classification_grid": [
+    {
+      "abs_gradient_at_eta_1e12": 9.085785760514761e-20,
+      "abs_kretschmann_residual_at_1e12": 3981071705.5349774,
+      "abs_residual_at_eta_1e12": 63095.734448019364,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 1.2000000000000002,
+      "p": 0.2,
+      "residual_exponent": 0.4,
+      "s": 0.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 9.085785760514761e-20,
+      "abs_kretschmann_residual_at_1e12": 0.003981071705534978,
+      "abs_residual_at_eta_1e12": 0.06309573444801936,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 1.2751902830191333,
+      "p": 0.2,
+      "residual_exponent": -0.09999999999999998,
+      "s": 0.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 9.085785760514761e-20,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534977e-15,
+      "abs_residual_at_eta_1e12": 6.309573444801936e-08,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 1.4400000000000002,
+      "p": 0.2,
+      "residual_exponent": -0.6,
+      "s": 1.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 9.085785760514761e-20,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534953e-27,
+      "abs_residual_at_eta_1e12": 6.309573444801916e-14,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 2.0736000000000003,
+      "p": 0.2,
+      "residual_exponent": -1.1,
+      "s": 1.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 9.085785760514761e-20,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534953e-39,
+      "abs_residual_at_eta_1e12": 6.309573444801917e-20,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.2,
+      "residual_exponent": -1.6,
+      "s": 2.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 9.085785760514761e-20,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534953e-51,
+      "abs_residual_at_eta_1e12": 6.309573444801917e-26,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.2,
+      "residual_exponent": -2.1,
+      "s": 2.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 9.085785760514761e-20,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534953e-63,
+      "abs_residual_at_eta_1e12": 6.309573444801917e-32,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.2,
+      "residual_exponent": -2.6,
+      "s": 3.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 3.708650070359015e-17,
+      "abs_kretschmann_residual_at_1e12": 251188643150957.7,
+      "abs_residual_at_eta_1e12": 15848931.924611125,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 1.5297058540778354,
+      "p": 0.3,
+      "residual_exponent": 0.6,
+      "s": 0.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 3.708650070359015e-17,
+      "abs_kretschmann_residual_at_1e12": 251.18864315095772,
+      "abs_residual_at_eta_1e12": 15.848931924611126,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 1.762559979851054,
+      "p": 0.3,
+      "residual_exponent": 0.09999999999999998,
+      "s": 0.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 3.708650070359015e-17,
+      "abs_kretschmann_residual_at_1e12": 2.511886431509577e-10,
+      "abs_residual_at_eta_1e12": 1.5848931924611124e-05,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 2.34,
+      "p": 0.3,
+      "residual_exponent": -0.4,
+      "s": 1.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 3.708650070359015e-17,
+      "abs_kretschmann_residual_at_1e12": 2.511886431509577e-22,
+      "abs_residual_at_eta_1e12": 1.5848931924611124e-11,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 5.475599999999999,
+      "p": 0.3,
+      "residual_exponent": -0.9,
+      "s": 1.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 3.708650070359015e-17,
+      "abs_kretschmann_residual_at_1e12": 2.5118864315095923e-34,
+      "abs_residual_at_eta_1e12": 1.5848931924611175e-17,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.3,
+      "residual_exponent": -1.4,
+      "s": 2.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 3.708650070359015e-17,
+      "abs_kretschmann_residual_at_1e12": 2.5118864315095925e-46,
+      "abs_residual_at_eta_1e12": 1.5848931924611174e-23,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.3,
+      "residual_exponent": -1.9,
+      "s": 2.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 3.708650070359015e-17,
+      "abs_kretschmann_residual_at_1e12": 2.5118864315095926e-58,
+      "abs_residual_at_eta_1e12": 1.5848931924611172e-29,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.3,
+      "residual_exponent": -2.4,
+      "s": 3.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 1.3376400930597526e-14,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611174e+19,
+      "abs_residual_at_eta_1e12": 3981071705.5349774,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 1.8330302779823362,
+      "p": 0.4,
+      "residual_exponent": 0.8,
+      "s": 0.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 1.3376400930597526e-14,
+      "abs_kretschmann_residual_at_1e12": 15848931.924611174,
+      "abs_residual_at_eta_1e12": 3981.0717055349774,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 2.243328385281753,
+      "p": 0.4,
+      "residual_exponent": 0.30000000000000004,
+      "s": 0.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 1.3376400930597526e-14,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611175e-05,
+      "abs_residual_at_eta_1e12": 0.003981071705534978,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 3.3600000000000003,
+      "p": 0.4,
+      "residual_exponent": -0.19999999999999996,
+      "s": 1.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 1.3376400930597526e-14,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611175e-17,
+      "abs_residual_at_eta_1e12": 3.981071705534977e-09,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 11.289600000000002,
+      "p": 0.4,
+      "residual_exponent": -0.7,
+      "s": 1.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 1.3376400930597526e-14,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611172e-29,
+      "abs_residual_at_eta_1e12": 3.981071705534977e-15,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.4,
+      "residual_exponent": -1.2,
+      "s": 2.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 1.3376400930597526e-14,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611173e-41,
+      "abs_residual_at_eta_1e12": 3.9810717055349776e-21,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.4,
+      "residual_exponent": -1.7,
+      "s": 2.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 1.3376400930597526e-14,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924610979e-53,
+      "abs_residual_at_eta_1e12": 3.981071705534953e-27,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.4,
+      "residual_exponent": -2.2,
+      "s": 3.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 2.4701980036399504e-13,
+      "abs_kretschmann_residual_at_1e12": 3.9810717055349775e+21,
+      "abs_residual_at_eta_1e12": 63095734448.01936,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 1.9786358937409378,
+      "p": 0.45,
+      "residual_exponent": 0.9,
+      "s": 0.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 2.4701980036399504e-13,
+      "abs_kretschmann_residual_at_1e12": 3981071705.5349774,
+      "abs_residual_at_eta_1e12": 63095.734448019364,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 2.484016698060404,
+      "p": 0.45,
+      "residual_exponent": 0.4,
+      "s": 0.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 2.4701980036399504e-13,
+      "abs_kretschmann_residual_at_1e12": 0.003981071705534978,
+      "abs_residual_at_eta_1e12": 0.06309573444801936,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 3.915,
+      "p": 0.45,
+      "residual_exponent": -0.09999999999999998,
+      "s": 1.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 2.4701980036399504e-13,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534977e-15,
+      "abs_residual_at_eta_1e12": 6.309573444801936e-08,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 15.327225,
+      "p": 0.45,
+      "residual_exponent": -0.6,
+      "s": 1.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 2.4701980036399504e-13,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534953e-27,
+      "abs_residual_at_eta_1e12": 6.309573444801916e-14,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.45,
+      "residual_exponent": -1.1,
+      "s": 2.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 2.4701980036399504e-13,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534953e-39,
+      "abs_residual_at_eta_1e12": 6.309573444801917e-20,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.45,
+      "residual_exponent": -1.6,
+      "s": 2.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 2.4701980036399504e-13,
+      "abs_kretschmann_residual_at_1e12": 3.981071705534953e-51,
+      "abs_residual_at_eta_1e12": 6.309573444801917e-26,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.45,
+      "residual_exponent": -2.1,
+      "s": 3.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 4.5e-12,
+      "abs_kretschmann_residual_at_1e12": 1e+24,
+      "abs_residual_at_eta_1e12": 1000000000000.0,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 2.1213203435596424,
+      "p": 0.5,
+      "residual_exponent": 1.0,
+      "s": 0.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 4.5e-12,
+      "abs_kretschmann_residual_at_1e12": 1000000000000.0,
+      "abs_residual_at_eta_1e12": 1000000.0,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 2.7256808892482094,
+      "p": 0.5,
+      "residual_exponent": 0.5,
+      "s": 0.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 4.5e-12,
+      "abs_kretschmann_residual_at_1e12": 1.0,
+      "abs_residual_at_eta_1e12": 1.0,
+      "asymptotic_class": "bounded_nonzero",
+      "horizon_crossing_eta": 4.5,
+      "p": 0.5,
+      "residual_exponent": 0.0,
+      "s": 1.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 4.5e-12,
+      "abs_kretschmann_residual_at_1e12": 1e-12,
+      "abs_residual_at_eta_1e12": 1e-06,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": 20.25,
+      "p": 0.5,
+      "residual_exponent": -0.5,
+      "s": 1.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 4.5e-12,
+      "abs_kretschmann_residual_at_1e12": 1e-24,
+      "abs_residual_at_eta_1e12": 1e-12,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.5,
+      "residual_exponent": -1.0,
+      "s": 2.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 4.5e-12,
+      "abs_kretschmann_residual_at_1e12": 1e-36,
+      "abs_residual_at_eta_1e12": 1e-18,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.5,
+      "residual_exponent": -1.5,
+      "s": 2.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 4.5e-12,
+      "abs_kretschmann_residual_at_1e12": 1e-48,
+      "abs_residual_at_eta_1e12": 1e-24,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.5,
+      "residual_exponent": -2.0,
+      "s": 3.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 7.875e-06,
+      "abs_kretschmann_residual_at_1e12": 1e+36,
+      "abs_residual_at_eta_1e12": 1e+18,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 2.806243040080456,
+      "p": 0.75,
+      "residual_exponent": 1.5,
+      "s": 0.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 7.875e-06,
+      "abs_kretschmann_residual_at_1e12": 1e+24,
+      "abs_residual_at_eta_1e12": 1000000000000.0,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 3.958224065928057,
+      "p": 0.75,
+      "residual_exponent": 1.0,
+      "s": 0.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 7.875e-06,
+      "abs_kretschmann_residual_at_1e12": 1000000000000.0,
+      "abs_residual_at_eta_1e12": 1000000.0,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 7.875,
+      "p": 0.75,
+      "residual_exponent": 0.5,
+      "s": 1.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 7.875e-06,
+      "abs_kretschmann_residual_at_1e12": 1.0,
+      "abs_residual_at_eta_1e12": 1.0,
+      "asymptotic_class": "bounded_nonzero",
+      "horizon_crossing_eta": 62.015625,
+      "p": 0.75,
+      "residual_exponent": 0.0,
+      "s": 1.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 7.875e-06,
+      "abs_kretschmann_residual_at_1e12": 1e-12,
+      "abs_residual_at_eta_1e12": 1e-06,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.75,
+      "residual_exponent": -0.5,
+      "s": 2.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 7.875e-06,
+      "abs_kretschmann_residual_at_1e12": 1e-24,
+      "abs_residual_at_eta_1e12": 1e-12,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.75,
+      "residual_exponent": -1.0,
+      "s": 2.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 7.875e-06,
+      "abs_kretschmann_residual_at_1e12": 1e-36,
+      "abs_residual_at_eta_1e12": 1e-18,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.75,
+      "residual_exponent": -1.5,
+      "s": 3.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 0.04084579569878887,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611173e+43,
+      "abs_residual_at_eta_1e12": 3.9810717055349775e+21,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 3.2031234756093934,
+      "p": 0.9,
+      "residual_exponent": 1.8,
+      "s": 0.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 0.04084579569878887,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611173e+31,
+      "abs_residual_at_eta_1e12": 3981071705534977.5,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 4.721698373775444,
+      "p": 0.9,
+      "residual_exponent": 1.3,
+      "s": 0.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 0.04084579569878887,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611174e+19,
+      "abs_residual_at_eta_1e12": 3981071705.5349774,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 10.26,
+      "p": 0.9,
+      "residual_exponent": 0.8,
+      "s": 1.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 0.04084579569878887,
+      "abs_kretschmann_residual_at_1e12": 15848931.924611174,
+      "abs_residual_at_eta_1e12": 3981.0717055349774,
+      "asymptotic_class": "diverges",
+      "horizon_crossing_eta": 105.2676,
+      "p": 0.9,
+      "residual_exponent": 0.30000000000000004,
+      "s": 1.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 0.04084579569878887,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611175e-05,
+      "abs_residual_at_eta_1e12": 0.003981071705534978,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.9,
+      "residual_exponent": -0.19999999999999996,
+      "s": 2.0
+    },
+    {
+      "abs_gradient_at_eta_1e12": 0.04084579569878887,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611175e-17,
+      "abs_residual_at_eta_1e12": 3.981071705534977e-09,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.9,
+      "residual_exponent": -0.7,
+      "s": 2.5
+    },
+    {
+      "abs_gradient_at_eta_1e12": 0.04084579569878887,
+      "abs_kretschmann_residual_at_1e12": 1.5848931924611172e-29,
+      "abs_residual_at_eta_1e12": 3.981071705534977e-15,
+      "asymptotic_class": "vanishes",
+      "horizon_crossing_eta": null,
+      "p": 0.9,
+      "residual_exponent": -1.2,
+      "s": 3.0
+    }
+  ],
+  "critical_decay_rates": [
+    {
+      "kinetic_term_safe": true,
+      "p": 0.2,
+      "s_crit": 0.4,
+      "scalar_kinetic_s": 2.0
+    },
+    {
+      "kinetic_term_safe": true,
+      "p": 0.3,
+      "s_crit": 0.6,
+      "scalar_kinetic_s": 2.0
+    },
+    {
+      "kinetic_term_safe": true,
+      "p": 0.4,
+      "s_crit": 0.8,
+      "scalar_kinetic_s": 2.0
+    },
+    {
+      "kinetic_term_safe": true,
+      "p": 0.45,
+      "s_crit": 0.9,
+      "scalar_kinetic_s": 2.0
+    },
+    {
+      "kinetic_term_safe": true,
+      "p": 0.5,
+      "s_crit": 1.0,
+      "scalar_kinetic_s": 2.0
+    },
+    {
+      "kinetic_term_safe": true,
+      "p": 0.75,
+      "s_crit": 1.5,
+      "scalar_kinetic_s": 2.0
+    },
+    {
+      "kinetic_term_safe": true,
+      "p": 0.9,
+      "s_crit": 1.8,
+      "scalar_kinetic_s": 2.0
+    }
+  ],
+  "description": "Nonzero-background sensitivity of Proposition 1: bounded asymptotic classification of the A^{-2} R term under R(eta) = R0 eta^{-s}",
+  "honesty_note": "This is a bounded sensitivity calculation on the stated hypothesis space. It does NOT derive R = 0 from the master action; it converts the earlier qualitative 'regularity enforces R -> 0' claim into the precise quantitative condition R = o(eta^{-2p}), and shows scalar-kinetic curvature (s = 2) satisfies it while a constant floor (s = 0) does not. Whether the corpus's actual background solution carries a non-decaying curvature residual remains to be evaluated against the master-action constraint.",
+  "model": {
+    "horizon_profile": "A_clock(eta) = C eta^{-p} (C = 1)",
+    "regularity_condition": "s > 2p for vanishing residual; s = 2p bounded; s < 2p divergent",
+    "residual_curvature": "R(eta) = R0 eta^{-s}",
+    "transformed_scalar": "R_tilde = A^{-2}R + R_grad, R_grad = -6p(p+1) eta^{2p-2}"
+  },
+  "motivation_issue": "27-10",
+  "p_sensitivity_note": "For every p < 1 the scalar's own kinetic-sourced curvature (s = 2) satisfies s > 2p and the residual vanishes. A fixed vacuum offset (s = 0) diverges for all p > 0 \u2014 the proposition's R = 0 hypothesis is therefore not merely a simplification: it is the requirement that the background carry no non-decaying curvature floor.  For the null-complete branch 0 < p <= 1/2 the condition is weakest (s_crit <= 1).",
+  "scalar_sourced_background": {
+    "condition": "regularity requires s > 2p, i.e. R must decay faster than eta^{-2p} toward the horizon",
+    "kinetic_curvature_decay": "R_kin ~ eta^{-2}  (s = 2)",
+    "phi_profile": "phi(eta) = (p M_Pl/|beta_A|) ln eta",
+    "potential_floor_decay": "R_V ~ const        (s = 0, excluded)"
+  },
+  "step": "step_10_invariant_divergence",
+  "summary": {
+    "derived_condition": "R(eta) must decay faster than eta^{-2p}; equivalently A^{-2} R -> 0",
+    "n_divergent": 16,
+    "n_grid_points": 49,
+    "n_vanishing": 31,
+    "proposition_1_scope": "holds iff the background Ricci scalar decays faster than eta^{-2p} toward the temporal horizon; a constant offset is excluded for all p > 0"
+  }
+}

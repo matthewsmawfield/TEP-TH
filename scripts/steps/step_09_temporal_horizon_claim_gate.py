@@ -83,8 +83,14 @@ def run() -> dict:
     # Level 2: Nonsingular Matter-Frame Cosmology
     curvature_regular = _extract_status(
         prior.get("step_01_matter_frame_curvature"),
-        "curvature_invariants", "K_finite", default=False
+        "overall_status", "matter_frame_regular", default=False
     )
+    if not curvature_regular:
+        curvature_regular = _extract_status(
+            prior.get("step_01_matter_frame_curvature"),
+            "pure_conformal", "curvature_invariants", "K_vanishing_at_horizon",
+            default=False,
+        )
     geodesic_complete = _extract_status(
         prior.get("step_02_geodesic_completeness"),
         "completeness_status", "geodesically_complete", default=False
@@ -123,10 +129,12 @@ def run() -> dict:
         prior.get("step_08_primordial_perturbation_boundary"),
         "boundary_well_defined", default=False
     )
-    cmb_lss_consistent = _extract_status(
-        prior.get("step_10_cmb_lss_class"), "status", default=False
-    ) if prior.get("step_10_cmb_lss_class") else False
-    if not cmb_lss_consistent:
+    step10 = prior.get("step_10_cmb_lss_class")
+    if step10 is not None:
+        cmb_lss_consistent = _extract_status(
+            step10, "overall_consistent", default=False
+        ) or _extract_status(step10, "status", default=False)
+    else:
         # step_10 may not have run yet in a partial pipeline
         cmb_lss_consistent = True  # defer to step_10 for final verdict
 
@@ -209,7 +217,7 @@ def run() -> dict:
                 "status": mapping_valid,
             },
             "curvature_boundedness": {
-                "description": "Matter-frame curvature invariants remain bounded near horizon",
+                "description": "Matter-frame curvature invariants vanish at the temporal horizon (Proposition 1)",
                 "status": curvature_regular,
             },
             "geodesic_non_termination": {

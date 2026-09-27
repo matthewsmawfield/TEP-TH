@@ -1,42 +1,328 @@
 {
-  "curvature_invariants": {
-    "K_bounded_near_horizon": true,
-    "K_finite": true,
-    "K_max": 1.4645696090083715e+18,
-    "R_bounded_near_horizon": true,
-    "R_finite": true,
-    "R_max": 2420103422.236314,
-    "det_finite": true,
-    "det_min": 3e-15,
-    "det_nonzero_near_horizon": true
-  },
   "description": "Matter-frame curvature regularity at temporal horizon",
-  "epsilon_sensitivity": [
-    {
-      "epsilon_t": 0.0001,
-      "matter_frame_regular": false
+  "disformal_compensation": {
+    "critical_power": {
+      "det_formula": "det(g_tilde) = A^8 det(g) (1 + A^{-2n})",
+      "explanation": "det(g_tilde) ~ A^{8-2n}. For n < 4: degenerate. For n = 4: non-degenerate (finite). For n > 4: divergent.",
+      "n_critical": 4
     },
-    {
-      "epsilon_t": 0.001,
-      "matter_frame_regular": false
+    "description": "Disformal compensation test: can B|\u2207\u03c6|\u00b2 ~ A^{-2n} keep the metric non-degenerate?",
+    "interpretation": "Disformal compensation with B|\u2207\u03c6|\u00b2 ~ A^{-2n} can keep the metric non-degenerate for n \u2265 4 (critical power n = 4 gives finite det). However, the effective lapse N = sqrt(A\u00b2 + A^{-2n}) diverges as A \u2192 0 for any n > 0, producing an infinitely stiff lapse. The curvature invariants vanish for n > 1 (over-compensated), but the physical interpretation is problematic: the disformal sector introduces an infinitely growing term that is not motivated by the TEP field equations on the homogeneous background. The pure conformal treatment (boundary as conformal endpoint) is the physically correct approach.",
+    "parameters": {
+      "A_clock_profile": "A_clock(z) = (1+z)^{-1}",
+      "horizon_profile": "A_clock(eta) = C * eta^{-0.4}",
+      "n_points": 10000,
+      "p": 0.4,
+      "powers_tested": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        10
+      ],
+      "z_max": 1000000.0
     },
-    {
-      "epsilon_t": 0.01,
-      "matter_frame_regular": false
+    "power_results": [
+      {
+        "B_grad_phi_scaling": "B|nabla_phi|^2 ~ A^(-4)",
+        "R_at_horizon": 4.819883867781254e-55,
+        "R_finite": true,
+        "R_max": 0.001451717034309049,
+        "curvature_status": "vanishing",
+        "det_at_horizon": 9.999960000100002e-25,
+        "det_finite": true,
+        "det_scaling": "det(g_tilde) ~ A^(4)",
+        "det_status": "degenerate (det ~ A^{4} \u2192 0)",
+        "n_power": 2
+      },
+      {
+        "B_grad_phi_scaling": "B|nabla_phi|^2 ~ A^(-6)",
+        "R_at_horizon": 7.219831766062052e-67,
+        "R_finite": true,
+        "R_max": 0.0007215964552977466,
+        "curvature_status": "vanishing",
+        "det_at_horizon": 9.99998000003e-13,
+        "det_finite": true,
+        "det_scaling": "det(g_tilde) ~ A^(2)",
+        "det_status": "degenerate (det ~ A^{2} \u2192 0)",
+        "n_power": 3
+      },
+      {
+        "B_grad_phi_scaling": "B|nabla_phi|^2 ~ A^(-8)",
+        "R_at_horizon": 2.8839415374216243e-78,
+        "R_finite": true,
+        "R_max": 0.0006924220778052105,
+        "curvature_status": "vanishing",
+        "det_at_horizon": 1.0,
+        "det_finite": true,
+        "det_scaling": "det(g_tilde) ~ A^(0)",
+        "det_status": "non-degenerate (det \u2192 finite)",
+        "n_power": 4
+      },
+      {
+        "B_grad_phi_scaling": "B|nabla_phi|^2 ~ A^(-10)",
+        "R_at_horizon": 5.999910000571017e-90,
+        "R_finite": true,
+        "R_max": 0.0003587938550045226,
+        "curvature_status": "vanishing",
+        "det_at_horizon": 1000002000000.9999,
+        "det_finite": true,
+        "det_scaling": "det(g_tilde) ~ A^(-2)",
+        "det_status": "divergent (det ~ A^{-2} \u2192 \u221e)",
+        "n_power": 5
+      },
+      {
+        "B_grad_phi_scaling": "B|nabla_phi|^2 ~ A^(-12)",
+        "R_at_horizon": 1.0065924693440296e-101,
+        "R_finite": true,
+        "R_max": 0.0001502400316148892,
+        "curvature_status": "vanishing",
+        "det_at_horizon": 1.0000040000059997e+24,
+        "det_finite": true,
+        "det_scaling": "det(g_tilde) ~ A^(-4)",
+        "det_status": "divergent (det ~ A^{-4} \u2192 \u221e)",
+        "n_power": 6
+      },
+      {
+        "B_grad_phi_scaling": "B|nabla_phi|^2 ~ A^(-20)",
+        "R_at_horizon": 3.5751614975676873e-149,
+        "R_finite": true,
+        "R_max": 2.07287342781238e-06,
+        "curvature_status": "vanishing",
+        "det_at_horizon": 1.0000120000659995e+72,
+        "det_finite": true,
+        "det_scaling": "det(g_tilde) ~ A^(-12)",
+        "det_status": "divergent (det ~ A^{-12} \u2192 \u221e)",
+        "n_power": 10
+      }
+    ],
+    "profile": "disformal_compensation",
+    "signature_analysis": {
+      "crossing_surface_A_x_for_B_positive": [
+        {
+          "A_cross_inside_domain": true,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 0.6812920690579614,
+          "coefficient_C": 0.1,
+          "n_power": 2
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.0,
+          "coefficient_C": 1.0,
+          "n_power": 2
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.4677992676220695,
+          "coefficient_C": 10.0,
+          "n_power": 2
+        },
+        {
+          "A_cross_inside_domain": true,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 0.7498942093324559,
+          "coefficient_C": 0.1,
+          "n_power": 3
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.0,
+          "coefficient_C": 1.0,
+          "n_power": 3
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.333521432163324,
+          "coefficient_C": 10.0,
+          "n_power": 3
+        },
+        {
+          "A_cross_inside_domain": true,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 0.7943282347242815,
+          "coefficient_C": 0.1,
+          "n_power": 4
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.0,
+          "coefficient_C": 1.0,
+          "n_power": 4
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.2589254117941673,
+          "coefficient_C": 10.0,
+          "n_power": 4
+        },
+        {
+          "A_cross_inside_domain": true,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 0.8254041852680184,
+          "coefficient_C": 0.1,
+          "n_power": 5
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.0,
+          "coefficient_C": 1.0,
+          "n_power": 5
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.2115276586285884,
+          "coefficient_C": 10.0,
+          "n_power": 5
+        },
+        {
+          "A_cross_inside_domain": true,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 0.848342898244072,
+          "coefficient_C": 0.1,
+          "n_power": 6
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.0,
+          "coefficient_C": 1.0,
+          "n_power": 6
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.1787686347935873,
+          "coefficient_C": 10.0,
+          "n_power": 6
+        },
+        {
+          "A_cross_inside_domain": true,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 0.9006280202112785,
+          "coefficient_C": 0.1,
+          "n_power": 10
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.0,
+          "coefficient_C": 1.0,
+          "n_power": 10
+        },
+        {
+          "A_cross_inside_domain": false,
+          "B_negative_no_signature_change": true,
+          "B_positive_signature_change_at_A": 1.110336318167638,
+          "coefficient_C": 10.0,
+          "n_power": 10
+        }
+      ],
+      "note": "For B > 0 the disformal correction reduces the effective lapse N~^2 = A^2 - B(phi_prime)^2; the growing-compensation ansatz therefore reaches a signature-change surface N~ = 0 at finite A rather than a divergent lapse. For B < 0 the lapse diverges (frozen-dynamics regime).",
+      "signed_det_factor": "1 + B(grad phi)^2/A^2 = 1 - B(phi_prime)^2/A^2 for timelike grad phi"
     }
-  ],
-  "interpretation": "Matter-frame curvature invariants remain finite and bounded",
-  "parameters": {
-    "epsilon_t": 0.1,
-    "n_points": 1000,
-    "n_t": 1.0,
-    "z_max": 1000.0,
-    "z_t": 100.0
   },
-  "regularity_status": {
-    "all_invariants_bounded": true,
-    "all_invariants_finite": true,
-    "matter_frame_regular": true
+  "overall_status": {
+    "disformal_compensation_analyzed": true,
+    "interpretation": "Proposition 1 verified: in pure conformal closure, all curvature invariants vanish at the temporal horizon for 0 < p \u2264 1/2. The metric is degenerate (det \u2192 0) but the boundary is a conformal endpoint, not a curvature singularity. Disformal compensation (B|\u2207\u03c6|\u00b2 ~ A^{-2n}) can keep the determinant nonzero for n \u2265 4, but introduces an infinitely stiff lapse without physical motivation on the homogeneous background. The pure conformal treatment is the correct approach.",
+    "matter_frame_regular": true,
+    "proposition_1_verified": true
+  },
+  "pure_conformal": {
+    "curvature_invariants": {
+      "K_at_horizon": 2.2271866368467717e-36,
+      "K_finite": true,
+      "K_max": 0.03480000000000001,
+      "K_vanishing_at_horizon": true,
+      "R_at_horizon": 3.3599899200201605e-18,
+      "R_finite": true,
+      "R_max": 0.42000000000000004,
+      "R_vanishing_at_horizon": true,
+      "det_at_horizon": 9.999920000360004e-49
+    },
+    "description": "Proposition 1: curvature invariants in pure conformal closure (B = 0)",
+    "geodesic_completeness": {
+      "null_bound": "p <= 1/2",
+      "null_complete": true,
+      "timelike_bound": "p < 1",
+      "timelike_complete": true
+    },
+    "interpretation": "Proposition 1 verified: curvature invariants vanish at the temporal horizon in pure conformal closure. The metric is degenerate (det \u2192 0) but the boundary is a conformal endpoint, not a curvature singularity.",
+    "metric_determinant": {
+      "det_vanishes_at_horizon": true,
+      "interpretation": "Pure conformal metric is degenerate at the temporal horizon. The boundary is a conformal endpoint (Penrose-style), not an interior point of the manifold. Geodesic completeness is established by the affine-parameter analysis (Section 4)."
+    },
+    "p_sensitivity": [
+      {
+        "K_vanishing": true,
+        "R_vanishing": true,
+        "null_complete": true,
+        "p": 0.1,
+        "proposition_1_verified": true,
+        "timelike_complete": true
+      },
+      {
+        "K_vanishing": true,
+        "R_vanishing": true,
+        "null_complete": true,
+        "p": 0.25,
+        "proposition_1_verified": true,
+        "timelike_complete": true
+      },
+      {
+        "K_vanishing": true,
+        "R_vanishing": true,
+        "null_complete": true,
+        "p": 0.4,
+        "proposition_1_verified": true,
+        "timelike_complete": true
+      },
+      {
+        "K_vanishing": true,
+        "R_vanishing": true,
+        "null_complete": true,
+        "p": 0.5,
+        "proposition_1_verified": true,
+        "timelike_complete": true
+      },
+      {
+        "K_vanishing": false,
+        "R_vanishing": false,
+        "null_complete": false,
+        "p": 0.75,
+        "proposition_1_verified": false,
+        "timelike_complete": true
+      },
+      {
+        "K_vanishing": false,
+        "R_vanishing": false,
+        "null_complete": false,
+        "p": 1.0,
+        "proposition_1_verified": false,
+        "timelike_complete": false
+      }
+    ],
+    "parameters": {
+      "A_clock_profile": "A_clock(z) = (1+z)^{-1}",
+      "horizon_profile": "A_clock(eta) = C * eta^{-0.4}",
+      "n_points": 10000,
+      "p": 0.4,
+      "z_max": 1000000.0
+    },
+    "profile": "pure_conformal",
+    "regularity_status": {
+      "matter_frame_regular": true,
+      "proposition_1_verified": true
+    }
   },
   "step": "step_01_matter_frame_curvature"
 }
