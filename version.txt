@@ -5,6 +5,6 @@ v0.4 (Thika) — 2026-09-13 — No physical Big Bang singularity: temporal-horiz
 - Proposition 1: curvature regularity at conformal boundary (all polynomial invariants vanish, timelike proper time diverges)
 - Hot Big Bang framework replaced with Native Local Thermodynamic Evolution in an eternal universe
 - Nucleosynthesis and recombination derived from proper-time reaction flow, not FLRW geometry
-- Scalar perturbations from clock-field fluctuations; tensor-to-scalar ratio r ≈ 9×10⁻⁶ (native wave equation)
+- Scalar perturbations from clock-field fluctuations; tensor-to-scalar ratio from the native wave equation (r(k_pivot) = 1.9×10⁻⁹, r_max = 5.2×10⁻⁷)
 - Strong Energy Condition violation explicitly demonstrated (prerequisite of Hawking-Penrose theorems)
 - Cross-paper consistency: aligned with TEP-BBN (Paper 29), TEP-HC (Paper 18), TEP-C0 (Paper 26), TEP (Paper 0) v0.10
