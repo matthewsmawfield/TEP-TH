@@ -1,51 +1,564 @@
 {
+  "claim_basis": "Analytic infinite-end integrability, independently checked on finite segments; no cutoff-based inference.",
   "completeness_status": {
-    "both_asymptotic": true,
     "geodesically_complete": true,
     "null_geodesics_complete": true,
     "timelike_geodesics_complete": true
   },
-  "description": "Geodesic completeness test toward temporal horizon",
-  "epsilon_sensitivity": [
-    {
-      "both_asymptotic": true,
-      "epsilon_t": 0.0001,
-      "geodesically_complete": true
-    },
-    {
-      "both_asymptotic": true,
-      "epsilon_t": 0.001,
-      "geodesically_complete": true
-    },
-    {
-      "both_asymptotic": true,
-      "epsilon_t": 0.01,
-      "geodesically_complete": true
-    }
-  ],
-  "interpretation": "Geodesics approach temporal horizon asymptotically (no singularity)",
+  "description": "Step 02: verify the manuscript's conformal power-law geodesics.\n\nOn the stated static background, A(eta)=C eta**(-p). Null affine length\nobeys d lambda/d eta=A**2. A timelike geodesic of conserved momentum q\nobeys d tau/d eta=A**2/sqrt(A**2+q**2). Integrate finite segments in log eta\nand check independent quadrature/closed forms. Infinite-end completeness\ncomes from the analytic integral criterion, never a finite numerical cutoff.\nThis verifies the specified background, not its dynamical generation.\n",
+  "interpretation": "The specified power-law branch is null and timelike complete.",
   "null_geodesics": {
     "affine_parameter_complete": true,
-    "asymptotic_approach": true,
-    "integration_success": true,
-    "r_final": 0.999999,
-    "reaches_horizon": false,
-    "t_final": 1e-06
+    "finite_segment_affine_length": 153.19292019556363,
+    "integration_success": true
   },
   "parameters": {
-    "epsilon_t": 0.0055,
+    "C": 1.0,
+    "eta_max": 31701892.845774945,
     "n_points": 1000,
-    "n_t": 1.0,
-    "z_max": 1000.0,
-    "z_t": 100
+    "p": 0.4,
+    "q": 1.0,
+    "z_max": 1000.0
   },
+  "power_law_sensitivity": [
+    {
+      "C": 1.0,
+      "comoving_closed_form": 1333332.0000000016,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 19998.000000002325,
+      "null_closed_form": 19998.00000000002,
+      "null_scaled_error": 1.153354617309803e-13,
+      "p": 0.25,
+      "proper_time": 1333332.0000035684,
+      "proper_time_independent_quadrature": 1333332.0000000014,
+      "q": 0.0,
+      "quadrature_error_estimate": 1.4802958858695092e-08,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 2.67522677080973e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 19998.000000000247,
+      "null_closed_form": 19998.00000000002,
+      "null_scaled_error": 1.1460779320270913e-14,
+      "p": 0.25,
+      "proper_time": 194999.73716720036,
+      "proper_time_independent_quadrature": 194999.737167198,
+      "q": 0.1,
+      "quadrature_error_estimate": 2.466925693236921e-09,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 1.2089299715179222e-14
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 19998.000000000284,
+      "null_closed_form": 19998.00000000002,
+      "null_scaled_error": 1.3279950640948835e-14,
+      "p": 0.25,
+      "proper_time": 19989.337610319602,
+      "proper_time_independent_quadrature": 19989.337610319333,
+      "q": 1.0,
+      "quadrature_error_estimate": 6.314509264181492e-10,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 1.3467701480303633e-14
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 19998.000000000287,
+      "null_closed_form": 19998.00000000002,
+      "null_scaled_error": 1.3461867773016628e-14,
+      "p": 0.25,
+      "proper_time": 1999.7907971278369,
+      "proper_time_independent_quadrature": 1999.7907971278103,
+      "q": 10.0,
+      "quadrature_error_estimate": 2.2202137874047904e-11,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 1.3302751500340023e-14
+    },
+    {
+      "C": 1.0,
+      "comoving_closed_form": 105157.8907466989,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 194.05358527674875,
+      "null_closed_form": 194.05358527674855,
+      "null_scaled_error": 1.0252424129608e-15,
+      "p": 0.4,
+      "proper_time": 105157.89074696912,
+      "proper_time_independent_quadrature": 105157.89074669892,
+      "q": 0.0,
+      "quadrature_error_estimate": 3.421471670809801e-08,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 2.569469205227452e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 194.05358527674866,
+      "null_closed_form": 194.05358527674855,
+      "null_scaled_error": 5.858528074061714e-16,
+      "p": 0.4,
+      "proper_time": 1854.9297972893403,
+      "proper_time_independent_quadrature": 1854.9297972893391,
+      "q": 0.1,
+      "quadrature_error_estimate": 2.059386075112555e-11,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 6.128902446213857e-16
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 194.05358527674892,
+      "null_closed_form": 194.05358527674855,
+      "null_scaled_error": 1.904021624070057e-15,
+      "p": 0.4,
+      "proper_time": 193.40003186627285,
+      "proper_time_independent_quadrature": 193.40003186627246,
+      "q": 1.0,
+      "quadrature_error_estimate": 2.2179906609948565e-10,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 2.057413994123791e-15
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 194.05358527674844,
+      "null_closed_form": 194.05358527674855,
+      "null_scaled_error": 5.858528074061714e-16,
+      "p": 0.4,
+      "proper_time": 19.40452787200634,
+      "proper_time_independent_quadrature": 19.40452787200635,
+      "q": 10.0,
+      "quadrature_error_estimate": 2.1543353625482044e-13,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 5.492605183029116e-16
+    },
+    {
+      "C": 1.0,
+      "comoving_closed_form": 19998.00000000002,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 18.42068074395237,
+      "null_closed_form": 18.420680743952367,
+      "null_scaled_error": 1.928654933106574e-16,
+      "p": 0.5,
+      "proper_time": 19998.00000006477,
+      "proper_time_independent_quadrature": 19998.000000000015,
+      "q": 0.0,
+      "quadrature_error_estimate": 2.2202240046453896e-10,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 3.238124950806703e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 18.420680743952374,
+      "null_closed_form": 18.420680743952367,
+      "null_scaled_error": 3.857309866213148e-16,
+      "p": 0.5,
+      "proper_time": 150.0213726128592,
+      "proper_time_independent_quadrature": 150.02137261285563,
+      "q": 0.1,
+      "quadrature_error_estimate": 2.771855146669125e-12,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 2.3870834707481075e-14
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 18.420680743952367,
+      "null_closed_form": 18.420680743952367,
+      "null_scaled_error": 0.0,
+      "p": 0.5,
+      "proper_time": 18.044227936032943,
+      "proper_time_independent_quadrature": 18.044227936033174,
+      "q": 1.0,
+      "quadrature_error_estimate": 2.0033117770385762e-13,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 1.2797798273257636e-14
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": true,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": true,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 18.42068074395237,
+      "null_closed_form": 18.420680743952367,
+      "null_scaled_error": 1.928654933106574e-16,
+      "p": 0.5,
+      "proper_time": 1.8415699390514408,
+      "proper_time_independent_quadrature": 1.8415699390514413,
+      "q": 10.0,
+      "quadrature_error_estimate": 2.0445533477917704e-14,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 2.4114707806253875e-16
+    },
+    {
+      "C": 1.0,
+      "comoving_closed_form": 396.00000000000017,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 1.9998000000239986,
+      "null_closed_form": 1.9998,
+      "null_scaled_error": 1.2000490499198612e-11,
+      "p": 0.75,
+      "proper_time": 396.00000000097504,
+      "proper_time_independent_quadrature": 396.0000000000002,
+      "q": 0.0,
+      "quadrature_error_estimate": 4.396483177515622e-12,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 2.4616358334444345e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 1.9998000000000131,
+      "null_closed_form": 1.9998,
+      "null_scaled_error": 6.550970942382662e-15,
+      "p": 0.75,
+      "proper_time": 8.0844847476871,
+      "proper_time_independent_quadrature": 8.08448474757115,
+      "q": 0.1,
+      "quadrature_error_estimate": 9.085955690855757e-14,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 1.4342276589716765e-11
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 1.999800000000013,
+      "null_closed_form": 1.9998,
+      "null_scaled_error": 6.439937536579566e-15,
+      "p": 0.75,
+      "proper_time": 1.8190084852786084,
+      "proper_time_independent_quadrature": 1.8190084852777915,
+      "q": 1.0,
+      "quadrature_error_estimate": 6.428245702682782e-11,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 4.4909196858113407e-13
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 1.9998000000000165,
+      "null_closed_form": 1.9998,
+      "null_scaled_error": 8.216472029429101e-15,
+      "p": 0.75,
+      "proper_time": 0.1997310652202929,
+      "proper_time_independent_quadrature": 0.19973106522033351,
+      "q": 10.0,
+      "quadrature_error_estimate": 9.189808477331954e-13,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 4.06064071256651e-14
+    },
+    {
+      "C": 1.0,
+      "comoving_closed_form": 18.420680743952367,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": true
+      },
+      "integration_success": true,
+      "null_affine_length": 0.999999990015481,
+      "null_closed_form": 0.99999999,
+      "null_scaled_error": 1.5481060877675645e-11,
+      "p": 1.0,
+      "proper_time": 18.420680743952367,
+      "proper_time_independent_quadrature": 18.420680743952367,
+      "q": 0.0,
+      "quadrature_error_estimate": 2.0451063891205175e-13,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 0.0
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 0.9999999900001906,
+      "null_closed_form": 0.99999999,
+      "null_scaled_error": 1.9062529332813938e-13,
+      "p": 1.0,
+      "proper_time": 2.9982228503222266,
+      "proper_time_independent_quadrature": 2.99822285029797,
+      "q": 0.1,
+      "quadrature_error_estimate": 9.010716757023576e-14,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 8.09032481651909e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 0.9999999900007137,
+      "null_closed_form": 0.99999999,
+      "null_scaled_error": 7.137623825315131e-13,
+      "p": 1.0,
+      "proper_time": 0.8813735770287755,
+      "proper_time_independent_quadrature": 0.8813735770195447,
+      "q": 1.0,
+      "quadrature_error_estimate": 6.372046224272388e-11,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 9.230838315943402e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": true,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 0.9999999900013135,
+      "null_closed_form": 0.99999999,
+      "null_scaled_error": 1.3135048604340227e-12,
+      "p": 1.0,
+      "proper_time": 0.09983407789893058,
+      "proper_time_independent_quadrature": 0.09983407789920755,
+      "q": 10.0,
+      "quadrature_error_estimate": 2.5614348531116676e-15,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 2.7697288906836093e-13
+    },
+    {
+      "C": 1.0,
+      "comoving_closed_form": 3.96,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": false,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 0.6666666666877615,
+      "null_closed_form": 0.666666666666,
+      "null_scaled_error": 2.1761481505677693e-11,
+      "p": 1.25,
+      "proper_time": 3.9600000000101123,
+      "proper_time_independent_quadrature": 3.959999999999999,
+      "q": 0.0,
+      "quadrature_error_estimate": 4.3964831775156186e-14,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 2.553849387857444e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": false,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 0.666666666666888,
+      "null_closed_form": 0.666666666666,
+      "null_scaled_error": 8.879563750952002e-13,
+      "p": 1.25,
+      "proper_time": 1.7362000156120172,
+      "proper_time_independent_quadrature": 1.7362000156138018,
+      "q": 0.1,
+      "quadrature_error_estimate": 3.301591498278974e-11,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 1.0278611183813253e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": false,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 0.6666666666694132,
+      "null_closed_form": 0.666666666666,
+      "null_scaled_error": 3.4131586446051188e-12,
+      "p": 1.25,
+      "proper_time": 0.5784496204113035,
+      "proper_time_independent_quadrature": 0.5784496204082674,
+      "q": 1.0,
+      "quadrature_error_estimate": 8.681040964569207e-14,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 3.0361269054424156e-12
+    },
+    {
+      "C": 1.0,
+      "eta_max": 100000000.0,
+      "infinite_end_criterion": {
+        "all_timelike_geodesics_complete": false,
+        "comoving_timelike_complete": false,
+        "null_geodesics_complete": false,
+        "specified_timelike_complete": false
+      },
+      "integration_success": true,
+      "null_affine_length": 0.6666666666698575,
+      "null_closed_form": 0.666666666666,
+      "null_scaled_error": 3.857469899060106e-12,
+      "p": 1.25,
+      "proper_time": 0.06654224014119445,
+      "proper_time_independent_quadrature": 0.06654224014105745,
+      "q": 10.0,
+      "quadrature_error_estimate": 6.201956880687728e-14,
+      "solver_message": "The solver successfully reached the end of the integration interval.",
+      "timelike_scaled_error": 1.3700152123874432e-13
+    }
+  ],
+  "source_sha256": "87954764cf83d4dba23421552fc196227ce508a32fecbae8c83f2753cffdcf4a",
   "step": "step_02_geodesic_completeness",
   "timelike_geodesics": {
-    "asymptotic_approach": true,
+    "all_timelike_geodesics_complete": true,
+    "finite_segment_proper_time": 152.5393798904723,
     "integration_success": true,
-    "proper_time_complete": true,
-    "r_final": -0.1,
-    "reaches_horizon": false,
-    "t_final": 1e-06
+    "proper_time_complete": true
+  },
+  "validation": {
+    "C": 1.0,
+    "eta_max": 31701892.845774945,
+    "infinite_end_criterion": {
+      "all_timelike_geodesics_complete": true,
+      "comoving_timelike_complete": true,
+      "null_geodesics_complete": true,
+      "specified_timelike_complete": true
+    },
+    "integration_success": true,
+    "null_affine_length": 153.19292019556363,
+    "null_closed_form": 153.19292019556354,
+    "null_scaled_error": 5.565866110676914e-16,
+    "p": 0.4,
+    "proper_time": 152.5393798904723,
+    "proper_time_independent_quadrature": 152.5393798904722,
+    "q": 1.0,
+    "quadrature_error_estimate": 1.1511212792190083e-10,
+    "solver_message": "The solver successfully reached the end of the integration interval.",
+    "timelike_scaled_error": 7.452950038425917e-16
   }
 }

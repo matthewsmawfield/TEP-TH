@@ -337,6 +337,9 @@ def run():
             })
     
     results['approach_comparison'] = approach_comparison
+    results['planck_calibrated_evaluation'] = tep_generation_approach(
+        epsilon_t=0.01755, z_t=DEFAULT_Z_T, n_t=1.0
+    )
     
     write_json(step_json_path(STEP_ID), results)
     print_status(f"Step {STEP_ID} completed successfully", "SUCCESS")

@@ -64,7 +64,8 @@ K_PIVOT_MPC = mp.mpf("0.05")
 
 def V(x, p=P, n=N):
     xn = x**n
-    return p * ((p + 1) * xn - 1) / (1 + xn)**2
+    curvature = 0 if n == 1 else (n - 1) * x**(n - 2)
+    return p * ((p + 1) * x**(2*n - 2) - curvature) / (1 + xn)**2
 
 
 def integral_mpmath(kt, p=P):

@@ -35,13 +35,13 @@
         </tr>
         <tr>
             <td>3b</td>
-            <td>Timelike geodesics timelike-complete (infinite proper time) for $0 \lt p\le 1$</td>
+            <td>Comoving proper time infinite for $0 \lt p\le1$; arbitrary timelike geodesics complete for $0 \lt p\le\tfrac12$</td>
             <td>Analytic integral + numerical</td>
             <td>Proven</td>
         </tr>
         <tr>
             <td>4</td>
-            <td>Strong Energy Condition violated by temporal effective stress-energy</td>
+            <td>Assigned fluid diagnostic violates SEC; reconstructed effective action violates SEC asymptotically when $U>2K$</td>
             <td>Hawking–Penrose prerequisite check</td>
             <td>Proven</td>
         </tr>
@@ -76,7 +76,7 @@
         </tr>
         <tr>
             <td>09b</td>
-            <td>Tensor-to-scalar ratio from native equation: $r(k_{\rm pivot})=1.9\times 10^{-9}$, $r_{\rm max}=5.2\times 10^{-7}$</td>
+            <td>Assigned tensor-pump diagnostic: $r(k_{\rm pivot})=1.9\times 10^{-9}$, $r_{\rm max}=5.2\times 10^{-7}$</td>
             <td>Numerical integration of $\mu_k''+(k^2-A_{\rm clock}''/A_{\rm clock})\mu_k=0$</td>
             <td>Below BICEP/Keck $r\lt0.036$</td>
         </tr>
@@ -84,7 +84,7 @@
 </table>
 
 <p>
-    The pipeline is internally consistent. Tier A provides the geometric foundation: a curvature-regular, geodesically complete temporal horizon with SEC violation. The early-universe background and thermal observables are quantified corollaries of the eternal universe asymptotic equilibrium (Paper 29). Tier B derives the scalar spectral shape from clock-field fluctuations and computes the tensor-to-scalar ratio from the native temporal-conformal wave equation. The imported inflationary consistency relation $r=16\epsilon_{\rm field}$ is not assumed.
+    The pipeline separates the geometric theorems from the effective spectral construction and the imported thermal calculations. Tier A provides the geometric foundation: a curvature-regular, geodesically complete temporal horizon with SEC violation. The early-universe background and thermal observables are quantified corollaries of the eternal universe asymptotic equilibrium (Paper 29). Tier B derives the scalar spectral shape from clock-field fluctuations and evaluates the assigned tensor-pump diagnostic, whose action normalization is distinguished in Section 10.5. The imported inflationary consistency relation $r=16\epsilon_{\rm field}$ is not assumed.
 </p>
 
 <h2>Minimal Model Status</h2>
@@ -111,7 +111,7 @@
         </tr>
         <tr>
             <td>Timelike geodesics</td>
-            <td>timelike-complete (infinite proper time) for $0 \lt p\le 1$</td>
+            <td>comoving proper time infinite for $0 \lt p\le1$; arbitrary timelike geodesics complete for $0 \lt p\le\tfrac12$</td>
         </tr>
         
         <tr>
@@ -124,8 +124,12 @@
         </tr>
         <tr>
             <td>Tensor ratio</td>
-            <td>native equation integrated; $r_{\rm max}=5.2\times 10^{-7}$ (below BK bound)</td>
+            <td>assigned pump integrated; fiducial diagnostic $r_{\rm max}=5.2\times10^{-7}$; physical action normalization remains separate</td>
         </tr>
     </tbody>
 </table>
 
+
+<p><strong>Auxiliary numerical checks.</strong> The recombination benchmark solves the existing Saha–Peebles equations with the Radau integrator and checks the zero-amplitude limit against the same comparator. When the optional CLASS import is unavailable, the output explicitly identifies this approximation. The spectral transport check uses photon-number-conserving chemical-potential and Compton-y templates with absolute input errors; it reports an optional CLASS ΛCDM reference separately. Its homogeneous blackbody-preservation identity is a transport check, and absent FIRAS data are not represented as observations.</p>
+
+<p><em>Imported thermal benchmark.</em> The auxiliary <code>step_04_full_bbn_abundances.py</code> evaluates the AlterBBN network with a single-epoch expansion-rate mapping to extra radiation. Screening enters through the computed conformal factor, and a nonzero mapped perturbation is evaluated by the network. Failed network runs stop rather than supply reference abundances. The helium anchor is the observational $Y_p=0.245\pm0.003$ from the <a href="https://pdg.lbl.gov/2024/reviews/rpp2024-rev-bbang-nucleosynthesis.pdf">PDG 2024 BBN review</a>; the deuterium anchor retains the stated measurement selection. $N_{\rm eff}=3.046$ is an assumed reference and is excluded from the primary abundance pass count. These conditional benchmark results are distinct from the eternal-universe abundance budgets and transport calculations in Paper 29.</p>

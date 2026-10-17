@@ -1,9 +1,9 @@
 {
-  "version": "0.4",
+  "version": "0.5",
   "codename": "Thika",
   "description": "Paper 27: Temporal Equivalence Principle: Temporal Horizon Cosmology and the Absence of a Physical Big Bang Singularity",
-  "date": "2026-09-13",
-  "previous_version": "0.3",
+  "date": "2026-10-17",
+  "previous_version": "0.4",
   "paper": "27",
   "doi": "10.5281/zenodo.20723059"
 }

@@ -1,11 +1,85 @@
 {
   "blackbody_preserved": true,
+  "class_lcdm_reference": {
+    "available": false,
+    "mu": null,
+    "y": null
+  },
   "description": "CMB blackbody preservation under temporal-horizon thermal mapping",
   "firas_analysis": {
-    "T_error": 0.0,
-    "T_firas": 2.725,
-    "consistent_with_standard": false,
+    "T_error": 0.0006,
+    "T_firas": 2.725015,
+    "consistent_with_standard": true,
     "has_data": true
+  },
+  "forward_optical_depth_profile": {
+    "profile": [
+      {
+        "T_loc_K": 2.73,
+        "n_e_cm3": 0.0,
+        "tau_es": 0.0,
+        "x_e": 0.000197,
+        "z": 0.0
+      },
+      {
+        "T_loc_K": 29.98,
+        "n_e_cm3": 0.0,
+        "tau_es": 2e-05,
+        "x_e": 0.00023,
+        "z": 10.0
+      },
+      {
+        "T_loc_K": 275.27,
+        "n_e_cm3": 6.3e-05,
+        "tau_es": 0.00057,
+        "x_e": 0.000322,
+        "z": 100.0
+      },
+      {
+        "T_loc_K": 357.04,
+        "n_e_cm3": 0.000146,
+        "tau_es": 0.00089,
+        "x_e": 0.000343,
+        "z": 130.0
+      },
+      {
+        "T_loc_K": 1365.47,
+        "n_e_cm3": 0.018188,
+        "tau_es": 0.01076,
+        "x_e": 0.000762,
+        "z": 500.0
+      },
+      {
+        "T_loc_K": 2943.52,
+        "n_e_cm3": 28.172686,
+        "tau_es": 0.87851,
+        "x_e": 0.117846,
+        "z": 1079.0
+      },
+      {
+        "T_loc_K": 3000.75,
+        "n_e_cm3": 36.678494,
+        "tau_es": 1.12305,
+        "x_e": 0.144813,
+        "z": 1100.0
+      },
+      {
+        "T_loc_K": 4090.95,
+        "n_e_cm3": 612.725587,
+        "tau_es": 22.81849,
+        "x_e": 0.954733,
+        "z": 1500.0
+      },
+      {
+        "T_loc_K": 5453.69,
+        "n_e_cm3": 1521.960611,
+        "tau_es": 75.27424,
+        "x_e": 1.000968,
+        "z": 2000.0
+      }
+    ],
+    "scope": "Homogeneous Saha+Peebles recombination and Thomson optical-depth profile across the dust-to-plasma transition (Step 05 solver); inhomogeneous absorber-clumping inversion remains separate.",
+    "z_tau_es_unity": 1089.99
   },
   "interpretation": "Temporal-horizon thermal mapping preserves blackbody spectrum without forbidden distortions",
   "parameters": {
@@ -17,45 +91,46 @@
   "redshift_evolution": [
     {
       "blackbody_preserved": true,
-      "mu_fit": 2e-08,
+      "mu_fit": 0.0,
       "y_fit": 0.0,
       "z": 100.0
     },
     {
       "blackbody_preserved": true,
-      "mu_fit": 2e-08,
+      "mu_fit": 0.0,
       "y_fit": 0.0,
       "z": 500.0
     },
     {
       "blackbody_preserved": true,
-      "mu_fit": 2e-08,
+      "mu_fit": 0.0,
       "y_fit": 0.0,
       "z": 1100.0
     },
     {
       "blackbody_preserved": true,
-      "mu_fit": 2e-08,
+      "mu_fit": 0.0,
       "y_fit": 0.0,
       "z": 2000.0
     }
   ],
   "spectral_distortions": {
     "mu_constraint": 9e-05,
-    "mu_error": 0.0,
-    "mu_fit": 2e-08,
+    "mu_error": 6.61e-06,
+    "mu_fit": 0.0,
     "mu_violates_firas": false,
     "y_constraint": 1.5e-05,
-    "y_error": 0.0,
+    "y_error": 1.28e-06,
     "y_fit": 0.0,
     "y_violates_firas": false
   },
   "step": "step_06_cmb_blackbody_origin",
   "tep_thermal_mapping": {
     "A_at_z_test": 0.7799915346,
-    "T_tep_error": 1e-06,
+    "T_tep_error": 4e-06,
     "T_tep_fit": 3.493628,
     "T_tep_prediction": 3.493628,
     "thermal_scaling_preserves_blackbody": true
-  }
+  },
+  "test_kind": "Analytic homogeneous transport and template-recovery check; not an independently derived thermalization history"
 }

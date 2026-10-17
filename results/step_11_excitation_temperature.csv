@@ -1,0 +1,8 @@
+absorber,z,t_obs_k,sigma_sym_k,t_tep_pred_k,residual_k,pull_sigma,tracer,reference
+FIRAS monopole,0.0,2.7255,0.0006,2.7255,0.0,0.0,monopole,Fixsen 2009
+PKS 1830-211,0.8867,5.08,0.1,5.1422,-0.0622,-0.622,CO mm,Muller et al. 2013
+SDSS J085726+185524,1.7293,7.5,1.4,7.4387,0.0613,0.044,CO,Noterdaeme et al. 2011
+SDSS J104705+205734,1.7738,7.8,0.65,7.56,0.24,0.369,CO,Noterdaeme et al. 2011
+SDSS J170542+354340,2.0377,8.6,1.05,8.2793,0.3207,0.305,CO,Noterdaeme et al. 2011
+SDSS J143912+111740,2.4184,9.15,0.7,9.3168,-0.1668,-0.238,CO,Srianand et al. 2008
+SDSS J123714+064759,2.6896,10.5,0.7,10.056,0.444,0.634,CO,Noterdaeme et al. 2010

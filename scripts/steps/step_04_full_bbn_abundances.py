@@ -21,9 +21,11 @@ from th_common import (
 STEP_ID = "step_04_full_bbn_abundances"
 
 
-# Observed abundance values (PDG 2024)
+# Observational anchors and diagnostic references; this is not a joint likelihood.
 OBSERVED_ABUNDANCES = {
-    'Y_p': {'value': 0.247, 'error': 0.0001, 'description': 'Helium-4 mass fraction'},
+    'Y_p': {'value': 0.245, 'error': 0.003, 'description': 'Primordial helium-4 mass fraction',
+            'source': 'PDG 2024 BBN review, Eq. 24.3',
+            'source_url': 'https://pdg.lbl.gov/2024/reviews/rpp2024-rev-bbang-nucleosynthesis.pdf'},
     'D_H': {'value': 2.527e-5, 'error': 0.030e-5, 'description': 'Deuterium/Hydrogen ratio'},
     'He3_H': {'value': 1.66e-5, 'error': 0.08e-5, 'description': 'Helium-3/Hydrogen ratio'},
     'Li7_H': {'value': 1.58e-10, 'error': 0.10e-10, 'description': 'Lithium-7/Hydrogen ratio'},
@@ -71,9 +73,10 @@ def compute_bbn_abundances_tep(omega_b: float = 0.022, omega_cdm: float = 0.12,
     """Compute BBN abundances under TEP temporal-horizon cosmology.
 
     Uses full AlterBBN nuclear network.  For unscreened TEP the modified
-    Hubble parameter H_TEP = H_LCDM / A is mapped to AlterBBN's dark-density
-    parameter dd0 (with ndd = 4, i.e. radiation-like scaling) so the network
-    self-consistently computes abundances under the faster expansion.
+    Hubble parameter H_TEP = H_LCDM / A at one BBN epoch is mapped to
+    AlterBBN's extra-radiation parameter dnnu. This is an expansion-rate
+    proxy, not a calculation of a physical neutrino population or the
+    full temperature-dependent TEP expansion history.
     """
 
     # BBN redshift (z ~ 1e9)
@@ -115,29 +118,24 @@ def compute_bbn_abundances_tep(omega_b: float = 0.022, omega_cdm: float = 0.12,
             'N_eff': LCDM_BBN['N_eff'],
         }
 
-        if use_screening:
-            # Screening suppresses shear at BBN; use LCDM baseline directly
+        if dnnu == 0.0:
+            # Reuse baseline only when the mapped expansion is exactly unchanged
             abund_tep = abund_lcdm
         else:
             # True TEP abundances from modified-expansion AlterBBN run
             abund_tep = wrapper.compute_abundances(eta=eta, DeltaN=dnnu, tau_neutron=880.3)
-    except Exception:
-        # Fallback to LCDM constants if AlterBBN is unavailable
-        abund_tep = None
+    except Exception as exc:
+        raise RuntimeError(
+            "AlterBBN network failed; refusing to substitute LCDM abundances "
+            f"for TEP (A_BBN={A_bbn}, dnnu={dnnu})"
+        ) from exc
 
-    if abund_tep is not None:
-        Y_p_tep = abund_tep.Y_p
-        D_H_tep = abund_tep.D_H
-        He3_H_tep = abund_tep.He3_H
-        Li7_H_tep = abund_tep.Li7_H
-        N_eff_tep = lcdm_ref['N_eff']
-    else:
-        # Emergency fallback (should never trigger in normal operation)
-        Y_p_tep = lcdm_ref['Y_p']
-        D_H_tep = lcdm_ref['D_H']
-        He3_H_tep = lcdm_ref['He3_H']
-        Li7_H_tep = lcdm_ref['Li7_H']
-        N_eff_tep = lcdm_ref['N_eff']
+    Y_p_tep = abund_tep.Y_p
+    D_H_tep = abund_tep.D_H
+    He3_H_tep = abund_tep.He3_H
+    Li7_H_tep = abund_tep.Li7_H
+    # Reference neutrino abundance is assumed, not inferred by this mapping.
+    N_eff_tep = lcdm_ref['N_eff']
 
     return {
         'Y_p': Y_p_tep,
@@ -148,6 +146,9 @@ def compute_bbn_abundances_tep(omega_b: float = 0.022, omega_cdm: float = 0.12,
         'expansion_factor': expansion_factor,
         'A_at_BBN': A_bbn,
         'dnnu_mapped': dnnu,
+        'engine': 'AlterBBN network',
+        'mapping_scope': 'single-epoch extra-radiation expansion proxy',
+        'N_eff_status': 'assumed standard reference; not a network prediction',
         'lcdm_reference': lcdm_ref,
         'use_screening': use_screening,
         'T_lock': T_lock,
@@ -172,6 +173,9 @@ def compare_abundances(tep_abundances: dict) -> dict:
         comparison[species] = {
             'observed': obs['value'],
             'observed_error': obs['error'],
+            'source': obs.get('source'),
+            'source_url': obs.get('source_url'),
+            'prediction_test': species != 'N_eff',
             'TEP': tep,
             'LCDM': lcdm,
             'TEP_sigma_diff': rounded(diff_tep, 2),
@@ -199,15 +203,18 @@ def test_bbn_preservation(omega_b: float = 0.022, omega_cdm: float = 0.12,
     comparison = compare_abundances(tep_abundances)
     
     # Count successes
-    primary_species = ['Y_p', 'D_H', 'N_eff']
+    primary_species = ['Y_p', 'D_H']
     diagnostic_species = ['He3_H', 'Li7_H']
+    assumed_reference_species = ['N_eff']
     tep_passes_primary = sum(1 for sp in primary_species if comparison[sp]['TEP_consistent'])
     lcdm_passes_primary = sum(1 for sp in primary_species if comparison[sp]['LCDM_consistent'])
     total_primary = len(primary_species)
 
-    tep_passes = sum(1 for sp in comparison.values() if sp['TEP_consistent'])
-    lcdm_passes = sum(1 for sp in comparison.values() if sp['LCDM_consistent'])
-    total_tests = len(comparison)
+    tep_passes = sum(1 for name, sp in comparison.items()
+                     if name not in assumed_reference_species and sp['TEP_consistent'])
+    lcdm_passes = sum(1 for name, sp in comparison.items()
+                      if name not in assumed_reference_species and sp['LCDM_consistent'])
+    total_tests = len(comparison) - len(assumed_reference_species)
     
     results = {
         'step': STEP_ID,
@@ -231,10 +238,14 @@ def test_bbn_preservation(omega_b: float = 0.022, omega_cdm: float = 0.12,
             'expansion_factor_at_BBN': rounded(tep_abundances['expansion_factor'], 6),
             'A_at_BBN': rounded(tep_abundances['A_at_BBN'], 15)
         },
+        'calculation_provenance': {key: tep_abundances[key] for key in
+                                   ('engine', 'mapping_scope', 'dnnu_mapped', 'N_eff_status')},
         'abundance_comparison': comparison,
         'summary': {
             'primary_species': primary_species,
             'diagnostic_species': diagnostic_species,
+            'assumed_reference_species': assumed_reference_species,
+            'scope': 'Conditional single-epoch expansion benchmark; observation-only residuals, no nuclear theory covariance.',
             'TEP_passes_primary': tep_passes_primary,
             'LCDM_passes_primary': lcdm_passes_primary,
             'total_primary': total_primary,

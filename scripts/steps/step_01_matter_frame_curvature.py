@@ -125,10 +125,10 @@ def conformal_ricci_scalar(z: np.ndarray, p: float = DEFAULT_P) -> np.ndarray:
     # conformal transformation formula.
     #
     # R̃ = A^{-2} R - 6 A^{-3} □A
-    # With R = 0 (static background) and □A = A'' (time derivatives only):
-    # R̃ = -6 A^{-3} A''
+    # With R = 0 (static background) and □A = -A'' (signature -+++; time derivatives only):
+    # R̃ = +6 A^{-3} A''
     # For A(z) = (1+z)^{-1}: A' = -(1+z)^{-2}, A'' = 2(1+z)^{-3}
-    # R̃ = -6 (1+z)^3 × 2(1+z)^{-3} = -12 (constant in z for p=1)
+    # R̃ = +6 (1+z)^3 × 2(1+z)^{-3} = +12 (constant in z for p=1)
     #
     # For the horizon profile A(η) = C η^{-p} with p < 1:
     # A'' ~ η^{-p-2}, A^{-3} ~ η^{3p}, so R̃ ~ η^{2p-2} → 0.
@@ -144,33 +144,33 @@ def analytic_conformal_ricci_scalar(z: np.ndarray, p: float = DEFAULT_P) -> np.n
 
     R̃ = A_clock^{-2} R - 6 A_clock^{-3} □ A_clock
 
-    In the static conformal background R = 0 and □A_clock = A_clock''
+    In the static conformal background R = 0 and □A_clock = -A_clock''
     (time derivatives only).  For A_clock(η) = C η^{-p}:
 
         A_clock'' = p(p+1) C η^{-p-2}
         A_clock^{-3} = C^{-3} η^{3p}
 
-        R̃ = -6 × C^{-3} η^{3p} × p(p+1) C η^{-p-2}
-          = -6 p(p+1) C^{-2} η^{2p-2}
+        R̃ = +6 × C^{-3} η^{3p} × p(p+1) C η^{-p-2}
+          = +6 p(p+1) C^{-2} η^{2p-2}
 
     which vanishes as η → ∞ for 0 < p < 1.
 
     The conformal time η is related to redshift by 1+z = C^{-1} η^{p}
     (Eq. 2.10), so η = C^{1/p} (1+z)^{1/p}.  Substituting:
 
-        R̃(z) = -6 p(p+1) C^{-2} [C^{1/p} (1+z)^{1/p}]^{2p-2}
-              = -6 p(p+1) C^{-2} C^{(2p-2)/p} (1+z)^{(2p-2)/p}
-              = -6 p(p+1) C^{2 - 2/p} (1+z)^{2 - 2/p}
+        R̃(z) = +6 p(p+1) C^{-2} [C^{1/p} (1+z)^{1/p}]^{2p-2}
+              = +6 p(p+1) C^{-2} C^{(2p-2)/p} (1+z)^{(2p-2)/p}
+              = +6 p(p+1) C^{-2/p} (1+z)^{2 - 2/p}
 
-    For p = 1 (standard FLRW): R̃ = -12 (constant, the standard result).
+    For p = 1: the conformal de Sitter branch has R̃ = +12/C².
     For p < 1: the exponent 2 - 2/p < 0, so R̃ → 0 as z → ∞.
     """
     z = np.asarray(z, dtype=float)
-    # C is fixed by A_clock(z=0) = 1: C = η_0^{-p}, and 1+z(η_0) = 1
+    # C is fixed by A_clock(z=0) = 1: C = η_0^{p}, and 1+z(η_0) = 1
     # so C = 1 (normalised).  The η-z relation gives η = (1+z)^{1/p}.
-    # R̃ = -6 p(p+1) (1+z)^{2 - 2/p}
+    # R̃ = +6 p(p+1) (1+z)^{2 - 2/p}
     exponent = 2.0 - 2.0 / p
-    return -6.0 * p * (p + 1.0) * (1.0 + z) ** exponent
+    return 6.0 * p * (p + 1.0) * (1.0 + z) ** exponent
 
 
 def analytic_conformal_kretschmann(z: np.ndarray, p: float = DEFAULT_P) -> np.ndarray:
@@ -209,78 +209,33 @@ def conformal_metric_determinant(z: np.ndarray) -> np.ndarray:
 
 
 # ---------------------------------------------------------------------------
-# Disformal compensation test
-# g̃_μν = A² g_μν + B ∇φ ∇φ
-# det(g̃) = A⁸ det(g) (1 + B|∇φ|²/A²)
-# If B|∇φ|² ~ A^{-2n}, then det(g̃) ~ A^{8-2n} det(g)
-#   n < 4: det → 0 (still degenerate)
-#   n = 4: det → const (non-degenerate)
-#   n > 4: det → ∞ (divergent)
+# Disformal compensation on ds^2=-N^2 deta^2+A^2 dx^2, B<0.
+# The declared product is |B phi_prime^2|=A^(-2n), so
+# N^2=A^2+A^(-2n) and det=-N^2 A^6 ~ -A^(6-2n).
+# The finite determinant exponent is n=3. This does not by itself
+# establish a smooth extension of all metric components at the boundary.
 # ---------------------------------------------------------------------------
 
 def disformal_determinant(z: np.ndarray, n_power: float) -> np.ndarray:
-    """Metric determinant with disformal compensation B|∇φ|² ~ A^{-2n}.
-
-    det(g̃) = A⁸ det(g) (1 + B|∇φ|²/A²)
-           = A⁸ det(g) (1 + A^{-2n})
-
-    For n < 4: det → 0 (degenerate)
-    For n = 4: det → det(g) (non-degenerate, finite)
-    For n > 4: det → ∞ (divergent)
-    """
-    z = np.asarray(z, dtype=float)
-    A = clock_factor_A(z)
-    A_safe = np.maximum(A, 1e-30)
-    det_g = -1.0  # flat background
-    disformal_factor = 1.0 + A_safe ** (-2.0 * n_power)
-    return det_g * (A_safe ** 8) * disformal_factor
+    """Exact determinant for the declared negative-B product ansatz."""
+    A = clock_factor_A(np.asarray(z, dtype=float))
+    return -(A**8 + A**(6.0-2.0*n_power))
 
 
 def disformal_ricci_scalar(z: np.ndarray, n_power: float, p: float = DEFAULT_P) -> np.ndarray:
-    """Ricci scalar with disformal compensation.
+    """Exact -+++ Ricci scalar of the same A,N metric as the determinant.
 
-    The disformal term modifies the effective lapse:
-        N = sqrt(A² + B|∇φ|²) = sqrt(A² + A^{-2n}) ≈ A^{-n} as A → 0
-
-    The Hubble parameter becomes H̃ = H_geom / N, and the curvature
-    involves derivatives of N.  For the analytic test, the dominant
-    contribution at high z (A → 0) scales as:
-
-        R̃ ~ N^{-2} × (d²N/dη²) / N ~ A^{2n} × A^{-n-2} / A^{-n}
-          ~ A^{2n - 2}
-
-    For n > 1: R̃ → 0 (curvature vanishes — over-compensated)
-    For n = 1: R̃ → const (marginal)
-    For n < 1: R̃ → ∞ (curvature diverges)
-
-    The critical value n = 4 (where det stays finite) is well above
-    n = 1, so the disformal compensation that keeps the metric
-    non-degenerate also drives the curvature to zero — but at the
-    cost of an infinitely stiff lapse (N → ∞).
+    H=A'/(AN), R=6[(H'/N)+2H^2], N^2=A^2+A^(-2n).
+    For A=eta^(-p), R scales as eta^(-2-2pn) at the horizon.
+    Lapse derivatives alone are not the curvature of this metric.
     """
     z = np.asarray(z, dtype=float)
     A = clock_factor_A(z)
-    A_safe = np.maximum(A, 1e-30)
-
-    # Effective lapse: N = sqrt(A² + A^{-2n})
-    N = np.sqrt(A_safe**2 + A_safe ** (-2.0 * n_power))
-
-    # Conformal time derivative of N (numerical)
-    # η ∝ (1+z)^{1/p}, so dη/dz ∝ (1+z)^{1/p - 1} / p
-    # For the curvature, we need d²N/dη².
-    # Numerically: compute N(η) then take second derivative.
-    eta = (1.0 + z) ** (1.0 / p)  # conformal time (C = 1)
-    N_of_eta = np.interp(eta, eta, N)  # N as function of η (identity here)
-
-    # Second derivative d²N/dη²
-    dN_deta = np.gradient(N_of_eta, eta)
-    d2N_deta2 = np.gradient(dN_deta, eta)
-
-    # R̃ ~ -6 N^{-3} d²N/dη² (dominant term, analogous to conformal formula)
-    N_safe = np.maximum(N, 1e-30)
-    R_tilde = -6.0 * d2N_deta2 / (N_safe ** 3)
-
-    return R_tilde
+    eta = (1.0+z)**(1.0/p)
+    temporal_extra = A**(-2.0*n_power)
+    lapse2 = A*A+temporal_extra
+    ratio = (A*A-n_power*temporal_extra)/lapse2
+    return 6.0*(p+2.0*p*p-p*p*ratio)/(eta*eta*lapse2)
 
 
 def test_pure_conformal_regularity(z_max: float = 1e6, n_points: int = 10000,
@@ -291,6 +246,10 @@ def test_pure_conformal_regularity(z_max: float = 1e6, n_points: int = 10000,
     corresponds to A_clock(η) = C η^{-p} with the redshift relation
     1+z = C^{-1} η^{p} (Eq. 2.10 of the manuscript).
     """
+    if not np.isfinite(p) or p <= 0:
+        raise ValueError('The temporal-horizon family requires finite p>0')
+    if not np.isfinite(z_max) or z_max <= 1 or n_points < 2:
+        raise ValueError('Require z_max>1 and at least two samples')
     z_array = np.logspace(0, np.log10(z_max), n_points)
 
     # Analytic curvature invariants (Proposition 1)
@@ -306,13 +265,17 @@ def test_pure_conformal_regularity(z_max: float = 1e6, n_points: int = 10000,
 
     R_finite = np.all(np.isfinite(R_tilde))
     K_finite = np.all(np.isfinite(K_tilde))
-    R_vanishing = np.all(np.abs(R_high_z) < 1e-10) if len(R_high_z) > 0 else True
-    K_vanishing = np.all(np.abs(K_high_z) < 1e-10) if len(K_high_z) > 0 else True
+    # A finite sample falling below a chosen number is not a limit test.
+    # The exact positive-p formulas have eta exponents 2p-2 and 4p-4.
+    R_vanishing = bool(p < 1.0)
+    K_vanishing = bool(p < 1.0)
+    endpoint_R_below_reference = bool(np.all(np.abs(R_high_z) < 1e-10)) if len(R_high_z) else None
+    endpoint_K_below_reference = bool(np.all(np.abs(K_high_z) < 1e-10)) if len(K_high_z) else None
 
-    # Check geodesic completeness bounds
-    # Null: p ≤ 1/2, Timelike: p < 1
+    # General timelike trajectories have the same bound as null rays.
+    # Comoving observers (q=0) are the distinct, less restrictive special case.
     null_complete = p <= 0.5
-    timelike_complete = p < 1.0
+    timelike_complete = p <= 0.5
 
     results = {
         'profile': 'pure_conformal',
@@ -329,6 +292,11 @@ def test_pure_conformal_regularity(z_max: float = 1e6, n_points: int = 10000,
             'K_finite': K_finite,
             'R_vanishing_at_horizon': R_vanishing,
             'K_vanishing_at_horizon': K_vanishing,
+            'limit_basis': 'Exact eta exponents 2p-2 and 4p-4; independent of finite sampling extent',
+            'finite_endpoint_diagnostic': {'z_max': z_max, 'reference_threshold': 1e-10,
+                'R_below_reference': endpoint_R_below_reference,
+                'K_below_reference': endpoint_K_below_reference},
+            'endpoint_values_are_finite_samples': True,
             'R_max': float(np.max(np.abs(R_tilde))) if R_finite else None,
             'K_max': float(np.max(np.abs(K_tilde))) if K_finite else None,
             'R_at_horizon': float(np.abs(R_tilde[-1])) if R_finite else None,
@@ -339,7 +307,9 @@ def test_pure_conformal_regularity(z_max: float = 1e6, n_points: int = 10000,
             'null_complete': null_complete,
             'timelike_complete': timelike_complete,
             'null_bound': 'p <= 1/2',
-            'timelike_bound': 'p < 1'
+            'timelike_bound': 'p <= 1/2 for all conserved momenta',
+            'comoving_timelike_complete': p <= 1.0,
+            'comoving_timelike_bound': 'p <= 1 for q=0'
         },
         'metric_determinant': {
             'det_vanishes_at_horizon': True,  # A^8 → 0
@@ -352,10 +322,9 @@ def test_pure_conformal_regularity(z_max: float = 1e6, n_points: int = 10000,
             'proposition_1_verified': R_vanishing and K_vanishing,
             'matter_frame_regular': R_vanishing and K_vanishing and R_finite and K_finite
         },
-        'interpretation': 'Proposition 1 verified: curvature invariants vanish at the '
-                         'temporal horizon in pure conformal closure. The metric is '
-                         'degenerate (det → 0) but the boundary is a conformal endpoint, '
-                         'not a curvature singularity.'
+        'interpretation': ('Proposition 1 verified for this profile: both invariants vanish at the temporal horizon.'
+                           if R_vanishing and K_vanishing else
+                           'This profile is outside the curvature-vanishing branch: p=1 has constant curvature; p>1 diverges.')
     }
 
     return results
@@ -363,16 +332,11 @@ def test_pure_conformal_regularity(z_max: float = 1e6, n_points: int = 10000,
 
 def test_disformal_compensation(z_max: float = 1e6, n_points: int = 10000,
                                  p: float = DEFAULT_P) -> dict:
-    """Test whether disformal compensation B|∇φ|² ~ A^{-2n} can keep
-    the metric non-degenerate without introducing divergent curvature.
+    """Evaluate the declared product ansatz on its exact homogeneous metric.
 
-    det(g̃) = A⁸ det(g) (1 + A^{-2n})
-    - n < 4: det → 0 (still degenerate)
-    - n = 4: det → det(g) (non-degenerate, finite)
-    - n > 4: det → ∞ (divergent)
-
-    The curvature invariants depend on derivatives of the effective
-    lapse N = sqrt(A² + A^{-2n}).
+    The determinant and curvature share N^2=A^2+A^(-2n) for B<0.
+    Positive B instead has N^2=A^2-C A^(-2n), with a signature boundary.
+    A finite coordinate determinant alone is not a smooth-extension theorem.
     """
     z_array = np.logspace(0, np.log10(z_max), n_points)
     A = clock_factor_A(z_array)
@@ -391,14 +355,14 @@ def test_disformal_compensation(z_max: float = 1e6, n_points: int = 10000,
         R_finite = np.all(np.isfinite(R_tilde))
 
         # Classify determinant behaviour using analytic scaling
-        # det(g̃) ~ A^{8-2n} as A → 0
-        det_exponent = 8 - 2 * n_power
+        # det(g̃) ~ A^{6-2n} as A → 0
+        det_exponent = 6 - 2 * n_power
         if not det_finite:
             det_status = 'divergent'
         elif det_exponent > 0:
             det_status = f'degenerate (det ~ A^{{{det_exponent}}} → 0)'
         elif det_exponent == 0:
-            det_status = 'non-degenerate (det → finite)'
+            det_status = 'finite coordinate determinant magnitude; boundary extension not inferred'
         else:
             det_status = f'divergent (det ~ A^{{{det_exponent}}} → ∞)'
 
@@ -412,8 +376,7 @@ def test_disformal_compensation(z_max: float = 1e6, n_points: int = 10000,
         else:
             R_status = 'divergent'
 
-        # Critical power for non-degeneracy: n = 4
-        # (det ~ A^{8-2n}, non-degenerate when 8-2n = 0, i.e. n = 4)
+        # Critical power for a finite coordinate determinant is n=3.
         power_results.append({
             'n_power': n_power,
             'det_status': det_status,
@@ -424,7 +387,7 @@ def test_disformal_compensation(z_max: float = 1e6, n_points: int = 10000,
             'det_finite': det_finite,
             'R_finite': R_finite,
             'B_grad_phi_scaling': f'B|nabla_phi|^2 ~ A^(-{2*n_power})',
-            'det_scaling': f'det(g_tilde) ~ A^({8-2*n_power})'
+            'det_scaling': f'det(g_tilde) ~ A^({6-2*n_power})'
         })
 
     # Signature analysis: for a homogeneous timelike gradient,
@@ -435,11 +398,11 @@ def test_disformal_compensation(z_max: float = 1e6, n_points: int = 10000,
     #          N~^2 = A^2 - C A^{-2n} vanishes at the surface
     #          A_x = C^{1/(2n+2)} — a signature-change surface at finite
     #          A (inside the domain for C <= 1), beyond which the metric
-    #          has an additional timelike direction. The growing-
+    #          loses its timelike direction. The growing-
     #          compensation branch with B > 0 terminates at signature
     #          change before any horizon regularization.
     #   B < 0: factor = 1 + C A^{-2(n+1)} > 0 and
-    #          N~^2 = A^2 + C A^{-2n} diverges — the frozen-lapse regime.
+    #          N~^2 = A^2 + C A^{-2n} stays positive at finite eta.
     signature_rows = []
     for n_power in power_tests:
         for coeff in (0.1, 1.0, 10.0):
@@ -449,6 +412,7 @@ def test_disformal_compensation(z_max: float = 1e6, n_points: int = 10000,
                 'coefficient_C': coeff,
                 'B_positive_signature_change_at_A': float(A_cross),
                 'A_cross_inside_domain': bool(A_cross < 1.0),
+                'B_positive_lorentzian_at_A1': bool(coeff < 1.0),
                 'B_negative_no_signature_change': True,
             })
 
@@ -470,27 +434,25 @@ def test_disformal_compensation(z_max: float = 1e6, n_points: int = 10000,
                      'growing-compensation ansatz therefore reaches a '
                      'signature-change surface N~ = 0 at finite A rather '
                      'than a divergent lapse. For B < 0 the lapse diverges '
-                     '(frozen-dynamics regime).'),
+                     'while the finite-eta metric remains Lorentzian; a divergent lapse '
+                     'alone does not establish a physical pathology.'),
             'crossing_surface_A_x_for_B_positive': signature_rows,
         },
         'critical_power': {
-            'n_critical': 4,
-            'explanation': 'det(g_tilde) ~ A^{8-2n}. For n < 4: degenerate. '
-                          'For n = 4: non-degenerate (finite). For n > 4: divergent.',
-            'det_formula': 'det(g_tilde) = A^8 det(g) (1 + A^{-2n})'
+            'n_critical': 3,
+            'explanation': 'det(g_tilde) ~ A^{6-2n}; n=3 gives a finite coordinate determinant, not a smooth metric extension.',
+            'det_formula': 'det(g_tilde) = -(A^2+A^{-2n}) A^6'
         },
         'power_results': power_results,
         'interpretation': (
-            'Disformal compensation with B|∇φ|² ~ A^{-2n} can keep the metric '
-            'non-degenerate for n ≥ 4 (critical power n = 4 gives finite det). '
-            'However, the effective lapse N = sqrt(A² + A^{-2n}) diverges as '
-            'A → 0 for any n > 0, producing an infinitely stiff lapse. '
-            'The curvature invariants vanish for n > 1 (over-compensated), '
-            'but the physical interpretation is problematic: the disformal '
-            'sector introduces an infinitely growing term that is not '
-            'motivated by the TEP field equations on the homogeneous '
-            'background. The pure conformal treatment (boundary as '
-            'conformal endpoint) is the physically correct approach.'
+            'For the existing negative-B product ansatz, the determinant has '
+            'critical power n=3 and exact curvature vanishes as eta^(-2-2pn). '
+            'This curvature scalar is invariant, not a coordinate artifact. '
+            'The lapse stays positive at finite eta; the positive-B ansatz '
+            'instead reaches its stated signature-change surface. '
+            'These are metric-level tests of an assigned ansatz, not a derivation '
+            'of B(phi), its observational viability, or a smooth extension '
+            'of the boundary. The pure conformal completeness branch is unchanged.'
         )
     }
 
@@ -537,14 +499,13 @@ def run():
             'disformal_compensation_analyzed': True,
             'matter_frame_regular': conformal_results['regularity_status']['matter_frame_regular'],
             'interpretation': (
-                'Proposition 1 verified: in pure conformal closure, all curvature '
-                'invariants vanish at the temporal horizon for 0 < p ≤ 1/2. '
-                'The metric is degenerate (det → 0) but the boundary is a conformal '
-                'endpoint, not a curvature singularity. Disformal compensation '
-                '(B|∇φ|² ~ A^{-2n}) can keep the determinant nonzero for n ≥ 4, '
-                'but introduces an infinitely stiff lapse without physical '
-                'motivation on the homogeneous background. The pure conformal '
-                'treatment is the correct approach.'
+                'The pure conformal curvature-regularity certificate is retained. '
+                'The negative-B product ansatz has exact positive lapse at finite '
+                'eta and bounded curvature, with determinant critical power n=3; '
+                'a divergent coordinate lapse is not itself an invariant exclusion. '
+                'The positive-B growing ansatz has its stated signature-change '
+                'surface. These disformal tests do not derive the coupling from '
+                'the common action or establish observational closure.'
             )
         }
     }

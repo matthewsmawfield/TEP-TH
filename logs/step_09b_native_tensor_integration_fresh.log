@@ -1,0 +1,6 @@
+[TITLE] Starting step_09b_native_tensor_integration
+[SUCCESS] Step step_09b_native_tensor_integration completed
+[INFO] r_max = 5.2e-07
+[INFO] r_at_pivot = 0.0
+[INFO] r_analytic = 0.00446742
+[INFO] Below BK bound: True

@@ -1,0 +1,121 @@
+{
+  "collisional_sensitivity": {
+    "beta_corrected": 0.0413,
+    "chi2_tep_corrected": 4.721,
+    "note": "Uniform -10% T_ex->T_CMB correction on CO entries (bounding Klimenko et al. 2020 estimate)"
+  },
+  "data_source": "Published CO excitation temperatures (Noterdaeme et al. 2011 Table 1; Srianand et al. 2008; Noterdaeme et al. 2010), PKS 1830-211 CO (Muller et al. 2013), FIRAS anchor (Fixsen 2009)",
+  "has_data": true,
+  "interpretation": "T(z) = T0(1+z) at chi2/dof = 0.15 (max pull 0.63 sigma); fitted exponent beta = +0.0026 (+0.023/-0.023), consistent with the TEP/adiabatic value beta = 0 and with the literature constraints; the constant-temperature null has chi2 = 865.83, versus 1.08 for the TEP/adiabatic law. This comparison supports the tested temperature law, not a unique identification of the full framework.",
+  "literature_beta_constraints": {
+    "klimenko_2020": "+0.010 +/- 0.013",
+    "noterdaeme_2011": "-0.007 +/- 0.027"
+  },
+  "measurements": [
+    {
+      "absorber": "FIRAS monopole",
+      "pull_sigma": 0.0,
+      "reference": "Fixsen 2009",
+      "residual_k": 0.0,
+      "sigma_sym_k": 0.0006,
+      "t_obs_k": 2.7255,
+      "t_tep_pred_k": 2.7255,
+      "tracer": "monopole",
+      "z": 0.0
+    },
+    {
+      "absorber": "PKS 1830-211",
+      "pull_sigma": -0.622,
+      "reference": "Muller et al. 2013",
+      "residual_k": -0.0622,
+      "sigma_sym_k": 0.1,
+      "t_obs_k": 5.08,
+      "t_tep_pred_k": 5.1422,
+      "tracer": "CO mm",
+      "z": 0.8867
+    },
+    {
+      "absorber": "SDSS J085726+185524",
+      "pull_sigma": 0.044,
+      "reference": "Noterdaeme et al. 2011",
+      "residual_k": 0.0613,
+      "sigma_sym_k": 1.4,
+      "t_obs_k": 7.5,
+      "t_tep_pred_k": 7.4387,
+      "tracer": "CO",
+      "z": 1.7293
+    },
+    {
+      "absorber": "SDSS J104705+205734",
+      "pull_sigma": 0.369,
+      "reference": "Noterdaeme et al. 2011",
+      "residual_k": 0.24,
+      "sigma_sym_k": 0.65,
+      "t_obs_k": 7.8,
+      "t_tep_pred_k": 7.56,
+      "tracer": "CO",
+      "z": 1.7738
+    },
+    {
+      "absorber": "SDSS J170542+354340",
+      "pull_sigma": 0.305,
+      "reference": "Noterdaeme et al. 2011",
+      "residual_k": 0.3207,
+      "sigma_sym_k": 1.05,
+      "t_obs_k": 8.6,
+      "t_tep_pred_k": 8.2793,
+      "tracer": "CO",
+      "z": 2.0377
+    },
+    {
+      "absorber": "SDSS J143912+111740",
+      "pull_sigma": -0.238,
+      "reference": "Srianand et al. 2008",
+      "residual_k": -0.1668,
+      "sigma_sym_k": 0.7,
+      "t_obs_k": 9.15,
+      "t_tep_pred_k": 9.3168,
+      "tracer": "CO",
+      "z": 2.4184
+    },
+    {
+      "absorber": "SDSS J123714+064759",
+      "pull_sigma": 0.634,
+      "reference": "Noterdaeme et al. 2010",
+      "residual_k": 0.444,
+      "sigma_sym_k": 0.7,
+      "t_obs_k": 10.5,
+      "t_tep_pred_k": 10.056,
+      "tracer": "CO",
+      "z": 2.6896
+    }
+  ],
+  "model_comparison": {
+    "constant_temperature_tired": {
+      "chi2": 865.8,
+      "chi2_per_dof": 123.7,
+      "sqrt_delta_chi2": 29.4,
+      "statistic_scope": "Descriptive square-root chi-square difference between fixed curves; not a calibrated TEP discovery significance."
+    },
+    "free_exponent": {
+      "beta": 0.0026,
+      "beta_err_hi": 0.0231,
+      "beta_err_lo": 0.0226,
+      "chi2": 1.064,
+      "chi2_improvement_vs_tep": 0.013
+    },
+    "tep_adiabatic_beta0": {
+      "chi2": 1.078,
+      "chi2_per_dof": 0.154,
+      "max_abs_pull_sigma": 0.634
+    }
+  },
+  "n_measurements": 7,
+  "redshift_range": [
+    0.0,
+    2.6896
+  ],
+  "step": "step_11_excitation_temperature",
+  "title": "Distant-absorber excitation-temperature test",
+  "verdict": "TEP_COMPATIBLE"
+}

@@ -13,6 +13,7 @@ from pathlib import Path
 
 import numpy as np
 from scipy.integrate import solve_ivp
+from ionization_balance import ionized_fraction
 
 from th_common import (
     TEPLogger, ensure_dirs, print_status, rounded, set_step_logger,
@@ -132,9 +133,7 @@ def saha_equilibrium(z: np.ndarray) -> np.ndarray:
     saha_ratio = thermal_factor / n_H * np.exp(
         -CONSTANTS['E_ion'] / (CONSTANTS['k_B'] * T_z))
 
-    x_e = 0.5 * (-saha_ratio + np.sqrt(saha_ratio ** 2 + 4.0 * saha_ratio))
-    x_e = np.where(saha_ratio > 10000.0, 0.9999999999, x_e)
-    x_e = np.clip(x_e, 0.0, 1.0)
+    x_e = ionized_fraction(saha_ratio)
     return x_e
 
 
@@ -161,22 +160,15 @@ def _saha_xe_helium(z: np.ndarray) -> tuple:
     # HeII -> HeIII (second ionization)
     saha_HeII = 4.0 * thermal / n_He * np.exp(
         -E_ion_HeII / (CONSTANTS['k_B'] * T_z))
-    x_HeIII = np.where(
-        saha_HeII > 10000.0, 1.0,
-        0.5 * (-saha_HeII + np.sqrt(saha_HeII ** 2 + 4.0 * saha_HeII)))
-    x_HeIII = np.clip(x_HeIII, 0.0, 1.0)
+    x_HeIII = ionized_fraction(saha_HeII)
 
     # HeI -> HeII (first ionization), accounting for HeIII already formed
     saha_HeI = thermal / n_He * np.exp(
         -E_ion_HeI / (CONSTANTS['k_B'] * T_z))
-    a_q = 1.0
-    b_q = saha_HeI
-    c_q = -saha_HeI * (1.0 - x_HeIII)
-    disc = b_q ** 2 - 4.0 * a_q * c_q
-    x_HeII = np.where(
-        saha_HeI > 10000.0, 1.0 - x_HeIII,
-        (-b_q + np.sqrt(np.maximum(disc, 0.0))) / (2.0 * a_q))
-    x_HeII = np.clip(x_HeII, 0.0, 1.0 - x_HeIII)
+    available = 1.0 - x_HeIII
+    ratio = np.divide(saha_HeI, available, out=np.zeros_like(saha_HeI),
+                      where=available > 0)
+    x_HeII = available * ionized_fraction(ratio)
     x_HeI = 1.0 - x_HeII - x_HeIII
     return x_HeII, x_HeI
 
@@ -264,21 +256,14 @@ def peebles_recombination(z_array: np.ndarray, epsilon_t: float,
                 -CONSTANTS['E_lya'] / (CONSTANTS['k_B'] * T_m))
             - n_H * alpha_B * x_e_H_val ** 2)
         dx_e_dz_val = -dx_e_dt / ((1.0 + z_val) * H_z)
-        return dx_e_dz_val
+        return np.array([dx_e_dz_val])
 
-    try:
-        sol = solve_ivp(dx_e_H_dz, [z_fine[0], z_fine[-1]], [x_e_H_init],
-                        t_eval=z_fine, method='Radau',
-                        rtol=1e-06, atol=1e-10)
-        x_e_H_fine = sol.y[0]
-    except Exception:
-        x_e_H_fine = np.zeros(len(z_fine))
-        x_e_H_fine[0] = x_e_H_init
-        for i in range(1, len(z_fine)):
-            dz = z_fine[i] - z_fine[i - 1]
-            slope = dx_e_H_dz(z_fine[i - 1], x_e_H_fine[i - 1])
-            x_e_H_fine[i] = x_e_H_fine[i - 1] + slope * dz
-            x_e_H_fine[i] = np.clip(x_e_H_fine[i], 1e-10, 1.0)
+    sol = solve_ivp(dx_e_H_dz, [z_fine[0], z_fine[-1]], [x_e_H_init],
+                    t_eval=z_fine, method='Radau',
+                    rtol=1e-06, atol=1e-10)
+    if not sol.success or len(sol.t) != len(z_fine):
+        raise RuntimeError("Peebles recombination integration failed: " + sol.message)
+    x_e_H_fine = sol.y[0]
 
     # Use Saha above z=1600 where equilibrium holds
     saha_xe = saha_equilibrium(z_fine)
@@ -390,6 +375,18 @@ def test_recombination_visibility(z_max: float = 2500.0, n_points: int = 1000,
     """
     z_array = np.linspace(0, z_max, n_points)
     use_class_engine = (model == 'lcdm' or epsilon_t == 0)
+    class_import_error = None
+    if use_class_engine:
+        try:
+            import sys
+            sys.path.insert(0, str(PROJECT_ROOT / 'external' / 'class'))
+            from classy import Class
+        except (ImportError, AttributeError) as exc:
+            class_import_error = str(exc)
+            use_class_engine = False
+            print_status("CLASS import unavailable; using the existing "
+                         "Saha+Peebles comparator for this run: " + str(exc),
+                         "WARNING")
 
     if use_class_engine:
         try:
@@ -462,6 +459,7 @@ def test_recombination_visibility(z_max: float = 2500.0, n_points: int = 1000,
 
         results = {
             "step": STEP_ID,
+            "engine": "CLASS",
             "description": "Recombination and visibility function validation with Saha+Peebles physics",
             "parameters": {
                 "epsilon_t": epsilon_t,
@@ -600,6 +598,9 @@ def test_recombination_visibility(z_max: float = 2500.0, n_points: int = 1000,
 
     results = {
         "step": STEP_ID,
+        "engine": "Saha+Peebles approximation",
+        "hydrogen_integrator": "Radau, rtol=1e-6, atol=1e-10; solver success required",
+        "class_import_error": class_import_error,
         "description": "Recombination and visibility function validation with Saha+Peebles physics",
         "parameters": {
             "epsilon_t": epsilon_t,

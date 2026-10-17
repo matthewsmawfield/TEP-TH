@@ -29,10 +29,11 @@ PIPELINE_STEPS = [
     ("step_07_entropy_arrow", "Entropy and arrow of time", []),
     ("step_08_primordial_perturbation_boundary", "Primordial perturbation boundary", []),
     ("step_08b_single_clock_domain", "Single-clock domain of control", []),
-    ("step_09_temporal_horizon_claim_gate", "Temporal-horizon claim gate", []),
     ("step_09b_native_tensor_integration", "Native tensor-mode integration", []),
     ("step_10_invariant_divergence", "Nonzero-background curvature sensitivity", []),
     ("step_10_cmb_lss_class", "CMB/LSS consistency via CLASS", ["step_05_recombination_visibility"]),
+    ("step_11_excitation_temperature", "Distant-absorber excitation temperature", []),
+    ("step_09_temporal_horizon_claim_gate", "Temporal-horizon claim gate", ["step_10_cmb_lss_class"]),
 ]
 
 

@@ -89,7 +89,7 @@
 </ol>
 
 <p>
-    <em>Proof sketch.</em> Substitute $A_{\rm clock}(\eta)=C\eta^{-p}$ into equations \eqref{eq:ricci_scalar_full}–\eqref{eq:kretschmann}. In the static conformal background $R=0$ and spatial gradients vanish by homogeneity. The time derivatives scale as $A_{\rm clock}'\sim -pC\eta^{-p-1}$ and $A_{\rm clock}''\sim p(p+1)C\eta^{-p-2}$. The Ricci scalar \eqref{eq:ricci_scalar_A} contains terms $A_{\rm clock}^{-2}R$ and $A_{\rm clock}^{-3}\Box A_{\rm clock}$. With $R=0$ and homogeneity, the dominant term is $6A_{\rm clock}''/A_{\rm clock}^{3}=6p(p+1)C^{-2}\eta^{2p-2}\to0$ for $0 \lt p\lt1$. The Ricci-tensor invariant has coefficient $12p^{2}(p^{2}+p+1)/C^{4}$ and the Kretschmann invariant has coefficient $12p^{2}(p^{2}+1)/C^{4}$, which satisfy the zero-Weyl identity $\tilde{K}=2\tilde{R}_{\mu\nu}\tilde{R}^{\mu\nu}-\tfrac13\tilde{R}^{2}$; both are strictly positive for all $p>0$ and scale as $\eta^{4p-4}\to0$ for $0 \lt p\lt1$. Numerical evaluation confirms vanishing to machine precision across $\eta\in[1,10^{4}]$. $\square$
+    <em>Proof sketch.</em> Substitute $A_{\rm clock}(\eta)=C\eta^{-p}$ into equations $\eqref{eq:ricci_scalar_full}$–$\eqref{eq:kretschmann}$. In the static conformal background $R=0$ and spatial gradients vanish by homogeneity. The time derivatives scale as $A_{\rm clock}'\sim -pC\eta^{-p-1}$ and $A_{\rm clock}''\sim p(p+1)C\eta^{-p-2}$. The Ricci scalar $\eqref{eq:ricci_scalar_A}$ contains terms $A_{\rm clock}^{-2}R$ and $A_{\rm clock}^{-3}\Box A_{\rm clock}$. With $R=0$ and homogeneity, the dominant term is $6A_{\rm clock}''/A_{\rm clock}^{3}=6p(p+1)C^{-2}\eta^{2p-2}\to0$ for $0 \lt p\lt1$. The Ricci-tensor invariant has coefficient $12p^{2}(p^{2}+p+1)/C^{4}$ and the Kretschmann invariant has coefficient $12p^{2}(p^{2}+1)/C^{4}$, which satisfy the zero-Weyl identity $\tilde{K}=2\tilde{R}_{\mu\nu}\tilde{R}^{\mu\nu}-\tfrac13\tilde{R}^{2}$; both are strictly positive for all $p>0$ and scale as $\eta^{4p-4}\to0$ for $0 \lt p\lt1$. Numerical evaluation reproduces the analytic decay laws on the tested range; the vanishing limit is established by their negative powers of $\eta$. $\square$
 </p>
 
 <p>
@@ -97,11 +97,11 @@
 </p>
 
 <p>
-    <em>Scope of the $R=0$ hypothesis.</em> The proposition's background-flatness assumption is quantitative, not merely qualitative. Writing a residual background scalar as $R(\eta)=R_0\,\eta^{-s}$, the transformed term $A_{\rm clock}^{-2}R\sim R_0\,\eta^{2p-s}$ is bounded if and only if $s\ge2p$ and vanishes toward the boundary for $s>2p$: background curvature must decay toward the temporal horizon faster than $\eta^{-2p}$. Two sources organise the answer. A fixed curvature offset ($s=0$) — e.g., a cosmological-constant-like floor in the background — is excluded for every $p>0$; such a floor would convert the vanishing invariants into divergent ones. Curvature sourced by the clock field itself decays as $R_{\rm kin}\sim\varphi'^2\sim\eta^{-2}$ (since $A_{\rm clock}=e^{\beta_A\varphi/M_{\rm Pl}}=\eta^{-p}$ gives $\varphi\propto\ln\eta$), so $s=2$ satisfies the vanishing condition for every $p<1$; it falls in step with the $\eta^{2p-2}$ gradient terms whenever $p<1$. The proposition therefore stands precisely for backgrounds whose residual curvature decays at least as fast as the clock field's own kinetic trace, and fails only for a non-decaying background floor — a scope statement verified numerically across the $(p,s)$ plane by the bounded sensitivity calculation of the pipeline's curvature-sensitivity step.
+    <em>Scope of the $R=0$ hypothesis.</em> The proposition's background-flatness assumption is quantitative, not merely qualitative. Writing a residual background scalar as $R(\eta)=R_0\,\eta^{-s}$, the transformed term $A_{\rm clock}^{-2}R\sim R_0\,\eta^{2p-s}$ is bounded if and only if $s\ge2p$ and vanishes toward the boundary for $s>2p$: background curvature must decay toward the temporal horizon faster than $\eta^{-2p}$. Two sources organise the answer. A fixed curvature offset ($s=0$) — e.g., a cosmological-constant-like floor in the background — is excluded for every $p>0$; such a floor would convert the vanishing invariants into divergent ones. Curvature sourced by the clock field itself decays as $R_{\rm kin}\sim\varphi'^2\sim\eta^{-2}$ (since $A_{\rm clock}=e^{\beta_A\varphi/M_{\rm Pl}}=\eta^{-p}$ gives $\varphi\propto\ln\eta$), so $s=2$ satisfies the vanishing condition for every $p&lt;1$; it falls in step with the $\eta^{2p-2}$ gradient terms whenever $p&lt;1$. The proposition therefore stands precisely for backgrounds whose residual curvature decays at least as fast as the clock field's own kinetic trace, and fails only for a non-decaying background floor — a scope statement verified numerically across the $(p,s)$ plane by the bounded sensitivity calculation of the pipeline's curvature-sensitivity step.
 </p>
 
 <p>
-    This establishes the temporal boundary as a regular conformal endpoint, adopting the mathematical architecture of Penrose's conformal compactification and null infinity ($\mathscr{I}^{+}$) (Penrose 2006; Tod 2003, 2015), here applied to the asymptotic past. The boundary is not a curvature singularity; it is a conformal-temporal boundary where the Lorentzian metric becomes degenerate in the observational clock frame. The vanishing of curvature invariants is necessary but not sufficient for regularity: a degenerate metric admits no inverse, so the geodesic equation becomes singular at the boundary. Geodesic completeness is established not by the curvature invariants alone but by the affine-parameter analysis of Section 4: timelike proper time diverges for $0 < p \le 1$ and null affine parameter diverges for $0 < p \le \tfrac{1}{2}$, so no causal curve reaches the boundary in finite parameter. The boundary is therefore a regular asymptotic endpoint of the conformal compactification, not an interior point of the manifold; the metric degeneracy is a feature of the conformal frame, not a pathology of the physical geometry.
+    This establishes the temporal boundary as a regular conformal endpoint, adopting the mathematical architecture of Penrose's conformal compactification and null infinity ($\mathscr{I}^{+}$) (Penrose 2006; Tod 2003, 2015), here applied to the asymptotic past. The boundary is not a curvature singularity; it is a conformal-temporal boundary where the Lorentzian metric becomes degenerate in the observational clock frame. The vanishing of curvature invariants is necessary but not sufficient for regularity: a degenerate metric admits no inverse, so the geodesic equation becomes singular at the boundary. Geodesic completeness is established not by the curvature invariants alone but by the affine-parameter analysis of Section 4: timelike proper time diverges for $0 &lt; p \le 1$ and null affine parameter diverges for $0 &lt; p \le \tfrac{1}{2}$, so no causal curve reaches the boundary in finite parameter. The boundary is therefore a regular asymptotic endpoint of the conformal compactification, not an interior point of the manifold; the metric degeneracy is a feature of the conformal frame, not a pathology of the physical geometry.
 </p>
 <p>
     It is vital to distinguish the TEP temporal horizon ($\mathscr{T}^{-}$) from Penrose's Conformal Cyclic Cosmology (CCC). Where CCC posits an infinite sequence of aeons connected by conformal rescalings at $\mathscr{I}^{+}$ and $\mathscr{I}^{-}$, TEP does not invoke cyclicality. $\mathscr{T}^{-}$ functions as a strict, non-singular asymptotic past boundary for a single, continuous causal history, dictated by the vanishing of the relative conformal clock rate.
@@ -124,27 +124,32 @@
 </div>
 
 <p>
-    where the contraction is signed. On the homogeneous background the gradient is timelike, $(\nabla\phi)^{2}=-(\phi')^{2}\lt0$, so the correction factor is $1-B(\phi')^{2}/A^{2}$: the disformal term corrects the temporal eigenvalue downward for $B\gt0$ and upward for $B\lt0$. The sign of $B$ therefore selects between two qualitatively different regimes, both examined below. Writing the growing-compensation ansatz as $|B(\phi')^{2}|=C\,A^{-2n}$, the magnitude of the determinant scales as $|\det(\tilde{g})|\sim A^{8-2n}|\det(g)|$ wherever the correction factor is nonzero. Three regimes arise for the magnitude:
+    The contraction is signed. On the homogeneous background $(\nabla\phi)^2=-(\phi')^2$, so the determinant factor is $1-B(\phi')^2/A^2$. For the declared product ansatz $|B(\phi')^2|=C_B A^{-2n}$, the negative-$B$ branch has
+</p>
+<div class="equation">
+    \begin{equation}
+        \tilde N^2=A^2+C_B A^{-2n},\qquad
+        \det\tilde g=-\tilde N^2A^6=-A^8-C_B A^{6-2n}.
+    \end{equation}
+</div>
+<p>
+    Thus the coordinate determinant tends to zero for $n&lt;3$, to $-C_B$ for $n=3$, and diverges for $n>3$. A finite determinant is not sufficient to establish a smooth extension of all metric components at the boundary. Step 01 evaluates the same lapse and spatial factor in both the determinant and curvature calculation, for the existing powers $n\in\{2,3,4,5,6,10\}$.
+</p>
+<p>
+    With $A=\eta^{-p}$, write $\mathcal H=A'/A=-p/\eta$ and $H=\mathcal H/\tilde N$. The invariant curvature of $d\tilde s^2=-\tilde N^2d\eta^2+A^2d\mathbf x^2$ is
+</p>
+<div class="equation">
+    \begin{equation}
+        \tilde R=\frac{6}{\tilde N^2}\left(\mathcal H'+2\mathcal H^2-\mathcal H\frac{\tilde N'}{\tilde N}\right).
+    \end{equation}
+</div>
+<p>
+    On the negative-$B$ branch, $\tilde N'/\tilde N\sim np/\eta$, giving $\tilde R\sim6[p+(n+2)p^2]C_B^{-1}\eta^{-2-2np}\to0$ for $n>0$. This is a curvature invariant, not a coordinate artifact. The lapse remains positive at every finite $\eta$; its divergence at the asymptotic boundary alone does not prove a physical pathology. For the tested $n\ge2$, comoving proper time $\int\tilde N\,d\eta$ and null affine length $\int A\tilde N\,d\eta$ both diverge at the boundary. These metric-level facts do not derive $B(\phi)$ from the common action or establish its observational viability.
+</p>
+<p>
+    Positive $B$ instead gives $\tilde N^2=A^2-C_B A^{-2n}$, with a signature-change surface $A_\times=C_B^{1/(2n+2)}$. A Lorentzian present reference at $A=1$ requires $C_B&lt;1$; the growing ansatz then encounters the surface before $A\to0$. The two signs therefore have different geometric verdicts. The pure conformal branch remains the branch used for this paper's main regularity and completeness theorems; neither the negative-$B$ comparison nor its rejection is needed for those results.
 </p>
 
-<ul>
-    <li>$n < 4$: $|\det(\tilde{g})|\to0$ — the metric remains degenerate.</li>
-    <li>$n = 4$: $|\det(\tilde{g})|\to|\det(g)|$ — the metric is non-degenerate and finite in magnitude.</li>
-    <li>$n > 4$: $|\det(\tilde{g})|\to\infty$ — the determinant diverges.</li>
-</ul>
-
 <p>
-    The critical power $n=4$ (i.e. $|B(\nabla\phi)^{2}|\sim A^{-8}$) is the unique scaling that keeps the metric non-degenerate in magnitude. This is confirmed by the pipeline (Step 01, disformal compensation test), which evaluates the determinant and curvature invariants for $n\in\{2,3,4,5,6,10\}$ across the observational clock profile $A_{\rm clock}(z)=(1+z)^{-1}$.
-</p>
-
-<p>
-    The two signs of $B$ must then be treated separately, and neither produces a regularized horizon. For $B\lt0$ the correction adds to the temporal eigenvalue: the effective lapse $\tilde N=\sqrt{A^{2}+|B|(\phi')^{2}}\sim A^{-n}$ diverges as $A\to0$ for any $n\gt0$. The matter-frame Hubble parameter $\tilde{H}=H_{\rm geom}/\tilde N$ is then driven to zero by the diverging lapse, and the curvature invariants vanish—not because the geometry is regular, but because the infinitely stiff lapse freezes all dynamical evolution. The curvature vanishing is therefore a coordinate artifact of the diverging lapse, not a physical regularity result. For $B\gt0$ the correction subtracts from the temporal eigenvalue: the lapse $\tilde N^{2}=A^{2}-B(\phi')^{2}=A^{2}-C\,A^{-2n}$ decreases and vanishes at the surface $A_{\times}=C^{1/(2n+2)}$, where $\tilde g_{00}$ changes sign. The metric crosses a signature-change surface at finite $A$ — inside the domain whenever $C\lesssim1$ — rather than approaching a regularized horizon: the would-be timelike direction becomes spacelike, and the manifold ceases to carry a physical time foliation before the conformal boundary is reached. The pipeline records the crossing surface $A_{\times}$ across the $(n,C)$ grid (Step 01, signature analysis). The growing-compensation branch thus never produces a smooth non-degenerate horizon: it terminates either in a signature flip ($B\gt0$) or in a frozen-lapse artifact ($B\lt0$).
-</p>
-
-<p>
-    On the homogeneous cosmological background the scalar field depends only on conformal time, $\phi=\phi(\eta)$, so $\nabla_{\mu}\phi=\delta_{\mu}^{0}\phi'$ is purely temporal. The disformal term rescales only $g_{00}$, which a time reparameterisation absorbs (Section 2.1) wherever the lapse remains positive. The disformal sector therefore does not generate independent spatial curvature on the homogeneous background; attempts to use it for metric non-degeneracy introduce either a signature-change surface ($B\gt0$) or an unphysical diverging lapse ($B\lt0$), without changing the spatial geometry. The pure conformal treatment, in which the boundary is a Penrose-style conformal endpoint rather than an interior point of the manifold, is the physically correct approach.
-</p>
-
-<p>
-    The pipeline confirms this analysis. In pure conformal closure ($B=0$), Proposition 1 is verified: $|\tilde{R}|$ and $|\tilde{K}|$ vanish to below $10^{-18}$ and $10^{-36}$ respectively at $z=10^{6}$ for $p=0.4$, and the $p$-sensitivity test confirms vanishing for all $0&lt;p\le\tfrac12$. The disformal compensation test shows that while $n=4$ yields a finite determinant, the curvature vanishing is driven by the diverging lapse rather than by geometric regularity. The metric degeneracy in pure conformal closure is therefore not a pathology to be cured by the disformal sector; it is the defining feature of the conformal boundary, exactly as in Penrose's conformal compactification of null infinity.
+    The pipeline confirms this analysis. In pure conformal closure ($B=0$), Proposition 1 is verified: $|\tilde{R}|\approx3.36\times10^{-18}$ and $|\tilde{K}|\approx2.23\times10^{-36}$ at $z=10^{6}$ for $p=0.4$ in the normalized profile, and the $p$-sensitivity test confirms vanishing for all $0&lt;p\le\tfrac12$. The disformal test reproduces the exact metric determinant, whose finite-magnitude exponent is $n=3$, and the bounded curvature of its negative-$B$ comparison branch. Neither test promotes that assigned coupling to the common action. The metric degeneracy in pure conformal closure is therefore not a pathology to be cured by the disformal sector; it is the defining feature of the conformal boundary, exactly as in Penrose's conformal compactification of null infinity.
 </p>

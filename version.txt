@@ -1,10 +1,5 @@
-v0.4 (Thika) — 2026-09-13 — No physical Big Bang singularity: temporal-horizon cosmology and eternal-universe closure
+v0.5 (Thika) — 17 October 2026 — Decelerating temporal-horizon curvature regularity, spectral-flow scalar tilt, and tensor-pump benchmark
 
-- Big Bang singularity shown to be a reconstruction artifact of imposing isochronous expanding-frame description on conformal temporal geometry
-- Temporal Horizon Cosmology framework: a_eff→0 is a temporal horizon, not a curvature singularity
-- Proposition 1: curvature regularity at conformal boundary (all polynomial invariants vanish, timelike proper time diverges)
-- Hot Big Bang framework replaced with Native Local Thermodynamic Evolution in an eternal universe
-- Nucleosynthesis and recombination derived from proper-time reaction flow, not FLRW geometry
-- Scalar perturbations from clock-field fluctuations; tensor-to-scalar ratio from the native wave equation (r(k_pivot) = 1.9×10⁻⁹, r_max = 5.2×10⁻⁷)
-- Strong Energy Condition violation explicitly demonstrated (prerequisite of Hawking-Penrose theorems)
-- Cross-paper consistency: aligned with TEP-BBN (Paper 29), TEP-HC (Paper 18), TEP-C0 (Paper 26), TEP (Paper 0) v0.10
+- Proved matter-frame curvature regularity and geodesic completeness on the decelerating temporal-horizon branch A_clock(eta) ~ eta^-p (0 < p <= 1/2), where all curvature invariants vanish asymptotically at the past temporal boundary T^-
+- Derived the scalar perturbation spectrum from clock-field fluctuations (n_s - 1 = -2 epsilon_field; Planck n_s = 0.9649 gives epsilon_field = 0.01755) and integrated the assigned tensor-pump equation across the finite transition profile, obtaining r(k_pivot) = 1.9 x 10^-9 and r_max = 5.2 x 10^-7 (well below the BICEP/Keck bound r < 0.036)
+- Aligned the effective stress-energy, BBN, and recombination interfaces with the unified (3+1) ADM static-space gravitational action and companion Paper 29 ambient-bath boundary

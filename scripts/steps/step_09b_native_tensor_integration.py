@@ -43,7 +43,8 @@ def A_profile(eta, p=P, eta_0=ETA_0_MPC, n=N_PROFILE):
 def A_double_prime_over_A(eta, p=P, eta_0=ETA_0_MPC, n=N_PROFILE):
     x = np.asarray(eta) / eta_0
     xn = x**n
-    return p * ((p + 1.0) * xn - 1.0) / (eta_0**2 * (1.0 + xn)**2)
+    curvature = 0.0 if n == 1 else (n - 1.0) * x**(n - 2)
+    return p * ((p + 1.0) * x**(2*n - 2) - curvature) / (eta_0**2 * (1.0 + xn)**2)
 
 
 def integrate_mode(k, p=P, eta_0=ETA_0_MPC, n=N_PROFILE, with_source=True):
@@ -81,7 +82,7 @@ def bogoliubov_integral(k_tilde, p=P, n=N_PROFILE):
     In dimensionless units (eta_tilde = eta/eta_0, k_tilde = k*eta_0):
         beta_k = -(i / 2 k_tilde) integral_0^infty V_tilde(eta_tilde) e^{-2 i k_tilde eta_tilde} d eta_tilde
 
-    where V_tilde = eta_0^2 * V = p * [(p+1) x^n - 1] / (1+x^n)^2.
+    where V_tilde = eta_0^2 * V = p x^(n-2) [(p+1) x^n - (n-1)] / (1+x^n)^2.
 
     The integrand oscillates ~k_tilde/pi times across the transition;
     at CMB scales k_tilde ~ 10^2-10^4 a fixed-subdivision quadrature is
@@ -91,7 +92,7 @@ def bogoliubov_integral(k_tilde, p=P, n=N_PROFILE):
 
     def V_tilde(x):
         xn = x**n
-        return p * ((p + 1.0) * xn - 1.0) / (1.0 + xn)**2
+        return A_double_prime_over_A(x, p=p, eta_0=1.0, n=n)
 
     re_val, re_err = quad(V_tilde, 0.0, np.inf, weight='cos',
                           wvar=2.0 * k_tilde, limlst=400)
@@ -110,7 +111,7 @@ def bogoliubov_integral_split(k_tilde, p=P, n=N_PROFILE):
 
     def V_tilde(x):
         xn = x**n
-        return p * ((p + 1.0) * xn - 1.0) / (1.0 + xn)**2
+        return A_double_prime_over_A(x, p=p, eta_0=1.0, n=n)
 
     half = np.pi / (2.0 * k_tilde)
     edges = np.arange(0.0, 100.0, half)

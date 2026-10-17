@@ -1,273 +1,137 @@
 #!/usr/bin/env python3
-"""Step 02: Geodesic Completeness - test null and timelike geodesic extension.
+"""Step 02: verify the manuscript's conformal power-law geodesics.
 
-Integrate null and timelike geodesics backward toward the temporal horizon to test
-whether physical trajectories terminate at a curvature singularity or approach
-the horizon asymptotically.
+On the stated static background, A(eta)=C eta**(-p). Null affine length
+obeys d lambda/d eta=A**2. A timelike geodesic of conserved momentum q
+obeys d tau/d eta=A**2/sqrt(A**2+q**2). Integrate finite segments in log eta
+and check independent quadrature/closed forms. Infinite-end completeness
+comes from the analytic integral criterion, never a finite numerical cutoff.
+This verifies the specified background, not its dynamical generation.
 """
-
-from __future__ import annotations
-
 from pathlib import Path
+import hashlib
 import numpy as np
-from scipy.integrate import solve_ivp
-from th_common import (
-    TEPLogger, ensure_dirs, print_status, rounded, set_step_logger,
-    step_json_path, step_csv_path, write_json, write_csv,
-    conformal_factor_A, DEFAULT_EPSILON_T, DEFAULT_Z_T, DEFAULT_N_T,
-    H0_KM_S_MPC, C_KM_S
-)
+from scipy.integrate import solve_ivp, quad
+from th_common import (TEPLogger, ensure_dirs, print_status, set_step_logger,
+                       step_json_path, step_csv_path, write_json, write_csv)
+from step_01_matter_frame_curvature import DEFAULT_P
 
-STEP_ID = "step_02_geodesic_completeness"
+STEP_ID = 'step_02_geodesic_completeness'
 
 
-def null_geodesic_equation(lam, y, epsilon_t: float, z_t: float, n_t: float):
-    """Geodesic equation for null rays in matter frame.
-
-    Simplified radial null geodesic in conformal frame, integrated
-    backward (toward increasing redshift / temporal horizon):
-    dt/dλ = -1/A(t), dr/dλ = +1/A(t)
-    """
-    t, r = y
-    z = 1.0 / t - 1.0 if t > 1e-15 else 1e15
-    A = conformal_factor_A(z, epsilon_t, z_t, n_t)
-    # Negative sign: backward integration toward temporal horizon (t decreases, z increases)
-    dt_dlambda = -1.0 / max(A, 1e-10)
-    dr_dlambda = -dt_dlambda  # Null geodesic: dr/dλ = +1/A
-    return [dt_dlambda, dr_dlambda]
+def power_integral(exponent, log_eta_ratio):
+    """Integral of exp(exponent*x), stable at the logarithmic boundary."""
+    if exponent == 0:
+        return float(log_eta_ratio)
+    return float(np.expm1(exponent * log_eta_ratio) / exponent)
 
 
-def timelike_geodesic_equation(tau, y, epsilon_t: float, z_t: float, n_t: float):
-    """Geodesic equation for timelike observers in matter frame.
-
-    Simplified radial timelike geodesic, integrated backward:
-    dt/dτ = -1/A(t), dr/dτ = -v/A(t) where v < 1
-    """
-    t, r = y
-    z = 1.0 / t - 1.0 if t > 1e-15 else 1e15
-    A = conformal_factor_A(z, epsilon_t, z_t, n_t)
-    dt_dtau = -1.0 / max(A, 1e-10)
-    v = 0.1  # Test velocity
-    dr_dtau = v * dt_dtau  # v > 0, dt_dtau < 0 → dr_dtau < 0
-    return [dt_dtau, dr_dtau]
+def completeness_criterion(p, q=1.0):
+    """Analytic infinite-end criterion in the manuscript's p>0 family."""
+    if not np.isfinite(p) or p <= 0 or not np.isfinite(q):
+        raise ValueError('Finite p>0 and finite conserved momentum required')
+    return {'null_geodesics_complete': bool(p <= .5),
+            'comoving_timelike_complete': bool(p <= 1.),
+            'specified_timelike_complete': bool(p <= (1. if q == 0 else .5)),
+            'all_timelike_geodesics_complete': bool(p <= .5)}
 
 
-def horizon_event(lam, y, *args):
-    """Event function: terminate when conformal time t falls below threshold.
-    *args absorbs extra parameters passed by solve_ivp."""
-    return y[0] - 1e-6
+def integrate_profile(p=DEFAULT_P, q=1.0, eta_max=1e8, n_points=400,
+                      C=1.0, rtol=2e-10):
+    """Accumulate lambda, tau and radial coordinate, starting at eta=1."""
+    criterion = completeness_criterion(p, q)
+    if not np.isfinite(C) or C <= 0 or not np.isfinite(eta_max) or eta_max <= 1:
+        raise ValueError('C>0 and finite eta_max>1 required')
+    if n_points < 2:
+        raise ValueError('At least two trajectory samples required')
+    xmax = float(np.log(eta_max))
+    x = np.linspace(0., xmax, n_points)
+
+    def rhs(log_eta, _):
+        eta = np.exp(log_eta)
+        A = C * np.exp(-p * log_eta)
+        norm = np.hypot(A, q)
+        return [eta*A*A, eta*A*A/norm, eta*q/norm]
+
+    sol = solve_ivp(rhs, (0., xmax), [0., 0., 0.], t_eval=x,
+                    method='DOP853', rtol=rtol, atol=rtol*.01)
+    if not sol.success or not np.all(np.isfinite(sol.y)):
+        raise RuntimeError(f'Geodesic integration failed: {sol.message}')
+    null_exact = C*C*power_integral(1-2*p, xmax)
+    proper_quad, quad_error = quad(lambda t: rhs(t, None)[1], 0., xmax,
+                                   epsabs=1e-10, epsrel=2e-11, limit=200)
+    null_error = abs(sol.y[0,-1]-null_exact)/max(1., abs(null_exact))
+    proper_error = abs(sol.y[1,-1]-proper_quad)/max(1., abs(proper_quad))
+    if null_error > 5e-8 or proper_error > 5e-8:
+        raise ArithmeticError('Geodesic integration failed independent parity')
+    eta = np.exp(x)
+    A = C*np.exp(-p*x)
+    summary = {'p':float(p), 'q':float(q), 'C':float(C), 'eta_max':float(eta_max),
+               'integration_success':True, 'solver_message':sol.message,
+               'null_affine_length':float(sol.y[0,-1]),
+               'proper_time':float(sol.y[1,-1]),
+               'null_closed_form':null_exact,
+               'proper_time_independent_quadrature':float(proper_quad),
+               'quadrature_error_estimate':float(quad_error),
+               'null_scaled_error':float(null_error),
+               'timelike_scaled_error':float(proper_error),
+               'infinite_end_criterion':criterion}
+    if q == 0:
+        exact = C*power_integral(1-p,xmax)
+        summary['comoving_closed_form'] = exact
+        if abs(sol.y[1,-1]-exact)/max(1.,abs(exact)) > 5e-8:
+            raise ArithmeticError('Comoving closed-form check failed')
+    rows=[{'eta':float(t), 'z':float(np.expm1(p*xx)), 'A_clock':float(a),
+           'null_affine_parameter':float(lam), 'null_r':float(t-1.),
+           'timelike_proper_time':float(tau), 'timelike_r':float(r)}
+          for t,xx,a,lam,tau,r in zip(eta,x,A,*sol.y)]
+    return summary, rows
 
 
-horizon_event.terminal = True
-horizon_event.direction = -1  # t decreasing
-
-
-def integrate_null_geodesic_backward(z_start: float = 0.0, z_end: float = 1000.0,
-                                      n_steps: int = 1000,
-                                      epsilon_t: float = DEFAULT_EPSILON_T,
-                                      z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T) -> dict:
-    """Integrate null geodesic backward from observer to high redshift."""
-
-    y0 = [1.0 / (1.0 + z_start), 0.0]  # Initial conditions: t, r at z_start
-
-    try:
-        sol = solve_ivp(
-            null_geodesic_equation, [0, 10.0], y0,
-            args=(epsilon_t, z_t, n_t),
-            events=horizon_event,
-            dense_output=True,
-            max_step=0.01,
-            method='RK45'
-        )
-
-        t_final = sol.y[0, -1]
-        r_final = sol.y[1, -1]
-        terminated_by_event = sol.t_events is not None and len(sol.t_events[0]) > 0
-        # Event at t=1e-6 is a numerical cutoff to prevent overflow;
-        # the geodesic approaches t=0 asymptotically, not at finite affine parameter.
-        reaches_horizon = False
-
-        # Sample uniformly for CSV output
-        lambda_dense = np.linspace(0, sol.t[-1], n_steps)
-        y_dense = sol.sol(lambda_dense)
-        t_sol = y_dense[0, :]
-        r_sol = y_dense[1, :]
-
-        return {
-            'success': True,
-            't_final': rounded(t_final, 15),
-            'r_final': rounded(r_final, 6),
-            'reaches_horizon': reaches_horizon,
-            'terminated_by_event': terminated_by_event,
-            'affine_parameter_complete': True,
-            't_array': t_sol.tolist(),
-            'r_array': r_sol.tolist()
-        }
-    except Exception as e:
-        return {
-            'success': False,
-            'error': str(e),
-            'reaches_horizon': None,
-            'terminated_by_event': False,
-            'affine_parameter_complete': False
-        }
-
-
-def integrate_timelike_geodesic_backward(z_start: float = 0.0, z_end: float = 1000.0,
-                                          n_steps: int = 1000,
-                                          epsilon_t: float = DEFAULT_EPSILON_T,
-                                          z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T) -> dict:
-    """Integrate timelike geodesic backward from observer to high redshift."""
-
-    y0 = [1.0 / (1.0 + z_start), 0.0]
-    try:
-        sol = solve_ivp(
-            timelike_geodesic_equation, [0, 10.0], y0,
-            args=(epsilon_t, z_t, n_t),
-            events=horizon_event,
-            dense_output=True,
-            max_step=0.01,
-            method='RK45'
-        )
-
-        t_final = sol.y[0, -1]
-        r_final = sol.y[1, -1]
-        terminated_by_event = sol.t_events is not None and len(sol.t_events[0]) > 0
-        # Event at t=1e-6 is a numerical cutoff; geodesic approaches horizon asymptotically.
-        reaches_horizon = False
-
-        tau_dense = np.linspace(0, sol.t[-1], n_steps)
-        y_dense = sol.sol(tau_dense)
-        t_sol = y_dense[0, :]
-        r_sol = y_dense[1, :]
-
-        return {
-            'success': True,
-            't_final': rounded(t_final, 15),
-            'r_final': rounded(r_final, 6),
-            'reaches_horizon': reaches_horizon,
-            'terminated_by_event': terminated_by_event,
-            'proper_time_complete': True,
-            't_array': t_sol.tolist(),
-            'r_array': r_sol.tolist()
-        }
-    except Exception as e:
-        return {
-            'success': False,
-            'error': str(e),
-            'reaches_horizon': None,
-            'terminated_by_event': False,
-            'proper_time_complete': False
-        }
-
-
-def test_geodesic_completeness(z_max: float = 1000.0, n_points: int = 1000,
-                               epsilon_t: float = DEFAULT_EPSILON_T,
-                               z_t: float = DEFAULT_Z_T, n_t: float = DEFAULT_N_T) -> dict:
-    """Test geodesic completeness toward temporal horizon."""
-    
-    # Test null geodesics
-    null_result = integrate_null_geodesic_backward(
-        z_end=z_max, n_steps=n_points,
-        epsilon_t=epsilon_t, z_t=z_t, n_t=n_t
-    )
-    
-    # Test timelike geodesics
-    timelike_result = integrate_timelike_geodesic_backward(
-        z_end=z_max, n_steps=n_points,
-        epsilon_t=epsilon_t, z_t=z_t, n_t=n_t
-    )
-    
-    # Analyze results
-    null_complete = null_result['success'] and null_result['affine_parameter_complete']
-    timelike_complete = timelike_result['success'] and timelike_result['proper_time_complete']
-    
-    null_asymptotic = null_result['success'] and not null_result['reaches_horizon']
-    timelike_asymptotic = timelike_result['success'] and not timelike_result['reaches_horizon']
-    
-    results = {
-        'step': STEP_ID,
-        'description': 'Geodesic completeness test toward temporal horizon',
-        'parameters': {
-            'epsilon_t': epsilon_t,
-            'z_t': z_t,
-            'n_t': n_t,
-            'z_max': z_max,
-            'n_points': n_points
-        },
-        'null_geodesics': {
-            'integration_success': null_result['success'],
-            'affine_parameter_complete': null_result['affine_parameter_complete'],
-            'reaches_horizon': null_result['reaches_horizon'],
-            'asymptotic_approach': null_asymptotic,
-            't_final': null_result.get('t_final'),
-            'r_final': null_result.get('r_final')
-        },
-        'timelike_geodesics': {
-            'integration_success': timelike_result['success'],
-            'proper_time_complete': timelike_result['proper_time_complete'],
-            'reaches_horizon': timelike_result['reaches_horizon'],
-            'asymptotic_approach': timelike_asymptotic,
-            't_final': timelike_result.get('t_final'),
-            'r_final': timelike_result.get('r_final')
-        },
-        'completeness_status': {
-            'null_geodesics_complete': null_complete,
-            'timelike_geodesics_complete': timelike_complete,
-            'both_asymptotic': null_asymptotic and timelike_asymptotic,
-            'geodesically_complete': null_complete and timelike_complete
-        },
-        'interpretation': 'Geodesics approach temporal horizon asymptotically (no singularity)' if 
-                          (null_asymptotic and timelike_asymptotic) else
-                          'Geodesics may terminate at finite affine/proper time (requires analysis)'
-    }
-    
-    # Generate CSV output
-    if null_result['success'] and timelike_result['success']:
-        z_array = np.linspace(0, z_max, n_points)
-        csv_rows = []
-        for i, z in enumerate(z_array):
-            csv_rows.append({
-                'z': rounded(z, 4),
-                'null_t': rounded(null_result['t_array'][i], 15) if i < len(null_result['t_array']) else None,
-                'null_r': rounded(null_result['r_array'][i], 6) if i < len(null_result['r_array']) else None,
-                'timelike_t': rounded(timelike_result['t_array'][i], 15) if i < len(timelike_result['t_array']) else None,
-                'timelike_r': rounded(timelike_result['r_array'][i], 6) if i < len(timelike_result['r_array']) else None
-            })
-        write_csv(step_csv_path(STEP_ID), csv_rows)
-    
-    return results
+def test_geodesic_completeness(z_max=1000., n_points=1000, p=DEFAULT_P, q=1., C=1.):
+    """Validate the specified profile; z=(eta/eta0)**p-1 is a clock ratio."""
+    if not np.isfinite(z_max) or z_max <= 0:
+        raise ValueError('Positive finite redshift extent required')
+    completeness_criterion(p,q)
+    eta_max = float(np.exp(np.log1p(z_max)/p))
+    result, rows = integrate_profile(p,q,eta_max,n_points,C)
+    status = result['infinite_end_criterion']
+    complete = status['null_geodesics_complete'] and status['all_timelike_geodesics_complete']
+    return {'step':STEP_ID, 'description':__doc__,
+            'parameters':{'p':p,'q':q,'C':C,'z_max':z_max,'eta_max':eta_max,'n_points':n_points},
+            'null_geodesics':{'integration_success':True,
+                'affine_parameter_complete':status['null_geodesics_complete'],
+                'finite_segment_affine_length':result['null_affine_length']},
+            'timelike_geodesics':{'integration_success':True,
+                'proper_time_complete':status['specified_timelike_complete'],
+                'all_timelike_geodesics_complete':status['all_timelike_geodesics_complete'],
+                'finite_segment_proper_time':result['proper_time']},
+            'completeness_status':{'null_geodesics_complete':status['null_geodesics_complete'],
+                'timelike_geodesics_complete':status['all_timelike_geodesics_complete'],
+                'geodesically_complete':bool(complete)},
+            'validation':result,
+            'claim_basis':'Analytic infinite-end integrability, independently checked on finite segments; no cutoff-based inference.',
+            'interpretation':('The specified power-law branch is null and timelike complete.' if complete else
+                'This p lies outside the null/all-timelike complete branch; the comoving criterion is reported separately.'),
+            '_trajectory':rows}
 
 
 def run():
-    logger = TEPLogger(STEP_ID, log_file_path=Path(f"logs/{STEP_ID}.log"))
-    set_step_logger(logger)
-    print_status(f"Starting {STEP_ID}", "TITLE")
-    ensure_dirs()
-    
-    # Test with default parameters
-    results = test_geodesic_completeness()
-    
-    # Test with different epsilon_t values
-    epsilon_tests = [0.0001, 0.001, 0.01]
-    epsilon_results = []
-    
-    for eps in epsilon_tests:
-        eps_result = test_geodesic_completeness(epsilon_t=eps)
-        epsilon_results.append({
-            'epsilon_t': eps,
-            'geodesically_complete': eps_result['completeness_status']['geodesically_complete'],
-            'both_asymptotic': eps_result['completeness_status']['both_asymptotic']
-        })
-    
-    results['epsilon_sensitivity'] = epsilon_results
-    
-    write_json(step_json_path(STEP_ID), results)
-    print_status(f"Step {STEP_ID} completed successfully", "SUCCESS")
-    print_status(f"Geodesic completeness: {results['completeness_status']['geodesically_complete']}", "INFO")
-    
-    return results
+    logger=TEPLogger(STEP_ID, log_file_path=Path(f'logs/{STEP_ID}.log'))
+    set_step_logger(logger);ensure_dirs()
+    result=test_geodesic_completeness()
+    write_csv(step_csv_path(STEP_ID),result.pop('_trajectory'))
+    # Include the logarithmic boundary and controls outside the selected branch.
+    result['power_law_sensitivity']=[]
+    for p in [.25,.4,.5,.75,1.,1.25]:
+        for q in [0.,.1,1.,10.]:
+            check,_=integrate_profile(p,q)
+            result['power_law_sensitivity'].append(check)
+    result['source_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    write_json(step_json_path(STEP_ID),result)
+    print_status(f"Verified default p={DEFAULT_P}: complete={result['completeness_status']['geodesically_complete']}; 24 branch/momentum controls passed",'SUCCESS')
+    return result
 
 
-if __name__ == "__main__":
+if __name__=='__main__':
     run()

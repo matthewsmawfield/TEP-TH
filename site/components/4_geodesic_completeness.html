@@ -1,7 +1,7 @@
 <h1>4. Geodesic Completeness</h1>
 
 <p>
-    A key test for physical singularities is geodesic incompleteness. Null and timelike geodesics are integrated backward from the present epoch toward the temporal horizon. For the temporal-horizon profile $A_{\rm clock}(\eta)=C\eta^{-p}$ with $0 \lt p\le\tfrac12$, both null and timelike geodesics are complete: the null affine parameter diverges and the timelike proper time diverges. For $0 \lt p\lt1$ the timelike branch is already complete; null completeness requires the slightly stronger bound $p\le\tfrac12$. The boundary is curvature-empty in this branch.
+    A key test for physical singularities is geodesic incompleteness. Null and timelike geodesics are integrated backward from the present epoch toward the temporal horizon. For the temporal-horizon profile $A_{\rm clock}(\eta)=C\eta^{-p}$ with $0 \lt p\le\tfrac12$, both null and timelike geodesics are complete: the null affine parameter diverges and the timelike proper time diverges. Comoving timelike observers accumulate infinite proper time for $0 \lt p\le1$; timelike geodesics with nonzero conserved spatial momentum require $p\le\tfrac12$, the same bound as null completeness. The boundary is curvature-empty in this branch.
 </p>
 
 <p>
@@ -43,7 +43,7 @@
 <h2>4.2 Null Geodesics and Affine Length</h2>
 
 <p>
-    For radial null geodesics in the static matter frame ($a_{\rm m}=1$), the geodesic equation with the corrected Christoffels gives
+    For radial null geodesics on the static gravitational background ($a_g=1$, with matter metric $\tilde g=A_{\rm clock}^2g$), the geodesic equation with the corrected Christoffels gives
 </p>
 
 <div class="equation">
@@ -79,7 +79,7 @@
 </div>
 
 <p>
-    so that for $p<\tfrac12$ the null affine parameter diverges as a power law, $\tilde{\lambda}\propto\eta^{1-2p}\to\infty$. At the marginal value $p=\tfrac12$,
+    so that for $p&lt;\tfrac12$ the null affine parameter diverges as a power law, $\tilde{\lambda}\propto\eta^{1-2p}\to\infty$. At the marginal value $p=\tfrac12$,
 </p>
 
 <div class="equation">
@@ -105,7 +105,7 @@
 </div>
 
 <p>
-    For the temporal-horizon profile $A_{\rm clock}(\eta)=C\eta^{-p}$ with $0 \lt p\lt1$, the integral $\int^{\infty}\eta^{-p}\,d\eta$ <em>diverges</em> because $p\le 1$. Timelike proper time to the temporal boundary is therefore <em>infinite</em>. This is a major strengthening: timelike geodesics are complete for the entire $0 \lt p\lt1$ branch. In TEP, Proposition 1 guarantees that all curvature invariants <em>vanish</em> at the temporal horizon for $0 \lt p\lt1$, so the infinite proper time reflects that observers can continue evolving indefinitely while the geometry becomes asymptotically curvature-empty.
+    For the temporal-horizon profile $A_{\rm clock}(\eta)=C\eta^{-p}$ with $0 \lt p\lt1$, the integral $\int^{\infty}\eta^{-p}\,d\eta$ <em>diverges</em> because $p\le 1$. Comoving proper time to the temporal boundary is therefore <em>infinite</em>. This establishes the comoving result; completeness of arbitrary timelike geodesics requires the momentum-dependent calculation below. In TEP, Proposition 1 guarantees that all curvature invariants <em>vanish</em> at the temporal horizon for $0 \lt p\lt1$, so the infinite proper time reflects that observers can continue evolving indefinitely while the geometry becomes asymptotically curvature-empty.
 </p>
 
 <p>
@@ -119,7 +119,7 @@
 </div>
 
 <p>
-    which diverges as a power law $\tilde{\tau}\propto\eta^{1-p}\to\infty$ for all $0\lt p\lt1$. The timelike bound $p\lt1$ is weaker than the null bound $p\le\tfrac12$; every timelike observer accumulates infinite proper time before reaching $\mathscr{T}^{-}$. The geodesic equations in the matter frame are regular everywhere:
+    which diverges as a power law $\tilde{\tau}\propto\eta^{1-p}\to\infty$ for all $0\lt p\lt1$. The comoving bound $p\le1$ is weaker than the bound for general timelike geodesics. With conserved spatial momentum $q_i=A_{\rm clock}^2 dx^i/d\tilde\tau$ and $q^2=\delta^{ij}q_iq_j$, normalization gives $$\frac{d\tilde\tau}{d\eta}=\frac{A_{\rm clock}^2}{\sqrt{A_{\rm clock}^2+q^2}}.$$ For $q=0$ this reduces to $A_{\rm clock}$. For any fixed $q\neq0$, the asymptotic integrand is $A_{\rm clock}^2/|q|\propto\eta^{-2p}$, so arbitrary timelike geodesics are complete precisely for $p\le\tfrac12$. The adopted complete branch therefore satisfies both the timelike and null tests. The geodesic equations in the matter frame are regular everywhere:
 </p>
 
 <div class="equation">
@@ -129,7 +129,7 @@
 </div>
 
 <p>
-    with $\tilde{\Gamma}$ given by \eqref{eq:christoffel}. Since $\tilde{\Gamma}\sim A_{\rm clock}^{-1}\partial A_{\rm clock}$ is bounded and the four-velocity is normalized, the equations admit smooth solutions that approach the horizon asymptotically. Numerical integration confirms this: both null and timelike geodesics approach $A_{\rm clock}\to0$ without encountering divergent curvature or coordinate breakdown.
+    with $\tilde{\Gamma}$ given by $\eqref{eq:christoffel}$. Since $\tilde{\Gamma}\sim A_{\rm clock}^{-1}\partial A_{\rm clock}$ is bounded and the four-velocity is normalized, the equations admit smooth solutions that approach the horizon asymptotically. Step 02 integrates the null affine length and momentum-dependent timelike proper time in $\ln\eta$, checking the finite segments against the closed-form null and comoving integrals and independent timelike quadrature. The controls include $p=\tfrac12$, where affine length grows logarithmically, and $p>\tfrac12$, where null and moving-observer proper time converge. Infinite-end completeness is assigned by the analytic integrability criterion above, rather than by a numerical endpoint or an imposed small-value threshold.
 </p>
 
 <h2>4.4 Geodesic Completeness Theorem</h2>
@@ -139,7 +139,7 @@
 </p>
 
 <ol>
-    <li>Timelike proper time to the temporal boundary diverges for $0 \lt p\le 1$, hence in particular for $0 \lt p\le\tfrac12$.</li>
+    <li>Comoving proper time diverges for $0 \lt p\le1$; all timelike geodesics, including those with nonzero spatial momentum, have divergent proper time for $0 \lt p\le\tfrac12$.</li>
     <li>Null affine parameter to the temporal boundary diverges for $0 \lt p\le\tfrac12$.</li>
     <li>All polynomial curvature invariants vanish at the boundary for $0 \lt p\lt1$, hence in particular for $0 \lt p\le\tfrac12$.</li>
     <li>The tensor source term $A_{\rm clock}''/A_{\rm clock}=p(p+1)/\eta^{2}\to 0$ at the boundary.</li>
@@ -154,7 +154,7 @@
 </p>
 
 <p>
-    Three structural points sharpen the status of the branch index $p$. First, the completeness window is identical to the background's scaling-regime condition: the effective clock-Hubble exponent satisfies $|\epsilon_H| = 1/p$ (Section 10.2b), so $p\le\tfrac12$ is exactly the statement $|\epsilon_H|\ge2$ — the kinetic-dominated branch on which the mechanism operates. Null completeness is therefore not an auxiliary tunable condition but the same regime the reconstructed background analysis commits to. Second, $p$ is the family index of the reconstructed single-clock action of Section 10.2: each member $(\mathcal Z_p, U_p)$ is reconstructed around its own exponent and realizes that power law exactly, so the theorem is a property of every member of the branch rather than of a single fitted trajectory; which member the corpus's canonical closure dynamics realizes is the same open asymptotic determination as the master-action embedding identified in Section 2 (the branch-index datum). Third, the index is observable in principle through the tensor falsification surface of Section 10.6: the Step 09b computation returns $r_{\rm max}(p)\approx 6.1\times10^{-5}\,p^{2}$ at the transition scale, so every member of the complete branch lies below $1.4\times10^{-5}$ — the completeness claim is branch-robust, while a primordial tensor detection above that level at $k\sim2\times10^{-4}\ {\rm Mpc}^{-1}$ would bound or falsify the branch through this channel.
+    Three structural points sharpen the status of the branch index $p$. First, the power-law completeness window $p\le\tfrac12$ can also be expressed as $|\mathcal H_{\rm eff}'|/\mathcal H_{\rm eff}^{2}\ge2$, or as $|\dot H_{\rm clock}|/H_{\rm clock}^{2}\ge1$ using matter proper time (Section 10.2b). These equivalent geometric bounds do not establish a kinetic-dominated equation of state or independently select the background. Second, $p$ is the family index of the reconstructed single-clock action of Section 10.2: each member $(\mathcal Z_p, U_p)$ is reconstructed around its own exponent and realizes that power law exactly, so the theorem is a property of every member of the branch rather than of a single fitted trajectory; which member the corpus's canonical closure dynamics realizes is the same open asymptotic determination as the master-action embedding identified in Section 2 (the branch-index datum). Third, the index is observable in principle through the tensor diagnostic surface of Section 10.6: along the one-parameter fiducial slice ($n=4$, $\eta_0=14{,}000$ Mpc), the Step 09b computation returns $r_{\rm max}(p)\approx 6.1\times10^{-5}\,p^{2}$ at the transition scale ($\le 1.4\times10^{-5}$ for $p\le\tfrac12$, while joint variations such as $p=0.5$, $n=2$, $\eta_0=3000$ Mpc reach $1.14\times10^{-4}$), so the completeness claim is branch-robust and primordial tensor observations at $k\sim2\times10^{-4}\ {\rm Mpc}^{-1}$ constrain the joint transition-profile parameters $(p, n, \eta_0)$ once the tensor action normalization is fixed.
 </p>
 
 <h2>4.5 Conformal Compactification and Penrose-Style Diagram</h2>

@@ -8,6 +8,7 @@
         "passes": true,
         "thermal_preserved": true
       },
+      "evaluation_status": "PASS",
       "name": "Temporal-Horizon Reinterpretation",
       "passes": true
     },
@@ -21,6 +22,7 @@
         "passes": true,
         "recombination_preserved": true
       },
+      "evaluation_status": "PASS",
       "name": "Nonsingular Matter-Frame Cosmology",
       "passes": true
     },
@@ -35,11 +37,24 @@
         "passes": true,
         "perturbation_well_defined": true
       },
+      "evaluation_status": "PASS",
       "name": "Full Big-Bang Replacement",
       "passes": true
     }
   },
   "description": "Automated claim gate for temporal-horizon cosmology",
+  "input_sha256": {
+    "step_00_temporal_horizon_mapping": "f36b4857c511d1145cea3b4cfeda2018499738e1f6ea658effc615843c560bdb",
+    "step_01_matter_frame_curvature": "1f167253769e414914bded203fc70a78dddc09e6379a324b061d88c7637690d5",
+    "step_02_geodesic_completeness": "3ebe33d0ed7f10c5ac6f545e50defe8fee5dfe308a7b2a4b77521cc8c5458aee",
+    "step_03_effective_stress_energy": "a4a5330ab3c061233b511e134a2b6e6ee7ddea9d6cfa0d6655cf6c317889ce0a",
+    "step_04_full_bbn_abundances": "fc7341c62bbf94004570ca044977e61155a3c406f7a36d1d2322c5e958022a3b",
+    "step_05_recombination_visibility": "b5f4683fd34521a4c6119afadba15782ed8be93b89a3a151c0b81714eb72d231",
+    "step_06_cmb_blackbody_origin": "9ef6100770655645ff0cf233dbebd97ba7ce6b8074f81a84f061f0093144d659",
+    "step_07_entropy_arrow": "71c4d0ce64d105a179211a74d15d070193d73356c6aa774a6d88f00c8d6dfb28",
+    "step_08_primordial_perturbation_boundary": "d960b4c96a2528684ff2fd23ff027f6f93591988bb64726558c3a6e8475afeab",
+    "step_10_cmb_lss_class": "f58cf3968a8bc278095c9438da1b80566d60dc5600ce684809c8d9b51af6bc11"
+  },
   "interpretation": "TEP-TH achieves Level 3 claim: Full Big-Bang Replacement",
   "overall_claim": {
     "final_claim": "Level 3: Full Big-Bang Replacement",
@@ -48,9 +63,11 @@
   },
   "pipeline_status": {
     "all_steps_completed": true,
-    "steps_completed": 9,
+    "missing_steps": [],
+    "steps_completed": 10,
     "total_steps": 10
   },
+  "scope": "Aggregate of the declared saved benchmark verdicts. Passing this summary does not extend the physical scope of its component calculations.",
   "singularity_theorem_analysis": {
     "SEC_violated": true,
     "evades_standard_theorem": true,
@@ -61,11 +78,12 @@
     "failing": 0,
     "pass_rate": 1.0,
     "passing": 11,
-    "total": 11
+    "total": 11,
+    "unverified": 0
   },
   "subclaims": {
     "bbn_preservation": {
-      "description": "BBN light-element abundances preserved (Y_p, D/H, He3/H, Li7/H, N_eff)",
+      "description": "Primary BBN checks (Y_p and D/H); other species retain their producer diagnostic scope",
       "status": true
     },
     "blackbody_preservation": {
@@ -109,5 +127,5 @@
       "status": true
     }
   },
-  "timestamp": 1790714873
+  "timestamp": 1792147041
 }

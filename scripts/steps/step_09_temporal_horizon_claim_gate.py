@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Step 09: Temporal-Horizon Claim Gate.
 
-Aggregates results from steps 00--08 into a three-level claim hierarchy
+Aggregates results from steps 00--08 and the CMB/LSS step into a three-level claim hierarchy
 and evaluates whether TEP-TH satisfies the temporal-horizon cosmology claims.
 """
 
@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import time
+import hashlib
 from pathlib import Path
 
 from th_common import (
@@ -32,6 +33,7 @@ def _load_prior_results() -> dict:
         ("step_06_cmb_blackbody_origin", "blackbody_preserved"),
         ("step_07_entropy_arrow", "entropy_regular"),
         ("step_08_primordial_perturbation_boundary", "perturbation_well_defined"),
+        ("step_10_cmb_lss_class", "cmb_lss_consistent"),
     ]
     for step_name, key_hint in steps:
         path = step_json_path(step_name)
@@ -43,17 +45,51 @@ def _load_prior_results() -> dict:
     return results
 
 
-def _extract_status(step_result: dict | None, *keys: str, default: bool = False) -> bool:
-    """Safely extract a nested boolean from a step result."""
-    if step_result is None:
-        return default
+def _extract_status(step_result, *keys, default=None):
+    """Read an explicit JSON boolean; absent/malformed values remain unknown."""
     current = step_result
     for key in keys:
         if isinstance(current, dict) and key in current:
             current = current[key]
+        elif isinstance(current, list) and isinstance(key, int) and 0 <= key < len(current):
+            current = current[key]
         else:
             return default
-    return bool(current) if current is not None else default
+    return current if isinstance(current, bool) else default
+
+
+def _all_status(*values):
+    """Conjunction with unknown distinct from both success and failure."""
+    if any(v is False for v in values):
+        return False
+    return True if all(v is True for v in values) else None
+
+
+def evaluate_inputs(prior):
+    """Use producer verdicts without replacing explicit failures by controls."""
+    get = lambda step, *keys: _extract_status(prior.get(step), *keys)
+    mapping = get('step_00_temporal_horizon_mapping', 'mapping_valid')
+    if mapping is None:
+        mapping = get('step_00_temporal_horizon_mapping', 'epsilon_sensitivity', 0, 'mapping_valid')
+    curvature = get('step_01_matter_frame_curvature', 'overall_status', 'matter_frame_regular')
+    if curvature is None:
+        curvature = get('step_01_matter_frame_curvature', 'pure_conformal', 'regularity_status', 'matter_frame_regular')
+    bbn = get('step_04_full_bbn_abundances', 'summary', 'BBN_preserved')
+    if bbn is None:
+        bbn = _all_status(*(get('step_04_full_bbn_abundances', 'abundance_comparison', sp, 'TEP_consistent')
+                            for sp in ('Y_p', 'D_H')))
+    sec = get('step_03_effective_stress_energy', 'energy_conditions', 'SEC')
+    cmb = get('step_10_cmb_lss_class', 'cmb_scorecard', 'cmb_consistent')
+    lss = get('step_10_cmb_lss_class', 'lss_scorecard', 'lss_consistent')
+    return dict(mapping_valid=mapping, curvature_regular=curvature,
+        geodesic_complete=get('step_02_geodesic_completeness', 'completeness_status', 'geodesically_complete'),
+        bbn_preserved=bbn,
+        recombination_preserved=get('step_05_recombination_visibility', 'baseline_comparison', 'tep_with_screening', 'visibility_preserved'),
+        thermal_preserved=get('step_06_cmb_blackbody_origin', 'blackbody_preserved'),
+        entropy_regular=get('step_07_entropy_arrow', 'entropy_regularity', 's_standard_finite'),
+        perturbation_well_defined=get('step_08_primordial_perturbation_boundary', 'boundary_well_defined'),
+        sec_violated=None if sec is None else not sec,
+        cmb_consistent=cmb, lss_consistent=lss, cmb_lss_consistent=_all_status(cmb,lss))
 
 
 def run() -> dict:
@@ -64,89 +100,21 @@ def run() -> dict:
 
     prior = _load_prior_results()
 
-    # Level 1: Temporal-Horizon Reinterpretation
-    mapping_valid = _extract_status(
-        prior.get("step_00_temporal_horizon_mapping"),
-        "epsilon_sensitivity", 0, "mapping_valid", default=False
-    )
-    # Also accept if any mapping_valid is true
-    if not mapping_valid and prior.get("step_00_temporal_horizon_mapping"):
-        eps_data = prior["step_00_temporal_horizon_mapping"].get("epsilon_sensitivity", [])
-        mapping_valid = any(e.get("mapping_valid", False) for e in eps_data)
-
-    thermal_preserved = _extract_status(
-        prior.get("step_06_cmb_blackbody_origin"), "blackbody_preserved", default=False
-    )
-
-    level_1_passes = mapping_valid and thermal_preserved
-
-    # Level 2: Nonsingular Matter-Frame Cosmology
-    curvature_regular = _extract_status(
-        prior.get("step_01_matter_frame_curvature"),
-        "overall_status", "matter_frame_regular", default=False
-    )
-    if not curvature_regular:
-        curvature_regular = _extract_status(
-            prior.get("step_01_matter_frame_curvature"),
-            "pure_conformal", "curvature_invariants", "K_vanishing_at_horizon",
-            default=False,
-        )
-    geodesic_complete = _extract_status(
-        prior.get("step_02_geodesic_completeness"),
-        "completeness_status", "geodesically_complete", default=False
-    )
-    bbn_preserved = _extract_status(
-        prior.get("step_04_full_bbn_abundances"),
-        "abundance_comparison", "Y_p", "TEP_consistent", default=False
-    )
-    if not bbn_preserved:
-        # fallback: check if TEP abundances exist and are finite
-        tep = prior.get("step_04_full_bbn_abundances", {}).get("TEP_abundances", {})
-        bbn_preserved = bool(tep) and all(
-            isinstance(v, (int, float)) and v == v  # not NaN
-            for v in tep.values() if isinstance(v, (int, float))
-        )
-
-    recombination_preserved = _extract_status(
-        prior.get("step_05_recombination_visibility"),
-        "baseline_comparison", "tep_with_screening", "visibility_preserved", default=False
-    )
-    if not recombination_preserved:
-        recombination_preserved = _extract_status(
-            prior.get("step_05_recombination_visibility"),
-            "baseline_comparison", "tep_epsilon_0", "visibility_preserved", default=False
-        )
-
-    level_2_passes = curvature_regular and geodesic_complete and bbn_preserved and recombination_preserved
-
-    # Level 3: Full Big-Bang Replacement
-    blackbody_preserved = thermal_preserved
-    entropy_regular = _extract_status(
-        prior.get("step_07_entropy_arrow"),
-        "entropy_regularity", "s_standard_finite", default=False
-    )
-    perturbation_well_defined = _extract_status(
-        prior.get("step_08_primordial_perturbation_boundary"),
-        "boundary_well_defined", default=False
-    )
-    step10 = prior.get("step_10_cmb_lss_class")
-    if step10 is not None:
-        cmb_lss_consistent = _extract_status(
-            step10, "overall_consistent", default=False
-        ) or _extract_status(step10, "status", default=False)
-    else:
-        # step_10 may not have run yet in a partial pipeline
-        cmb_lss_consistent = True  # defer to step_10 for final verdict
-
-    level_3_passes = level_2_passes and blackbody_preserved and entropy_regular and perturbation_well_defined and cmb_lss_consistent
-
-    # SEC violation from step_03
-    sec_violated = _extract_status(
-        prior.get("step_03_effective_stress_energy"),
-        "energy_conditions", "SEC", default=False
-    )
-    # Note: SEC=False means violated (the JSON has SEC: false for violation)
-    sec_violated = not sec_violated  # invert because False in JSON means violated
+    checks = evaluate_inputs(prior)
+    mapping_valid = checks['mapping_valid']
+    curvature_regular = checks['curvature_regular']
+    geodesic_complete = checks['geodesic_complete']
+    bbn_preserved = checks['bbn_preserved']
+    recombination_preserved = checks['recombination_preserved']
+    thermal_preserved = blackbody_preserved = checks['thermal_preserved']
+    entropy_regular = checks['entropy_regular']
+    perturbation_well_defined = checks['perturbation_well_defined']
+    sec_violated = checks['sec_violated']
+    cmb_lss_consistent = checks['cmb_lss_consistent']
+    level_1_passes = _all_status(mapping_valid, thermal_preserved)
+    level_2_passes = _all_status(curvature_regular, geodesic_complete, bbn_preserved, recombination_preserved)
+    level_3_passes = _all_status(level_2_passes, blackbody_preserved, entropy_regular,
+                               perturbation_well_defined, cmb_lss_consistent)
 
     payload = {
         "step": STEP_ID,
@@ -229,7 +197,7 @@ def run() -> dict:
                 "status": sec_violated,
             },
             "bbn_preservation": {
-                "description": "BBN light-element abundances preserved (Y_p, D/H, He3/H, Li7/H, N_eff)",
+                "description": "Primary BBN checks (Y_p and D/H); other species retain their producer diagnostic scope",
                 "status": bbn_preserved,
             },
             "recombination_visibility": {
@@ -250,55 +218,39 @@ def run() -> dict:
             },
             "cmb_anisotropy_match": {
                 "description": "CMB TT/TE/EE anisotropy spectra match Planck within observational tolerance",
-                "status": cmb_lss_consistent,
+                "status": checks["cmb_consistent"],
             },
             "lss_bao_match": {
                 "description": "Matter power spectrum, growth factor, and BAO scales match SDSS/BOSS",
-                "status": cmb_lss_consistent,
+                "status": checks["lss_consistent"],
             },
         },
-        "subclaim_summary": {
-            "total": 11,
-            "passing": sum([
-                mapping_valid, curvature_regular, geodesic_complete, sec_violated,
-                bbn_preserved, recombination_preserved, blackbody_preserved,
-                entropy_regular, perturbation_well_defined, cmb_lss_consistent, cmb_lss_consistent,
-            ]),
-            "failing": 11 - sum([
-                mapping_valid, curvature_regular, geodesic_complete, sec_violated,
-                bbn_preserved, recombination_preserved, blackbody_preserved,
-                entropy_regular, perturbation_well_defined, cmb_lss_consistent, cmb_lss_consistent,
-            ]),
-            "pass_rate": round(sum([
-                mapping_valid, curvature_regular, geodesic_complete, sec_violated,
-                bbn_preserved, recombination_preserved, blackbody_preserved,
-                entropy_regular, perturbation_well_defined, cmb_lss_consistent, cmb_lss_consistent,
-            ]) / 11, 4),
-        },
+        "subclaim_summary": {},
         "pipeline_status": {
-            "all_steps_completed": all(prior.get(s) is not None for s, _ in [
-                ("step_00_temporal_horizon_mapping", None),
-                ("step_01_matter_frame_curvature", None),
-                ("step_02_geodesic_completeness", None),
-                ("step_03_effective_stress_energy", None),
-                ("step_04_full_bbn_abundances", None),
-                ("step_05_recombination_visibility", None),
-                ("step_06_cmb_blackbody_origin", None),
-                ("step_07_entropy_arrow", None),
-                ("step_08_primordial_perturbation_boundary", None),
-            ]),
-            "steps_completed": sum(1 for s in [
-                "step_00_temporal_horizon_mapping", "step_01_matter_frame_curvature",
-                "step_02_geodesic_completeness", "step_03_effective_stress_energy",
-                "step_04_full_bbn_abundances", "step_05_recombination_visibility",
-                "step_06_cmb_blackbody_origin", "step_07_entropy_arrow",
-                "step_08_primordial_perturbation_boundary",
-            ] if prior.get(s) is not None),
-            "total_steps": 10,
+            "all_steps_completed": all(isinstance(v, dict) and not v.get('error') for v in prior.values()),
+            "steps_completed": sum(isinstance(v, dict) and not v.get('error') for v in prior.values()),
+            "total_steps": len(prior),
+            "missing_steps": [k for k,v in prior.items() if v is None],
         },
         "interpretation": "Pending — set after claim evaluation",
         "timestamp": int(time.time()),
     }
+
+    states = [v['status'] for v in payload['subclaims'].values()]
+    payload['subclaim_summary'] = {
+        'total': len(states), 'passing': sum(v is True for v in states),
+        'failing': sum(v is False for v in states),
+        'unverified': sum(v is None for v in states),
+        'pass_rate': sum(v is True for v in states)/len(states)}
+    for level in payload['claim_levels'].values():
+        passed = level['passes']
+        level['evaluation_status'] = 'PASS' if passed is True else 'FAIL' if passed is False else 'NOT_VERIFIED'
+        if passed is not True:
+            level['criteria']['established_claim'] = None
+    payload['input_sha256'] = {name: hashlib.sha256(step_json_path(name).read_bytes()).hexdigest()
+        for name,value in prior.items() if value is not None}
+    payload['scope'] = ('Aggregate of the declared saved benchmark verdicts. Passing this summary '
+                        'does not extend the physical scope of its component calculations.')
 
     # Fix the interpretation that references payload before it exists
     if level_3_passes:
@@ -310,6 +262,8 @@ def run() -> dict:
     else:
         payload["interpretation"] = "TEP-TH has not yet established Level 1 claim."
 
+    if any(v is None for v in states):
+        payload["interpretation"] += " Some component checks are unverified; see subclaim_summary."
     write_json(step_json_path(STEP_ID), payload)
     print_status(f"Step {STEP_ID} completed", "SUCCESS")
     return payload

@@ -18,7 +18,10 @@
       "TEP_consistent": true,
       "TEP_sigma_diff": -0.43,
       "observed": 2.527e-05,
-      "observed_error": 3e-07
+      "observed_error": 3e-07,
+      "prediction_test": true,
+      "source": null,
+      "source_url": null
     },
     "He3_H": {
       "LCDM": 1.041e-05,
@@ -29,7 +32,10 @@
       "TEP_consistent": false,
       "TEP_sigma_diff": -7.74,
       "observed": 1.66e-05,
-      "observed_error": 8e-07
+      "observed_error": 8e-07,
+      "prediction_test": true,
+      "source": null,
+      "source_url": null
     },
     "Li7_H": {
       "LCDM": 5.238e-10,
@@ -40,7 +46,10 @@
       "TEP_consistent": false,
       "TEP_sigma_diff": 36.58,
       "observed": 1.58e-10,
-      "observed_error": 1e-11
+      "observed_error": 1e-11,
+      "prediction_test": true,
+      "source": null,
+      "source_url": null
     },
     "N_eff": {
       "LCDM": 3.046,
@@ -51,19 +60,31 @@
       "TEP_consistent": true,
       "TEP_sigma_diff": 0.04,
       "observed": 3.04,
-      "observed_error": 0.17
+      "observed_error": 0.17,
+      "prediction_test": false,
+      "source": null,
+      "source_url": null
     },
     "Y_p": {
       "LCDM": 0.2471,
       "LCDM_consistent": true,
-      "LCDM_sigma_diff": 1.0,
+      "LCDM_sigma_diff": 0.7,
       "TEP": 0.2471,
       "TEP_better": false,
       "TEP_consistent": true,
-      "TEP_sigma_diff": 1.0,
-      "observed": 0.247,
-      "observed_error": 0.0001
+      "TEP_sigma_diff": 0.7,
+      "observed": 0.245,
+      "observed_error": 0.003,
+      "prediction_test": true,
+      "source": "PDG 2024 BBN review, Eq. 24.3",
+      "source_url": "https://pdg.lbl.gov/2024/reviews/rpp2024-rev-bbang-nucleosynthesis.pdf"
     }
+  },
+  "calculation_provenance": {
+    "N_eff_status": "assumed standard reference; not a network prediction",
+    "dnnu_mapped": 1.9901198276629984e-11,
+    "engine": "AlterBBN network",
+    "mapping_scope": "single-epoch extra-radiation expansion proxy"
   },
   "description": "BBN abundance validation under temporal-horizon cosmology",
   "interpretation": "BBN abundances preserved under temporal-horizon cosmology",
@@ -87,7 +108,10 @@
         "TEP_consistent": false,
         "TEP_sigma_diff": 13.43,
         "observed": 2.527e-05,
-        "observed_error": 3e-07
+        "observed_error": 3e-07,
+        "prediction_test": true,
+        "source": null,
+        "source_url": null
       },
       "He3_H": {
         "LCDM": 1.041e-05,
@@ -98,7 +122,10 @@
         "TEP_consistent": false,
         "TEP_sigma_diff": -7.04,
         "observed": 1.66e-05,
-        "observed_error": 8e-07
+        "observed_error": 8e-07,
+        "prediction_test": true,
+        "source": null,
+        "source_url": null
       },
       "Li7_H": {
         "LCDM": 5.238e-10,
@@ -109,7 +136,10 @@
         "TEP_consistent": false,
         "TEP_sigma_diff": 30.8,
         "observed": 1.58e-10,
-        "observed_error": 1e-11
+        "observed_error": 1e-11,
+        "prediction_test": true,
+        "source": null,
+        "source_url": null
       },
       "N_eff": {
         "LCDM": 3.046,
@@ -120,19 +150,31 @@
         "TEP_consistent": true,
         "TEP_sigma_diff": 0.04,
         "observed": 3.04,
-        "observed_error": 0.17
+        "observed_error": 0.17,
+        "prediction_test": false,
+        "source": null,
+        "source_url": null
       },
       "Y_p": {
         "LCDM": 0.2471,
         "LCDM_consistent": true,
-        "LCDM_sigma_diff": 1.0,
+        "LCDM_sigma_diff": 0.7,
         "TEP": 0.2618,
         "TEP_better": false,
         "TEP_consistent": false,
-        "TEP_sigma_diff": 148.0,
-        "observed": 0.247,
-        "observed_error": 0.0001
+        "TEP_sigma_diff": 5.6,
+        "observed": 0.245,
+        "observed_error": 0.003,
+        "prediction_test": true,
+        "source": "PDG 2024 BBN review, Eq. 24.3",
+        "source_url": "https://pdg.lbl.gov/2024/reviews/rpp2024-rev-bbang-nucleosynthesis.pdf"
       }
+    },
+    "calculation_provenance": {
+      "N_eff_status": "assumed standard reference; not a network prediction",
+      "dnnu_mapped": 1.2005646740713982,
+      "engine": "AlterBBN network",
+      "mapping_scope": "single-epoch extra-radiation expansion proxy"
     },
     "description": "BBN abundance validation under temporal-horizon cosmology",
     "interpretation": "BBN abundances require further analysis or disformal corrections",
@@ -149,25 +191,28 @@
     "step": "step_04_full_bbn_abundances",
     "summary": {
       "BBN_preserved": false,
-      "LCDM_passes": 3,
-      "LCDM_passes_primary": 3,
-      "LCDM_success_rate": 0.6,
+      "LCDM_passes": 2,
+      "LCDM_passes_primary": 2,
+      "LCDM_success_rate": 0.5,
       "LCDM_success_rate_primary": 1.0,
-      "TEP_passes": 1,
-      "TEP_passes_primary": 1,
-      "TEP_success_rate": 0.2,
-      "TEP_success_rate_primary": 0.333,
+      "TEP_passes": 0,
+      "TEP_passes_primary": 0,
+      "TEP_success_rate": 0.0,
+      "TEP_success_rate_primary": 0.0,
+      "assumed_reference_species": [
+        "N_eff"
+      ],
       "diagnostic_species": [
         "He3_H",
         "Li7_H"
       ],
       "primary_species": [
         "Y_p",
-        "D_H",
-        "N_eff"
+        "D_H"
       ],
-      "total_primary": 3,
-      "total_tests": 5
+      "scope": "Conditional single-epoch expansion benchmark; observation-only residuals, no nuclear theory covariance.",
+      "total_primary": 2,
+      "total_tests": 4
     }
   },
   "parameters": {
@@ -182,35 +227,38 @@
   },
   "screening_comparison": {
     "no_screening": {
-      "TEP_success_rate": 0.2,
+      "TEP_success_rate": 0.0,
       "expansion_factor": 1.092698
     },
     "with_screening": {
-      "TEP_success_rate": 0.6,
+      "TEP_success_rate": 0.5,
       "expansion_factor": 1.0
     }
   },
   "step": "step_04_full_bbn_abundances",
   "summary": {
     "BBN_preserved": true,
-    "LCDM_passes": 3,
-    "LCDM_passes_primary": 3,
-    "LCDM_success_rate": 0.6,
+    "LCDM_passes": 2,
+    "LCDM_passes_primary": 2,
+    "LCDM_success_rate": 0.5,
     "LCDM_success_rate_primary": 1.0,
-    "TEP_passes": 3,
-    "TEP_passes_primary": 3,
-    "TEP_success_rate": 0.6,
+    "TEP_passes": 2,
+    "TEP_passes_primary": 2,
+    "TEP_success_rate": 0.5,
     "TEP_success_rate_primary": 1.0,
+    "assumed_reference_species": [
+      "N_eff"
+    ],
     "diagnostic_species": [
       "He3_H",
       "Li7_H"
     ],
     "primary_species": [
       "Y_p",
-      "D_H",
-      "N_eff"
+      "D_H"
     ],
-    "total_primary": 3,
-    "total_tests": 5
+    "scope": "Conditional single-epoch expansion benchmark; observation-only residuals, no nuclear theory covariance.",
+    "total_primary": 2,
+    "total_tests": 4
   }
 }

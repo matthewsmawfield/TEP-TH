@@ -35,7 +35,7 @@
 </div>
 
 <p>
-    This is the same effective equation of state as a cosmological constant. Evaluating the temporal-field potential for the TEP clock map $A_{\rm clock}(z)=(1+z)^{-1}$ gives the effective energy density
+    This is the same effective equation of state as a cosmological constant. The numerical Step 03 diagnostic adopts the following effective-fluid density prescription for the clock map $A_{\rm clock}(z)=(1+z)^{-1}$:
 </p>
 
 <div class="equation">
@@ -45,7 +45,7 @@
 </div>
 
 <p>
-    where the dimensionless factor $(d\ln a_{\rm eff}/d\ln A_{\rm clock})^{2}$ encodes the coupling between the temporal field and the effective scale factor. With $a_{\rm eff}=A_{\rm clock}\,a_{\rm m}$ and $a_{\rm m}=1$ in the static matter frame, $d\ln a_{\rm eff}/d\ln A_{\rm clock}=1$, and the action-level energy density \eqref{eq:rho_p_phi} evaluated at the present epoch gives
+    where the dimensionless factor $(d\ln a_{\rm eff}/d\ln A_{\rm clock})^{2}$ encodes the coupling between the temporal field and the effective scale factor. With $a_{\rm eff}=A_{\rm clock}\,a_{\rm m}$ and $a_g=1$ in the static matter frame, $d\ln a_{\rm eff}/d\ln A_{\rm clock}=1$, while the reconstructed action of Section 10 has the late-time limit
 </p>
 
 <div class="equation">
@@ -55,7 +55,7 @@
 </div>
 
 <p>
-    because the kinetic term decays as $\eta^{2p-4-2\epsilon_{\rm field}}\to0$ near the present. Equating $\rho_{A}(\eta_{0})=\rho_{\phi}(\eta_{0})$ fixes the pipeline constant in terms of the action parameters:
+    when the kinetic and nonconstant potential terms have decayed. Identifying the benchmark density with this asymptotic plateau would impose the normalization
 </p>
 
 <div class="equation">
@@ -65,10 +65,10 @@
 </div>
 
 <p>
-    The SEC test evaluated by the pipeline is therefore the action's own SEC: the effective-fluid density \eqref{eq:rho_phi} is the present-epoch limit of the action-level density \eqref{eq:rho_p_phi}, and $\epsilon_{\rm dyn}$ is not a free normalization but the vacuum potential energy expressed in units of the Hubble energy. With $w_{A}\approx -1$, the SEC is violated since $\rho + 3p = \rho(1 + 3w) \lt 0$ for $w \lt -1/3$.
+    The exact effective-action energy-condition identities are stronger than an assigned equation-of-state curve. Writing $K=\tfrac12\mathcal Z\dot\chi^2\ge0$, one has $\rho=K+U$, $\rho+p=2K$ and $\rho-p=2U$. Thus NEC, WEC and DEC hold wherever $U\ge0$, while SEC is violated whenever $U>2K$. On the reconstructed branch $K\to0$ and $U\to U_{\rm c}>0$, so SEC violation follows asymptotically without fitting a fluid pressure. Step 03's numerical curve instead uses the declared prescription $w(z)=-1+0.1/(1+z)=-0.90-0.10(1-a)$ ($w_0=-0.90$, $w_a=-0.10$, lying in the thawing $w_0&gt;-1,w_a&lt;0$ quadrant); its finite-redshift energy-condition table is an illustrative fluid diagnostic, not an evaluation of $\mathcal Z(\chi)$ and $U(\chi)$ along the action trajectory. Furthermore, when the zero-$\Lambda$ TEP-C0 M1 temporal-shear transport kernel $d\chi/dz=(c/H_0)[1+\epsilon_{\rm shear}^{\rm los}\ln(1+z)\exp(-(z/z_T)^2)]/(1+z)^{3/2}$ ($\epsilon_{\rm shear}^{\rm los}=0.8708$, $z_T=5.0$, Paper 26) is reconstructed as an effective FLRW dark-energy fluid $E_{\rm eff}^2(z)=(1+z)^3/\gamma(z)^2=\Omega_{m,0}(1+z)^3+(1-\Omega_{m,0})f_{\rm DE}(z)$ alongside the zero-parameter TEP-HC acoustic matter fraction $\Omega_{m,0}=\omega_{m,\rm eff}/h^2=0.3038$ (or Planck $\Omega_{m,0}=0.315$), the effective equation of state $w_{\rm eff}(z)=-1+\tfrac{1+z}{3}d\ln f_{\rm DE}/dz$ yields $w_{\rm eff}(0)=-0.834$ to $-0.848$ and a linear CPL projection over the DESI BAO range $z\in[0,1]$ of $(w_0=-0.71,\,w_a=-0.87)$ at $\Omega_{m,0}=0.304$ and $(w_0=-0.69,\,w_a=-1.13)$ at $\Omega_{m,0}=0.315$ (Step 03), reproducing the exact $(w_0&gt;-1,\,w_a&lt;0)$ thawing dark-energy evolution reported by DESI Year-1 BAO + CMB + DESY5 SNe ($w_0=-0.727\pm0.067$, $w_a=-1.05^{+0.31}_{-0.27}$; DESI Collaboration 2024) within $0.28\sigma$–$0.61\sigma$ in $w_0$ and $0.27\sigma$–$0.61\sigma$ in $w_a$ without a primitive dark-energy fluid. On the single-history native background that fits Pantheon+, DESI DR2 BAO and the Planck acoustic angle together (TEP-C0 Step 03-14, $\Delta\chi^2=-8.1$ against $\Lambda$CDM), the apparent equation of state rises to $w_{\rm eff}\approx-0.86$ near $z\approx0.4$ and returns to $-1$ by $z\approx1.5$, with CPL projection $(w_0,w_a)\approx(-0.83,-0.44)$, in DESI's thawing quadrant, produced by the time field without a primitive dark-energy fluid.
 </p>
 <p>
-    The identification \eqref{eq:epsilon_dyn} carries quantitative content that bears on the corpus's "no-$\Lambda$" position. With the fitted drift amplitude $\epsilon_{\rm dyn}=5.5\times10^{-3}$ (the TEP-HC homogeneous conformal posterior $\epsilon_T^{\rm HC}=0.00547\pm0.00429$), the vacuum plateau evaluates to
+    At the Step 03 benchmark $\epsilon_{\rm dyn}=5.5\times10^{-3}$, imposing $\eqref{eq:epsilon_dyn}$ would give
 </p>
 <div class="equation">
     \begin{equation} \label{eq:Uc_value}
@@ -76,10 +76,10 @@
     \end{equation}
 </div>
 <p>
-    recorded in the pipeline output (Step 03). The action-level vacuum energy is therefore a small residual — three orders of magnitude below the conventional dark-energy density — and it is essential to distinguish it from the effective background-budget parameter $\Omega_\phi$ of TEP-HC (Paper 18), which is defined operationally as the homogeneous conformal-sector contribution occupying the $\Omega_\Lambda$ slot of the FLRW bookkeeping. The latter is a kinematic accounting of the clock-drift mapping, not a literal energy density; the former is the genuine vacuum energy of the temporal field, and it is small. The corpus position is thereby sharper than "a dynamical vacuum energy replaces a bare constant": there is no bare geometric constant ($\Lambda_{\rm bare}\equiv0$), and there is no large vacuum energy anywhere in the theory — the roughly seventy-percent dark-energy budget of the distance-redshift bookkeeping is produced kinematically by temporal shear and line-of-sight transport (TEP-C0, Paper 26), while the action's own vacuum plateau sits at $\sim0.2\%$ of critical. The "no-$\Lambda$" designation across the corpus thus denotes both the absence of a bare geometric constant and the absence of a dark-energy-scale vacuum term; neither reading is semantic relabeling of a $\sim70\%$ vacuum component.
+    recorded as a conditional normalization in Step 03. The benchmark is distinct from the native TEP-HC likelihood parameter $\epsilon_T^{\rm HC}$, whose full high-$\ell$ result is $0.0043\pm0.0025$: that amplitude is not a measurement of $U_{\rm c}$ without an action-level mapping. Likewise HC's operational $\Omega_\phi$ background budget is not fixed by the small illustrative plateau. The absence of a bare geometric $\Lambda$ is a structural choice; accounting for the full observed background budget with the common action requires the embedding identified in Section 2. The benchmark alone establishes neither a universal vacuum-energy bound nor the physical origin of the entire background budget.
 </p>
 <p>
-    The pipeline evaluates the NEC, WEC, DEC, and SEC for the temporal field across redshift. The SEC is systematically violated, while the NEC and WEC are satisfied. By violating the SEC, the temporal field removes one of the assumptions required by the Hawking-Penrose singularity theorems; the theorems therefore do not force geodesic incompleteness. Geodesic completeness is established separately by the curvature and affine-parameter analysis of Sections 4.2–4.4.
+    The pipeline evaluates the NEC, WEC, DEC, and SEC for its specified effective-fluid diagnostic across redshift. The SEC is systematically violated, while the NEC and WEC are satisfied. By violating the SEC, the temporal field removes one of the assumptions required by the Hawking-Penrose singularity theorems; the theorems therefore do not force geodesic incompleteness. Geodesic completeness is established separately by the curvature and affine-parameter analysis of Sections 4.2–4.4.
 </p>
 
 <h2>5.2 Past-Completeness and the BGV Theorem</h2>
@@ -89,7 +89,7 @@
 </p>
 
 <p>
-    The theorem applies to the timelike geodesic congruence of the spacetime whose completeness is in question. In the two-metric setting that spacetime is the matter metric $\tilde{g}_{\mu\nu}=A_{\rm clock}^2\,g_{\mu\nu}$ — the geometry on which particles and clocks propagate — so the operative evaluation is on the matter-frame congruence, not the coordinate congruence of $g_{\mu\nu}$ (for completeness it may be noted that the static coordinate metric also has vanishing expansion, $\theta_g = 3\dot a_{\rm m}/a_{\rm m} = 0$ with $a_{\rm m}=1$, but the coordinate congruence is not the congruence to which the physical completeness question attaches).
+    The theorem applies to the timelike geodesic congruence of the spacetime whose completeness is in question. In the two-metric setting that spacetime is the matter metric $\tilde{g}_{\mu\nu}=A_{\rm clock}^2\,g_{\mu\nu}$ — the geometry on which particles and clocks propagate — so the operative evaluation is on the matter-frame congruence, not the coordinate congruence of $g_{\mu\nu}$ (for completeness it may be noted that the static coordinate metric also has vanishing expansion, $\theta_g = 3\dot a_g/a_g = 0$ with $a_g=1$, but the coordinate congruence is not the congruence to which the physical completeness question attaches).
 </p>
 
 <p>
@@ -103,17 +103,17 @@
 </div>
 
 <p>
-    As established in Section 4.3, for the regular branch $0 \lt p \le 1$, the past proper-time integral diverges toward the temporal horizon: $\Delta\tilde{\tau} \to \infty$ as $\eta \to \infty$. Meanwhile, the accumulated logarithmic clock shift $\Delta\ln A_{\rm clock} = -p\ln(\eta/\eta_0)$ grows only logarithmically, far slower than proper time ($\Delta\tilde{\tau} \sim \eta^{1-p}$ for $p \lt 1$). Consequently, the asymptotic past-averaged expansion rate along the physical matter congruence vanishes identically:
+    As established in Section 4.3, for the adopted regular branch $0 \lt p \le 1/2$, the past proper-time integral diverges toward the temporal horizon: $\Delta\tilde{\tau} \to \infty$ as $\eta \to \infty$. Meanwhile, the accumulated logarithmic clock shift $\Delta\ln A_{\rm clock} = p\ln(\eta/\eta_0)$ grows only logarithmically, far slower than proper time ($\Delta\tilde{\tau} \sim \eta^{1-p}$ for $p \lt 1$). Consequently, the asymptotic past-averaged expansion rate along this comoving matter congruence tends to zero:
 </p>
 
 <div class="equation">
     \begin{equation}
-        H_{\rm av} = \lim_{\Delta\tilde{\tau} \to \infty} \frac{-p\ln(\eta/\eta_0)}{\Delta\tilde{\tau}} = 0 \, .
+        H_{\rm av} = \lim_{\Delta\tilde{\tau} \to \infty} \frac{p\ln(\eta/\eta_0)}{\Delta\tilde{\tau}} = 0 \, .
     \end{equation}
 </div>
 
 <p>
-    The essential BGV hypothesis $H_{\rm av} > 0$ therefore fails by construction in the matter frame, just as $\theta_g = 0$ in the coordinate frame. This is not an evasion based on frame choice; it is a structural consequence of clock transport. The cosmological redshift is generated by clock-rate evolution rather than kinematic divergence of geodesics, so causal curves accumulate infinite proper time while the averaged expansion rate tends to zero. The BGV conclusion of past geodesic incompleteness is therefore avoided in both metric representations.
+    The essential BGV hypothesis $H_{\rm av} > 0$ therefore fails by construction in the matter frame, just as $\theta_g = 0$ in the coordinate frame. This is not an evasion based on frame choice; it is a structural consequence of clock transport. The cosmological redshift is generated by clock-rate evolution rather than kinematic divergence of geodesics, The comoving congruence has the vanishing average evaluated above; arbitrary timelike geodesics and null geodesics are past complete on $p\le1/2$ by the independent integrals in Section 4. The BGV conclusion of past geodesic incompleteness is therefore avoided in both metric representations.
 </p>
 
 <p>

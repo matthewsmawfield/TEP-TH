@@ -10,7 +10,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+/lib/
 lib64/
 parts/
 sdist/
@@ -65,3 +65,6 @@ docs/_build/
 
 .devin/
 manuscripts/
+
+# Editor workspace state
+*.code-workspace
